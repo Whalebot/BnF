@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: dac4eec67da68a342b38224238e9d4d5
+timeCreated: 1513688569
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: GakuranFont
+  fontNames:
+  - GakuranFont
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

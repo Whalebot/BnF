@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
+  m_Name: Tengu_ranged
+  m_EditorClassIdentifier: 
+  ID: 0
+  SpCost: 0
+  combo: 0
+  startUp: 30
+  active: 30
+  recovery: 30
+  forward1: 0
+  up1: 0
+  duration1: 30
+  forward2: 0
+  up2: 0
+  duration2: 30
+  forward3: 0
+  up3: 0
+  duration3: 30
+  jumpCancelable: 1
+  specialCancelable: 1
+  landCancel: 1
+  attackCancelable: 1
+  landCancelRecovery: 0
+  landAttackFrames: 0
+  iFrames: 0
+  invul: 0
+  canMove: 0
+  keepVel: 0
+  keepVerticalVel: 0
+  keepHorizontalVel: 0
+  interpolate: 0
+  isHoming: 0

@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3479871554251478309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3479871554251478315}
+  - component: {fileID: 3479871554251478314}
+  m_Layer: 0
+  m_Name: UI Assigner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3479871554251478315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479871554251478309}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 184.18863, y: 236.9949, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3479871554251478314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479871554251478309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c906af7488d554fafa9b7a0d2d4737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusBar1: {fileID: 0}
+  statusBar2: {fileID: 0}
+  statusBar3: {fileID: 0}
+  statusBar4: {fileID: 0}
+  statusBar5: {fileID: 0}
+  statusBar6: {fileID: 0}
+  statusBar7: {fileID: 0}
+  statusBar8: {fileID: 0}
+  statusBar9: {fileID: 0}
+  statusBar10: {fileID: 0}
+  statusBar11: {fileID: 0}
+  statusBar12: {fileID: 0}
+  circleSR1: {fileID: 0}
+  circleSR2: {fileID: 0}
+  circleSR3: {fileID: 0}
+  circle1: {fileID: 21300000, guid: 07514ca3c9da8ab40849d88a7478a30e, type: 3}
+  circle2: {fileID: 21300000, guid: e80bb557421ed2844bc03ba3be8f13fb, type: 3}
+  circle3: {fileID: 21300000, guid: a585b7a732496f745a4ac3d19f274943, type: 3}
+  circle4: {fileID: 21300000, guid: a578865b8801fe740a36bbe2158cf3ea, type: 3}
+  circle5: {fileID: 21300000, guid: a578865b8801fe740a36bbe2158cf3ea, type: 3}
+  circle6: {fileID: 21300000, guid: a578865b8801fe740a36bbe2158cf3ea, type: 3}
+  circle7: {fileID: 21300000, guid: a578865b8801fe740a36bbe2158cf3ea, type: 3}
+  circle8: {fileID: 21300000, guid: a578865b8801fe740a36bbe2158cf3ea, type: 3}
+  circle9: {fileID: 21300000, guid: a578865b8801fe740a36bbe2158cf3ea, type: 3}
+  circle10: {fileID: 21300000, guid: a578865b8801fe740a36bbe2158cf3ea, type: 3}
+  circle11: {fileID: 21300000, guid: a578865b8801fe740a36bbe2158cf3ea, type: 3}
+  circle12: {fileID: 21300000, guid: a578865b8801fe740a36bbe2158cf3ea, type: 3}

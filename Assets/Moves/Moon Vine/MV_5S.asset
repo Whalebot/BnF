@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
+  m_Name: MV_5S
+  m_EditorClassIdentifier: 
+  ID: 0
+  SpCost: 0
+  startUp: 6
+  active: 24
+  recovery: 12
+  forward1: 0
+  up1: 0
+  duration1: 0
+  forward2: 0
+  up2: 0
+  duration2: 24
+  forward3: 0
+  up3: 0
+  duration3: 12
+  combo: 0
+  jumpCancelable: 1
+  specialCancelable: 1
+  landCancel: 0
+  attackCancelable: 0
+  landCancelRecovery: 0
+  iFrames: 0
+  invul: 0
+  canMove: 0
+  keepVerticalVel: 1
+  keepHorizontalVel: 1
+  interpolate: 0
