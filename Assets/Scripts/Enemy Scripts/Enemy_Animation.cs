@@ -34,6 +34,9 @@ public class Enemy_Animation : MonoBehaviour
         if (enemyScript.knockdown) { anim.SetBool("Knockdown", true); }
         else anim.SetBool("Knockdown", false);
 
+        if (enemyScript.retreatJump) { anim.SetBool("Retreat", true); }
+        else anim.SetBool("Retreat", false);
+
 
         if (enemyMov.mov && enemyMov.rb.velocity.x != 0) { anim.SetBool("Walking", true); }
         else { anim.SetBool("Walking", false); }
@@ -61,6 +64,8 @@ public class Enemy_Animation : MonoBehaviour
         if (attackScript.active) anim.SetBool("Active", true);
         else anim.SetBool("Active", false);
 
+        if (enemyScript.isAirborne) anim.SetBool("Airborne", true);
+        else anim.SetBool("Airborne", false);
 
         if (attackScript.recovery)
         {

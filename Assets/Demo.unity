@@ -296,15 +296,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1569718567262724, guid: 62dd72b541c86224eb9d784e0bd85321, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4632770588614628, guid: 62dd72b541c86224eb9d784e0bd85321, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.6719637
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4632770588614628, guid: 62dd72b541c86224eb9d784e0bd85321, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.005901
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4632770588614628, guid: 62dd72b541c86224eb9d784e0bd85321, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1151,11 +1151,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114443692006020936, guid: 97c1ec0522edae34b8421ca9f3d06825,
-        type: 3}
-      propertyPath: bufferWindow
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 4759321609748938, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.58
@@ -1187,6 +1182,11 @@ PrefabInstance:
     - target: {fileID: 4759321609748938, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443692006020936, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: bufferWindow
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114489150784172526, guid: 97c1ec0522edae34b8421ca9f3d06825,
         type: 3}
@@ -6316,6 +6316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8c9605910b96944818e90b4ce4cb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: 0
   velocity: -10
   maxSpeed: 100
   directionChangeDur: 2
@@ -6467,6 +6468,7 @@ MonoBehaviour:
   willRetreat: 1
   canInterrupt: 1
   canKnockback: 1
+  isAirborne: 0
   moveDamage: 0
   comboDamage: 0
   comboHits: 0
@@ -6475,6 +6477,7 @@ MonoBehaviour:
   Blood: {fileID: 1319324631528408, guid: d15fa2818a690834f85d33489f115b0e, type: 3}
   retreatJumpX: 20
   retreatJumpY: 30
+  retreatJump: 0
   retreatTime: 12
   knockdown: 0
   knockdownForce: 0

@@ -6,8 +6,8 @@ public class DoNotDestroy : MonoBehaviour {
     public static bool created;
     void Awake()
     {
-        if (!created) { DontDestroyOnLoad(this); created = true; }
-          else DestroyImmediate(gameObject);
+//        if (!created) { DontDestroyOnLoad(this); created = true; }
+//          else DestroyImmediate(gameObject);
 
     }
 

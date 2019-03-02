@@ -37,7 +37,7 @@ public class EnemyScript : MonoBehaviour
     public bool willRetreat = true;
     public bool canInterrupt = true;
     public bool canKnockback = true;
-
+    public bool isAirborne;
 
     public int moveDamage;
     public int comboDamage;
@@ -74,7 +74,7 @@ public class EnemyScript : MonoBehaviour
     [HeaderAttribute("Retreat jump")]
     public float retreatJumpX = 20;
     public float retreatJumpY = 30;
-    bool retreatJump = false;
+    public bool retreatJump = false;
     public float retreatTime = 12;
     float retreatCounter;
 
@@ -130,7 +130,7 @@ public class EnemyScript : MonoBehaviour
             if (!knockout)
             {
                 if (hitstun > 0)
-                {
+                {if (!enemyMov.ground) isAirborne = true;
                     if (enemyAttack.active || enemyAttack.startup || enemyAttack.recovery) enemyAttack.InterruptAttack();
                     if (canDizzy && canKnockback)
                     {
@@ -148,7 +148,6 @@ public class EnemyScript : MonoBehaviour
                 {
                     if (knockdownCounter == 0)
                     {
-                        print(rb.velocity);
                         enemyMov.direction = Mathf.Sign(-knockdownDirection);
                         Instantiate(knockdownSound, transform.position, Quaternion.identity);
                         rb.velocity = new Vector2(knockdownDirection * knockdownForce, 0); print(knockdownDirection);
@@ -159,7 +158,6 @@ public class EnemyScript : MonoBehaviour
                     if (knockdownCounter > knockdownTime && !canKnockback)
                     {
                         rb.velocity = Vector2.zero;
-                        print("MAD");
                         knockdown = false;
                         dizzy = true;
                         knockdownCounter = 0;
@@ -169,26 +167,21 @@ public class EnemyScript : MonoBehaviour
                 }
             }
 
-
-
-
             if (freezeStart && stun)
             {
-                //rb.velocity = new Vector2(rb.velocity.x, 0);
                 rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; ;
                 freezeCounter++;
                 if (freezeCounter > freezeTime) { rb.velocity = oldVel; freezeStart = false; rb.constraints = RigidbodyConstraints2D.FreezeRotation; }
             }
 
-
-
-            if (hitstun <= 0 && !retreatJump && stun)
+           if (hitstun <= 0 && !retreatJump && stun)
             {
                 freezeStart = false; rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 Retreat(); poise = poiseHealth; willGroundBounce = false;
+                isAirborne = false;
             }
             if (retreatJump) retreatCounter -= 1;
-            if (retreatJump && retreatCounter <= 0) { comboDamage = 0; comboHits = 0; retreatCounter = retreatTime; comboCount = 0; hitstun = 0; stun = false; retreatJump = false; dizzy = false; enemyAttack.canAttack = true; enemyMov.mov = true; }
+            if (retreatJump && retreatCounter <= 0) { comboDamage = 0;  comboHits = 0; retreatCounter = retreatTime; comboCount = 0; hitstun = 0; stun = false; retreatJump = false; dizzy = false; enemyAttack.canAttack = true; enemyMov.mov = true; }
 
             //Rays for ground detection, player detection and fly height
             if (enemyMov.ground && stun && willGroundBounce || Input.GetKeyDown("o"))
@@ -280,9 +273,6 @@ public class EnemyScript : MonoBehaviour
                 rb.velocity = -(new Vector2(source.x - transform.position.x, 0).normalized * force - Vector2.up * knockup);
             }
         }
-
-
-
     }
 
     public void GroundBounce(Vector2 source, float force, float knockup, float hitstun)
@@ -319,7 +309,8 @@ public class EnemyScript : MonoBehaviour
         detected = true;
     }
 
-    public void Retreat() { retreatJump = true; rb.velocity = new Vector2(Mathf.Sign(transform.position.x - enemyMov.target.transform.position.x) * retreatJumpX, retreatJumpY); }
+    public void Retreat() { retreatJump = true; rb.velocity = new Vector2(Mathf.Sign(transform.position.x - enemyMov.target.transform.position.x) * retreatJumpX, retreatJumpY);
+        enemyMov.direction = -Mathf.Sign(transform.position.x - enemyMov.target.transform.position.x); }
 
     public void Knockout()
     {
