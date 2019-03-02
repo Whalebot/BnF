@@ -64,6 +64,9 @@ public class Enemy_Animation : MonoBehaviour
         if (attackScript.active) anim.SetBool("Active", true);
         else anim.SetBool("Active", false);
 
+        if (attackScript.recovery) anim.SetBool("Recovery", true);
+        else anim.SetBool("Recovery", false);
+
         if (enemyScript.isAirborne) anim.SetBool("Airborne", true);
         else anim.SetBool("Airborne", false);
 
