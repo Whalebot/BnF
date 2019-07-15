@@ -40,7 +40,7 @@ public class ComboCounter : MonoBehaviour {
 		}
 		if (UIManager.hits == 1) {
 			newList = Instantiate (petalList);
-			newList.transform.parent = gameObject.transform;
+			newList.transform.SetParent(gameObject.transform);
 		}
 		addPetal ();
 	}

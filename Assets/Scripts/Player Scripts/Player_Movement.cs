@@ -31,12 +31,18 @@ public class Player_Movement : MonoBehaviour
     public LayerMask enemyMasks;
     public bool running;
     public bool doubleTap;
+    bool runEnd;
+    public float runEndDuration;
     public float ray;
     public float raySpacingLeft;
     public float raySpacingRight;
     bool wasAirborne;
     public GameObject landParticle;
-
+    public GameObject sprintStartParticle;
+    public GameObject sprintParticle;
+    public GameObject sprintEndParticle;
+    public int sprintParticleInterval;
+    int sprintCounter;
     [HeaderAttribute("Generic dash attributes")]
     public GameObject dashObject;
     public float dashSpeed;
@@ -96,10 +102,6 @@ public class Player_Movement : MonoBehaviour
             actualPosition = positionObject.transform.position;
             x = playerInput.inputHorizontal;
             y = playerInput.inputVertical;
-            if (!doubleTap && running) running = false;
-            if (ground && doubleTap) running = true;
-            if (running) m_vel = 1500;
-            else m_vel = 1000;
 
         }
         //Resets combo on jump
@@ -138,11 +140,40 @@ public class Player_Movement : MonoBehaviour
 
     }
 
+    void SprintStop() { StartCoroutine("RunEnd"); }
+
+    IEnumerator RunEnd()
+    {
+        runEnd = true;
+        if (transform.localScale.x > 0) { Instantiate(sprintEndParticle, actualPosition - Vector3.up, Quaternion.identity); }
+        else Instantiate(sprintEndParticle, actualPosition - Vector3.up, Quaternion.Euler(0, 180, 0));
+        yield return new WaitForSeconds(runEndDuration);
+        runEnd = false;
+       
+    }
+
     void FixedUpdate()
     {
         faceDirection = transform.localScale.x;
         if (ground) remainingDash = doubleDash;
 
+        if (!doubleTap && running) { running = false; if (ground && mov) SprintStop(); }
+        if (ground && doubleTap) { if (!running) Instantiate(sprintStartParticle, actualPosition - Vector3.up * 2, Quaternion.Euler(0, 0, 90)); running = true; }
+        if (running)
+        {
+            m_vel = 1500;
+            sprintCounter++;
+            if (sprintCounter >= sprintParticleInterval && !dashing && !recovery)
+            {
+                sprintCounter = 0;
+                if (ground)
+                {
+                    if (transform.localScale.x > 0) { Instantiate(sprintParticle, actualPosition - Vector3.up, Quaternion.identity); }
+                    else Instantiate(sprintParticle, actualPosition - Vector3.up, Quaternion.Euler(0, 180, 0));
+                }
+            }
+        }
+        else { m_vel = 1000; sprintCounter = 0; }
 
         Debug.DrawLine(transform.position, transform.position + Vector3.down * ray, Color.green);
         Debug.DrawLine(transform.position + Vector3.right * raySpacingRight * transform.localScale.x, transform.position + Vector3.right * raySpacingRight * transform.localScale.x + Vector3.down * ray, Color.green);
@@ -156,7 +187,6 @@ public class Player_Movement : MonoBehaviour
                 hitStopped = true;
                 oldVel = rb.velocity;
             }
-
         }
         else if (!HitStopScript.hitStop)
         {
@@ -169,7 +199,9 @@ public class Player_Movement : MonoBehaviour
             //MOVEMENT
             if (mov && !PauseMenu.gameIsPaused)
             {
-                rb.velocity = new Vector2(x * m_vel * Time.deltaTime, rb.velocity.y);
+                if (x == 0 && runEnd && ground) { rb.velocity = rb.velocity * 0.95F; }
+                else
+                    rb.velocity = new Vector2(x * m_vel * Time.deltaTime, rb.velocity.y);
                 if (ground) rb.velocity = rb.velocity + new Vector2(inheritedVelocity.x, 0);
             }
 
@@ -231,6 +263,8 @@ public class Player_Movement : MonoBehaviour
             recovery = true;
             if (ground)
             {
+                if (transform.localScale.x > 0) { Instantiate(sprintEndParticle, actualPosition - Vector3.up - Vector3.right * transform.localScale.x * 2, Quaternion.identity); }
+                else Instantiate(sprintEndParticle, actualPosition - Vector3.up - Vector3.right * transform.localScale.x * 2, Quaternion.Euler(0, 180, 0));
                 AddVelocity(Vector2.zero);
                 mov = false;
             }
@@ -344,6 +378,8 @@ public class Player_Movement : MonoBehaviour
     {
         if (!backdashing && !dashing && !recovery && remainingDash > 0)
         {
+            if (x < 0) transform.localScale = new Vector3(-1, 1, 1);
+            else if (x > 0) transform.localScale = new Vector3(1, 1, 1);
             gameObject.layer = LayerMask.NameToLayer("iFrames");
             newDash = true;
             isDashing = true;
@@ -359,6 +395,7 @@ public class Player_Movement : MonoBehaviour
         if (!backdashing && !dashing && !recovery && remainingDash > 0)
         {
             gameObject.layer = LayerMask.NameToLayer("iFrames");
+            // faceDirection
             newDash = true;
             newBackdash = true;
             isBackdashing = true;
@@ -369,11 +406,12 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-
     public void AddRecoil(float side, float up)
     {
-        print("Bob");
+        playerAttackScript.keepVel = true;
+        playerAttackScript.activeFrames = 0;
         rb.velocity = new Vector2(side * transform.localScale.x + rb.velocity.x, up);
+
     }
 
 

@@ -20,7 +20,9 @@ public class Enemy_Movement : MonoBehaviour
     bool inContact;
     public float push = 10;
 
+    bool inRange;
     public float actualDistance;
+    public float stoppingDistance;
     public float distance;
     public float distance2;
 
@@ -48,7 +50,6 @@ public class Enemy_Movement : MonoBehaviour
     public Rigidbody2D rb;
     RaycastHit2D hit;
     RaycastHit2D ihit;
-
     Vector3 oldVel;
 
     [HeaderAttribute("Generic dash attributes")]
@@ -87,25 +88,37 @@ public class Enemy_Movement : MonoBehaviour
         }
 
 
+        Detection();
+        HitstopProperties();
 
-        if (enemyScript.requiresTrigger)
+
+        if (mov && attackScript.canAttack)
         {
-            if (enemyScript.detected)
+            if (!boss)
             {
-                if (hit && hit.collider.CompareTag("Player") && hit.collider != null && hit.collider.gameObject != null)
-                    mode = 2;
-                else mode = 0;
+                if (movementID == -1) AIMovement();
+                if (movementID == 0) MeleeMovement();
+                if (movementID == 1) RangedMovement();
+                if (movementID == 2) FlyingMovement();
+                if (movementID == 10) LilacMovement();
             }
-            else mode = 0;
-        }
-        else
-        {
-            if (hit && hit.collider.CompareTag("Player") && hit.collider != null && hit.collider.gameObject != null)
-                mode = 2;
-            else mode = 0;
+            else switch (movementID)
+                {
+                    case 02: SwanMovement(); break;
+                    default: SwanMovement(); break;
+                }
         }
 
 
+
+        PushAway();
+        Movement();
+
+
+    }
+
+    void HitstopProperties()
+    {
         if (HitStopScript.hitStop)
         {
             if (!hitStopped)
@@ -127,70 +140,64 @@ public class Enemy_Movement : MonoBehaviour
             }
         }
 
-        if (mov && attackScript.canAttack)
-        {
-            if (!boss)
-            {
-                if (movementID == 0) MeleeMovement();
-                if (movementID == 1) RangedMovement();
-                if (movementID == 2) FlyingMovement();
-                if (movementID == 10) LilacMovement();
-            }
-            else switch (movementID)
-                {
-                    case 02: SwanMovement(); break;
-                    default: SwanMovement(); break;
-                }
-        }
+    }
 
+    void Detection()
+    {
+        actualDistance = Mathf.Abs(target.transform.position.x - transform.position.x);
+        if (actualDistance < stoppingDistance)
+        {
+            inRange = true;
+        }
+        else inRange = false;
+
+
+        if (enemyScript.requiresTrigger)
+        {
+            if (enemyScript.detected)
+            {
+                if (hit && hit.collider.CompareTag("Player") && hit.collider != null && hit.collider.gameObject != null)
+                    mode = 2;
+                else mode = 0;
+            }
+            else mode = 0;
+        }
+        else
+        {
+            if (hit && hit.collider.CompareTag("Player") && hit.collider != null && hit.collider.gameObject != null)
+                mode = 2;
+            else mode = 0;
+        }
+    }
+
+    void PushAway()
+    {
         if (!playerMov.ground && inContact && playerMov.rb.velocity.y <= 0)
         {
             print("push");
             mov = false;
             rb.velocity = new Vector2(Mathf.Sign((transform.position.x - target.transform.position.x)) * push, rb.velocity.y);
         }
+    }
 
+    void Movement()
+    {
 
+        //Flip sprite
         if (direction < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
         else if (direction > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
         ground = Physics2D.Raycast(transform.position, -Vector2.up, rayGround, LayerMask.GetMask("Platform"));
-
-
+        
         if (!enemyScript.stun && mov)
         {
-
-            rb.velocity = new Vector2(direction * velocity, rb.velocity.y);
+            if (!inRange) { rb.velocity = new Vector2(direction * velocity, rb.velocity.y); }
+            
             rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, Physics2D.gravity.y, 50));
             //Flying 
-
-            if (flying)
-            {
-                flyRay = Physics2D.Raycast(this.transform.position, -Vector2.up, 500, LayerMask.GetMask("Platform"));
-                flyingRay = flyHeightRay;
-
-
-                if (flyRay.distance > flyingRay - 3 && flyRay.distance < flyingRay + 1 && !hover)
-                {
-                    { hover = true; hoverProgress = rb.velocity.y; print("hotpotato"); }
-                }
-                else if (flyRay.distance > flyingRay + 3 || flyRay.distance < flyingRay - 5) hover = false;
-
-                if ((target.transform.position - transform.position).magnitude > flyDistance || flyRay.distance > flyingRay + 3) rb.velocity = (target.transform.position - transform.position).normalized * Mathf.Abs(velocity) + Vector3.up;
-                else if (hover)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, hoverProgress);
-
-                    if (hoverUp) hoverProgress = hoverProgress + hoverSpeed;
-                    else hoverProgress = hoverProgress - hoverSpeed;
-                    if (hoverProgress >= hoverVariation) { hoverUp = false; }
-                    if (hoverProgress <= -hoverVariation + 2) { hoverUp = true; }
-                }
-
-                else if (flyRay.distance < flyingRay - 1) rb.velocity = new Vector2(rb.velocity.x, flySpeed);
-
-
-            }
+            Flying();
+           
         }
+        //Gravity
         if (!flying || flying && enemyScript.stun)
         {
             if (target != null)
@@ -200,9 +207,35 @@ public class Enemy_Movement : MonoBehaviour
             }
 
         }
-
     }
 
+    void Flying() {
+        if (flying)
+        {
+            flyRay = Physics2D.Raycast(this.transform.position, -Vector2.up, 500, LayerMask.GetMask("Platform"));
+            flyingRay = flyHeightRay;
+
+
+            if (flyRay.distance > flyingRay - 3 && flyRay.distance < flyingRay + 1 && !hover)
+            {
+                { hover = true; hoverProgress = rb.velocity.y; print("hotpotato"); }
+            }
+            else if (flyRay.distance > flyingRay + 3 || flyRay.distance < flyingRay - 5) hover = false;
+
+            if ((target.transform.position - transform.position).magnitude > flyDistance || flyRay.distance > flyingRay + 3) rb.velocity = (target.transform.position - transform.position).normalized * Mathf.Abs(velocity) + Vector3.up;
+            else if (hover)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, hoverProgress);
+
+                if (hoverUp) hoverProgress = hoverProgress + hoverSpeed;
+                else hoverProgress = hoverProgress - hoverSpeed;
+                if (hoverProgress >= hoverVariation) { hoverUp = false; }
+                if (hoverProgress <= -hoverVariation + 2) { hoverUp = true; }
+            }
+
+            else if (flyRay.distance < flyingRay - 1) rb.velocity = new Vector2(rb.velocity.x, flySpeed);
+        }
+    }
 
     IEnumerator TurnSpeed()
     {
@@ -216,6 +249,28 @@ public class Enemy_Movement : MonoBehaviour
 
         }
     }
+
+
+    void AIMovement()
+    {
+        if (mode == 0) direction = 0;
+        if (mode == 1)
+        {
+            if (Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = 1;
+            else if (Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = -1;
+        }
+        if (mode == 2)
+        {
+            if (Time.time > lastDirectionChange + directionChangeDur && mov)
+            {
+                lastDirectionChange = Time.time;
+                if (Vector2.Distance(target.transform.position, transform.position) > 0)
+                    if ((target.transform.position.x - transform.position.x) > 0) { direction = 1; }
+                    else if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
+            }
+        }
+    }
+
 
     void SwanMovement()
     {

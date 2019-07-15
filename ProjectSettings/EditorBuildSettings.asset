@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Main menu.unity
     guid: 0dba945c4972c4c4cabdcee9f3a86d16
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Lvlselect.unity
     guid: 67e4a26e362cdc243bbc3ef72c33088a
   - enabled: 1
@@ -17,21 +17,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Dialogue_test.unity
     guid: 74d282452464ff143b7378c4072585a5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Demo.unity
     guid: 9ab064a9a2409c842b9158b28594e66a
   - enabled: 0
     path: Assets/Scenes/Attract Mode.unity
     guid: 9e97ed6fc6f43534e9a9faa72b44906d
   - enabled: 0
-    path: Assets/Scenes/Level and UI test.unity
+    path: Assets/Scenes/Map_Menu.unity
     guid: 87848d7812e207546b3c6f205204fc9b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Stage_0 Ruined Village.unity
     guid: 95f4b11fc50f2954c8556746e5a491ed
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Stage_2 Bamboo Forest EX.unity
     guid: 5ce0c33d8a341254886edf51489e58f3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Stage_8 Castle.unity
     guid: c6f8bd9225e6b114185859dae970d3cb
+  m_configObjects: {}

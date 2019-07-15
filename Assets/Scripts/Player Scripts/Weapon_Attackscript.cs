@@ -75,10 +75,8 @@ public class Weapon_Attackscript : MonoBehaviour
             if (comboDelay < attackScript.resetCounter) attackScript.combo = 0;
         }
     }
-
-    void PerformAction()
+    void ChargeWeapon()
     {
-        if (movelist.chargeWeapon && isChargeAttack)
         {
             if (inputManager.releaseQueue.Count > 0)
             {
@@ -126,6 +124,13 @@ public class Weapon_Attackscript : MonoBehaviour
                 }
             }
         }
+    }
+
+    void PerformAction()
+    {
+        if (movelist.chargeWeapon && isChargeAttack)
+            ChargeWeapon();
+
         if (inputManager.releaseQueue.Count > 0 && movelist.justFrameWeapon)
         {
             if (inputManager.releaseQueue[0] == 1)
@@ -178,6 +183,7 @@ public class Weapon_Attackscript : MonoBehaviour
                     if (playerMov.ground)
                     {
                         AttackCancel();
+                       // attackScript.
                         playerMov.Dash();
                         inputManager.inputQueue.RemoveAt(0);
                     }

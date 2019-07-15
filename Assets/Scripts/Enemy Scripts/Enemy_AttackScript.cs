@@ -41,6 +41,7 @@ public class Enemy_AttackScript : MonoBehaviour
     bool tornadoChange;
     bool isLeft;
     public bool homing;
+    public bool tracking;
     public float directionChangeDelay;
     int crossUpDirection;
     int ray;
@@ -150,6 +151,7 @@ public class Enemy_AttackScript : MonoBehaviour
     {
         if (startup)
         {
+            if (tracking) { enemyMov.direction = trueDirection; tracking = false; }
             if (!canMove)
             {
                 startupFrames -= 1;

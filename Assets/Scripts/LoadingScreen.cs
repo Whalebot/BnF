@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScreen : MonoBehaviour
 {
+    public bool wontOpen;
     bool countStart;
     public int counter;
     int count;
@@ -13,6 +14,7 @@ public class LoadingScreen : MonoBehaviour
 
     void Start() {
         doorAnim = doorAnim.gameObject.GetComponent<Animator>();
+        if(!wontOpen)
         doorAnim.SetInteger("WillOpen", 1);
     }
 

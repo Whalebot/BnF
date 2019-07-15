@@ -50,7 +50,7 @@ public class Enemy_Weaponscript : MonoBehaviour
     float momentumDuration1;
     float momentumDuration2;
     float momentumDuration3;
-    bool phase2Trigger ;
+    bool phase2Trigger;
 
     public List<int> attackQueue;
 
@@ -98,7 +98,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     void PerformAction()
     {
-        attackDelayCounter--;
+        if (attackScript.canAttack) attackDelayCounter--;
         if (enemyScript.detected && enemyScript.requiresTrigger || !enemyScript.requiresTrigger)
             if (isBoss)
             {
@@ -119,7 +119,7 @@ public class Enemy_Weaponscript : MonoBehaviour
                 }
             }
 
-        if (attackQueue.Count > 0 && attackScript.canAttack)
+        if (attackQueue.Count > 0 && attackScript.canAttack || attackScript.recovery && attackQueue.Count > 0)
         {
             if (attackQueue[0] == 1) { TestSlash(movelist.move5A, movelist.moveObject5A); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 2) { TestSlash(movelist.move5AA, movelist.moveObject5AA); attackQueue.RemoveAt(0); }
@@ -132,33 +132,42 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     void BossGeese()
     {
-        if (!enemyScript.stun && withinRange && attackScript.canAttack && attackDelayCounter <= 0 && enemyMov.ground)
+        if (attackScript.canAttack || attackScript.recovery)
         {
-            RNGCount = Random.Range(1, 8);
-            if (RNGCount == 1 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5S, movelist.moveObject5S); }
-            if (RNGCount >= 2 && !enemyScript.stun)
+            if (!enemyScript.stun && withinRange && attackDelayCounter <= 0 && enemyMov.ground && attackQueue.Count == 0)
             {
-                if (attackScript.target.transform.position.y > transform.position.y && enemyMov.ground) enemyMov.Jump();
-                if (attackScript.combo == 0)
+
+                RNGCount = Random.Range(1, 8);
+                if (RNGCount == 1 && enemyMov.ground && !enemyScript.stun)
                 {
-                    enemyMov.direction = attackScript.trueDirection;
-                    TestSlash(movelist.move5A, movelist.moveObject5A);
+                    enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); attackQueue.Add(0);
                 }
-                else if (attackScript.combo == 1)
+                else if (RNGCount >= 2 && !enemyScript.stun)
                 {
-                    enemyMov.direction = attackScript.trueDirection;
-                    TestSlash(movelist.move5AA, movelist.moveObject5AA);
-                }
-                else if (attackScript.combo == 2)
-                {
-                    attackDelayCounter = maxDelay;
-                    enemyMov.direction = attackScript.trueDirection;
-                    TestSlash(movelist.move5AAA, movelist.moveObject5AAA);
+                    if (attackScript.target.transform.position.y > transform.position.y && enemyMov.ground) enemyMov.Jump();
+
+                    if (attackScript.combo == 0)
+                    {
+                        attackScript.tracking = true;
+                        attackQueue.Add(1); 
+                    }
+                    else if (attackScript.combo == 1)
+                    {
+                        attackScript.tracking = true;
+                        attackQueue.Add(2);
+                    }
+                    else if (attackScript.combo == 2)
+                    {
+                        attackDelayCounter = maxDelay;
+                        attackScript.tracking = true;
+                        attackQueue.Add(3);
+                    }
+
                 }
             }
+            else if (!enemyScript.stun && withinRange2 && !withinRange && attackDelayCounter <= 0 && attackQueue.Count == 0)
+            { attackScript.tracking = true; attackDelayCounter = Random.Range(attackDelay, maxDelay); attackQueue.Add(0); }
         }
-        else if (!enemyScript.stun && withinRange2 && !withinRange && attackScript.canAttack && attackDelayCounter <= 0)
-        { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5S, movelist.moveObject5S); }
     }
 
     void BossLilac()
@@ -242,14 +251,15 @@ public class Enemy_Weaponscript : MonoBehaviour
             {
                 RNGCount = Random.Range(1, 6);
                 if (RNGCount == 1) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move6A, movelist.moveObject6A); }
-          //      else if (RNGCount == 2) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5SS, movelist.moveObject5SS); attackScript.tornado = true; }
+                //      else if (RNGCount == 2) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5SS, movelist.moveObject5SS); attackScript.tornado = true; }
                 else { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(30, attackDelay); TestSlash(movelist.move2A, movelist.moveObject2A); }
             }
         }
 
         else if (enemyScript.mode == 2)
         {
-            if (!phase2Trigger && enemyMov.ground && !enemyScript.stun) {
+            if (!phase2Trigger && enemyMov.ground && !enemyScript.stun)
+            {
                 phase2Trigger = true;
                 enemyMov.direction = attackScript.trueDirection; attackDelayCounter = maxDelay; TestSlash(movelist.move5SS, movelist.moveObject5SS); attackScript.tornado = true;
             }
@@ -330,9 +340,9 @@ public class Enemy_Weaponscript : MonoBehaviour
             else if (!enemyScript.stun && withinRange2 && !withinRange && attackScript.canAttack && attackDelayCounter <= 0)
             {
                 RNGCount = Random.Range(1, 6);
-            //    if (RNGCount == 1) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move6A, movelist.moveObject6A); }
+                //    if (RNGCount == 1) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move6A, movelist.moveObject6A); }
                 //      else if (RNGCount == 2) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5SS, movelist.moveObject5SS); attackScript.tornado = true; }
-             //   else { enemyMov.direction = attackScript.trueDirection; TestSlash(movelist.move5S, movelist.moveObject5S); }
+                //   else { enemyMov.direction = attackScript.trueDirection; TestSlash(movelist.move5S, movelist.moveObject5S); }
             }
         }
 
@@ -392,7 +402,7 @@ public class Enemy_Weaponscript : MonoBehaviour
             enemyMov.direction = attackScript.trueDirection;
             attackDelayCounter = 0;
             if (attackScript.targetIsAirborne) enemyMov.Jump();
-            TestSlash(movelist.move5A, movelist.moveObject5A);
+            attackQueue.Add(1);
         }
     }
 
@@ -400,11 +410,11 @@ public class Enemy_Weaponscript : MonoBehaviour
     {
         if (attackScript.target != null)
             if (attackScript.canAttack && attackDelayCounter <= 0 && (transform.position - attackScript.target.transform.position).magnitude < distance && !enemyScript.stun)
-        {
-            enemyMov.direction = attackScript.trueDirection;
-            attackDelayCounter = 0;
-            TestSlash(movelist.move5A, movelist.moveObject5A);
-        }
+            {
+                enemyMov.direction = attackScript.trueDirection;
+                attackDelayCounter = 0;
+                attackQueue.Add(1);
+            }
     }
 
     void RangedTengu()
@@ -470,7 +480,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
             TestSlash(movelist.move5A, movelist.moveObject5A);
         }
-        if (Input.GetKeyDown("m")) {  enemyMov.Jump(); }
+        if (Input.GetKeyDown("m")) { enemyMov.Jump(); }
     }
 
 
@@ -498,6 +508,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     void TestSlash(Move move, GameObject moveObject)
     {
+        AttackCancel();
         print(move);
         if (move.startupSound != null) Instantiate(move.startupSound);
 

@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
     public float rotateSpeed;
 
     float HPCircleRotation;
-    PlayerStatus playerStatus;
+   // PlayerStatus playerStatus;
     ComboCounter comboScript;
     // Use this for initialization
     void Start()
@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         initialDuration = duration;
         StartCoroutine(LvlStart());
-        playerStatus = Player.GetComponent<PlayerStatus>();
+     //   playerStatus = Player.GetComponent<PlayerStatus>();
         comboScript = HITS.GetComponent<ComboCounter>();
 
         startPosition = statusBars.GetComponent<RectTransform>().position;

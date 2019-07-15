@@ -101,8 +101,6 @@ public class Weapon_Fireball : MonoBehaviour
 
     void DoDmg(GameObject enemy)
     {
-
-
         if (player != null)
         {
             if (singleHit)

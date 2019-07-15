@@ -37,46 +37,47 @@ public class MenuController : MonoBehaviour
         {
             //     Blades.GetComponent<RotateSelect>().ScrollDown();
         }
-        if (!stageSelected)
-        {
-            if (wait != true)
-            {
-                if (Input.GetAxis("KB_Horizontal") < 0)
-                {
-                    if (currentNR == 1)
-                    {
-                        currentNR = 12;
-                        wait = true;
-                        StartCoroutine(Wait());
-                        return;
-                    }
-                    currentNR -= 1;
-                    wait = true;
-                    StartCoroutine(Wait());
-                }
-                if (Input.GetAxis("KB_Horizontal") > 0)
-                {
-                    if (currentNR == 12)
-                    {
-                        currentNR = 1;
-                        wait = true;
-                        StartCoroutine(Wait());
-                        return;
-                    }
-                    currentNR += 1;
-                    wait = true;
-                    StartCoroutine(Wait());
-                }
-            }
-            if (Input.GetButtonDown("Submit"))
-            {
-                stageSelected = true;
-                //Blades.GetComponent<RotateSelect> ().Select ();
-            }
-        }
-        else if (stageSelected)
-        {
-            if (wait != true)
+        /* if (!stageSelected)
+         {
+             if (wait != true)
+             {
+                 if (Input.GetAxis("KB_Horizontal") < 0)
+                 {
+                     if (currentNR == 1)
+                     {
+                         currentNR = 12;
+                         wait = true;
+                         StartCoroutine(Wait());
+                         return;
+                     }
+                     currentNR -= 1;
+                     wait = true;
+                     StartCoroutine(Wait());
+                 }
+                 if (Input.GetAxis("KB_Horizontal") > 0)
+                 {
+                     if (currentNR == 12)
+                     {
+                         currentNR = 1;
+                         wait = true;
+                         StartCoroutine(Wait());
+                         return;
+                     }
+                     currentNR += 1;
+                     wait = true;
+                     StartCoroutine(Wait());
+                 }
+             }
+             if (Input.GetButtonDown("Submit"))
+             {
+                 stageSelected = true;
+                 //Blades.GetComponent<RotateSelect> ().Select ();
+             }
+         }
+         else
+         if (stageSelected)
+         {*/
+        if (wait != true)
             {
                 if (Input.GetAxis("KB_Horizontal") < 0)
                 {
@@ -128,7 +129,7 @@ public class MenuController : MonoBehaviour
                 else { print("Can't remove"); stageSelected = true; }
                 //Blades.GetComponent<RotateSelect> ().Select ();
             }
-        }
+     //   }
     }
 
     void BladeRotation(int i)

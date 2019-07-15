@@ -26,6 +26,8 @@ public class Player_Input : MonoBehaviour
     public float inputHorizontal;
     public float inputVertical;
 
+
+
     void Update()
     {
 

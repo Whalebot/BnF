@@ -6,6 +6,7 @@ public class Movelist : MonoBehaviour {
 
     [HeaderAttribute("Dash attributes")]
     [Space(10)]
+
     public int dashSpeed;
     public int dashDuration;
     public int dashRecovery;

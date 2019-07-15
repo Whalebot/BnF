@@ -25,6 +25,9 @@ public class Player_Slash : MonoBehaviour
     public GameObject hitParticle;
     public GameObject pullTarget;
 
+    public bool leaveParticle;
+    GameObject swordParticle;
+
     PlayerStatus playerStatus;
     Collider2D col;
     int RNGCount;
@@ -43,12 +46,21 @@ public class Player_Slash : MonoBehaviour
     public float gBKnockup;
     public float gBHitstun;
 
+    [HeaderAttribute("Clash attributes")]
+    public bool canClash = false;
+    public bool clashActive = false;
+    public int clashFrames;
+    public float hitstopframes;
+    int clashCounter;
+    public GameObject clashFX;
+
     GameObject manager;
     GameObject player;
-    Player_Movement playerMov;
+    //   Player_Movement playerMov;
     HitStopScript hitStopScript;
     UIManager uiManager;
-
+    Weapon_Attackscript weaponScript;
+    bool clashed;
 
     public List<GameObject> enemyList;
 
@@ -63,7 +75,8 @@ public class Player_Slash : MonoBehaviour
             uiManager = manager.GetComponent<UIManager>();
         }
         enemyList = new List<GameObject>();
-        playerMov = transform.parent.GetComponentInParent<Player_Movement>();
+        //   playerMov = transform.parent.GetComponentInParent<Player_Movement>();
+        weaponScript = transform.parent.GetComponent<Weapon_Attackscript>();
         playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
         col = GetComponent<Collider2D>();
     }
@@ -71,17 +84,56 @@ public class Player_Slash : MonoBehaviour
     // Update is called once per frame
     void OnDisable()
     {
+        if (leaveParticle)
+        {
+            swordParticle = transform.GetChild(0).gameObject;
+            GameObject particleClone = Instantiate(swordParticle, transform.position, Quaternion.identity);
+        }
         enemyList.Clear();
 
     }
+
+    private void FixedUpdate()
+    {
+        if (clashed && !HitStopScript.hitStop) { DisableCollider(); clashed = false; }
+
+        clashCounter++;
+        if (clashCounter >= clashFrames)
+        { clashActive = false; }
+    }
+
+    void ResetClash() {
+        clashCounter = 0;
+        clashActive = true;
+    }
+
+    void Clash(Collider2D enemy) {
+        Instantiate(clashFX, transform.position, Quaternion.identity);
+        hitStopScript.HitStop(hitstopframes);
+        enemy.GetComponent<EnemyDmg>().clashed = true;
+        print("Clash");
+        //weaponScript.AttackCancel();
+    }
+
+    void DisableCollider() {
+        weaponScript.AttackCancel();
+    }
+
     void OnEnable()
     {
+        ResetClash();
         hitPauseOnce = false;
         StartCoroutine("AttackOnce", activeFrames);
         if (ranged) Instantiate(fireball, transform.position, Quaternion.identity);
     }
     void OnTriggerEnter2D(Collider2D enemy)
     {
+        if (enemy.CompareTag("EnemyAttack")) {
+            if (clashActive) {
+                Clash(enemy);
+                
+            }
+        }
         if (enemy.CompareTag("Enemy") || enemy.CompareTag("Boss"))
         {
             DoDmg(enemy.gameObject);
@@ -119,7 +171,7 @@ public class Player_Slash : MonoBehaviour
                             hitStopScript.HitStop(hitPause); hitPauseOnce = true;
                         }
 
-                    //  if (hasRecoil) GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Movement>().AddRecoil(sideRecoil, upRecoil);
+                    if (hasRecoil) GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Movement>().AddRecoil(sideRecoil, upRecoil);
                     if (manager != null) uiManager.ComboUp();
                     enemy.GetComponent<EnemyScript>().Hitstun(hitstun, poiseDamage);
                     enemy.GetComponent<EnemyScript>().TakeDamage(dmg);

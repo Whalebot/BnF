@@ -37,7 +37,7 @@ public class EnemyScript : MonoBehaviour
     public bool willRetreat = true;
     public bool canInterrupt = true;
     public bool canKnockback = true;
-    public bool isAirborne;
+
 
     public int moveDamage;
     public int comboDamage;
@@ -130,7 +130,7 @@ public class EnemyScript : MonoBehaviour
             if (!knockout)
             {
                 if (hitstun > 0)
-                {if (!enemyMov.ground) isAirborne = true;
+                {
                     if (enemyAttack.active || enemyAttack.startup || enemyAttack.recovery) enemyAttack.InterruptAttack();
                     if (canDizzy && canKnockback)
                     {
@@ -178,7 +178,6 @@ public class EnemyScript : MonoBehaviour
             {
                 freezeStart = false; rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 Retreat(); poise = poiseHealth; willGroundBounce = false;
-                isAirborne = false;
             }
             if (retreatJump) retreatCounter -= 1;
             if (retreatJump && retreatCounter <= 0) { comboDamage = 0;  comboHits = 0; retreatCounter = retreatTime; comboCount = 0; hitstun = 0; stun = false; retreatJump = false; dizzy = false; enemyAttack.canAttack = true; enemyMov.mov = true; }

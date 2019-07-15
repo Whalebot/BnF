@@ -82,7 +82,7 @@ public class Player_AttackScript : MonoBehaviour
         if (playerMov.ground) j8ALimit = 1;
         if (HitStopScript.hitStop)
         {
-            print("Recovery " + startup + "Active " + active + "Recovery " + recovery + "" + playerMov.rb.velocity);
+          //  print("Recovery " + startup + "Active " + active + "Recovery " + recovery + "" + playerMov.rb.velocity);
         }
         if (!HitStopScript.hitStop)
         {

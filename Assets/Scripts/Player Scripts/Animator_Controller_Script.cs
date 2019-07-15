@@ -26,5 +26,6 @@ public class Animator_Controller_Script : MonoBehaviour
         else if (playerAttackScript.currentMovesetObject.name.Contains("Bamboo")) anim.runtimeAnimatorController = bambooController as RuntimeAnimatorController;
         else if (playerAttackScript.currentMovesetObject.name.Contains("Cherry")) anim.runtimeAnimatorController = snowCherryController as RuntimeAnimatorController;
         else if (playerAttackScript.currentMovesetObject.name.Contains("Sickle")) anim.runtimeAnimatorController = sickleController as RuntimeAnimatorController;
+        else anim.runtimeAnimatorController = snowCherryController as RuntimeAnimatorController;
     }
 }

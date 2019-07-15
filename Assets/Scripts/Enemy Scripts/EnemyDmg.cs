@@ -23,10 +23,13 @@ public class EnemyDmg : MonoBehaviour
     public bool blank;
     GameObject target;
     Vector3 direction;
+    Enemy_Weaponscript weaponScript;
+    public bool clashed;
 
     void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Player");
+        weaponScript = transform.parent.GetComponent<Enemy_Weaponscript>();
         SR = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
     }
@@ -37,6 +40,13 @@ public class EnemyDmg : MonoBehaviour
         if (target != null)
             direction = ((target.transform.position + Vector3.down) - transform.position).normalized;
     }
+
+    private void FixedUpdate()
+    {
+        if (clashed && !HitStopScript.hitStop) { DisableCollider(); clashed = false; }    
+        
+    }
+
     void OnEnable()
     {
         if (!ranged && !blank) { SR.enabled = true; StartCoroutine("AttackOnce", activeTime); }
@@ -86,6 +96,14 @@ public class EnemyDmg : MonoBehaviour
             RNGCount = Random.Range(-3, 4);
 
         }
+    }
+
+    public void DisableCollider() {
+        col.enabled = false;
+        // SR.enabled = false;
+        print("Shit happened");
+        weaponScript.AttackCancel();
+
     }
 
     IEnumerator AttackOnce(float dur)

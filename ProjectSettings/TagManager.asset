@@ -18,6 +18,8 @@ TagManager:
   - StageManager
   - CameraManager
   - BGMManager
+  - Camera_Manager
+  - Iris
   layers:
   - Default
   - TransparentFX

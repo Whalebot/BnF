@@ -18,7 +18,7 @@ public class Enemy_Animation : MonoBehaviour
         enemyScript = GetComponent<EnemyScript>();
         enemyMov = GetComponent<Enemy_Movement>();
     }
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -67,8 +67,11 @@ public class Enemy_Animation : MonoBehaviour
         if (attackScript.recovery) anim.SetBool("Recovery", true);
         else anim.SetBool("Recovery", false);
 
-        if (enemyScript.isAirborne) anim.SetBool("Airborne", true);
-        else anim.SetBool("Airborne", false);
+        if (enemyMov.rb.velocity.y < 0) anim.SetInteger("Ascending", -1);
+        else if (enemyMov.rb.velocity.y > 1)
+            anim.SetInteger("Ascending", 1);
+        else anim.SetInteger("Ascending", 0);
+
 
         if (attackScript.recovery)
         {
