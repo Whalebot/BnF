@@ -6,13 +6,17 @@ public class Cast_Shadow_Script : MonoBehaviour {
     SpriteRenderer SR;
     public LayerMask shadowCollision;
     public float rayLength;
+    public float yOffset;
     GameObject target;
     RaycastHit2D shadowRay;
     Vector3 startScale;
-    float xOffset; 
+    float xOffset;
+    public Animator mainCharacterAnimator;
+    Animator anim;
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
         SR = GetComponent<SpriteRenderer>();
         xOffset = transform.localPosition.x;
         target = transform.parent.gameObject;
@@ -30,7 +34,28 @@ public class Cast_Shadow_Script : MonoBehaviour {
         if (shadowRay == false) SR.enabled = false;
         else SR.enabled = true;
          
-        transform.position = shadowRay.point + new Vector2(xOffset*Mathf.Sign(transform.parent.localScale.x),0);
-        transform.localScale = startScale * (1-shadowRay.distance/ rayLength);
+        transform.position = shadowRay.point + new Vector2(xOffset*Mathf.Sign(transform.parent.localScale.x),yOffset);
+        transform.localScale =  startScale * (1-shadowRay.distance/ rayLength);
+        AnimatorCopy();
 	}
+
+    void AnimatorCopy() {
+        anim.SetBool("FromAir", mainCharacterAnimator.GetBool("FromAir"));
+        anim.SetBool("Walking", mainCharacterAnimator.GetBool("Walking"));
+        anim.SetBool("Running", mainCharacterAnimator.GetBool("Running"));
+        anim.SetBool("Hitstun",mainCharacterAnimator.GetBool("Hitstun"));
+        anim.SetBool("Dashing", mainCharacterAnimator.GetBool("Dashing"));
+        anim.SetBool("Backdashing", mainCharacterAnimator.GetBool("Backdashing"));
+        anim.SetBool("FromDash", mainCharacterAnimator.GetBool("FromDash"));
+        anim.SetBool("FromRun", mainCharacterAnimator.GetBool("FromRun"));
+        anim.SetBool("Grounded", mainCharacterAnimator.GetBool("Grounded"));
+        anim.SetBool("Startup", mainCharacterAnimator.GetBool("Startup"));
+        anim.SetBool("Active", mainCharacterAnimator.GetBool("Active"));
+        anim.SetBool("Recovery", mainCharacterAnimator.GetBool("Recovery"));
+        anim.SetBool("Attacking", mainCharacterAnimator.GetBool("Attacking"));
+
+        anim.SetInteger("AttackID", mainCharacterAnimator.GetInteger("AttackID"));
+        anim.SetInteger("Ascending", mainCharacterAnimator.GetInteger("Ascending"));
+
+    }
 }

@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -15,8 +16,8 @@ MonoBehaviour:
   SpCost: 0
   combo: 0
   startUp: 6
-  active: 12
-  recovery: 12
+  active: 10
+  recovery: 10
   forward1: 22
   up1: 0
   duration1: 6
@@ -26,17 +27,19 @@ MonoBehaviour:
   forward3: 0
   up3: 0
   duration3: 0
+  startupSound: {fileID: 0}
   jumpCancelable: 1
   specialCancelable: 1
   landCancel: 1
   attackCancelable: 1
-  landCancelRecovery: 1
+  landCancelRecovery: 0
   landAttackFrames: 0
   iFrames: 0
   invul: 0
   noClip: 0
   isChargeAttack: 0
-  canMove: 0
+  justFrameTiming: 22
+  canMove: 1
   keepVel: 0
   keepVerticalVel: 0
   keepHorizontalVel: 0

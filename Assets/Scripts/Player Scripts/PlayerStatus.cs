@@ -34,9 +34,15 @@ public class PlayerStatus : MonoBehaviour
     bool recovered;
     float invulcounter;
 
+    [Header("Parry attributes")]
+    public bool isParrying;
+    public int parryWindow;
+    public int parryRecovery;
+
     float weaponSwitchCounter;
     bool weaponSwitch;
     bool dying;
+
 
     public GameObject[] dmgSound;
 
@@ -78,7 +84,7 @@ public class PlayerStatus : MonoBehaviour
             //SceneManager.LoadScene("Level and UI test");
         }
 
-     
+
     }
 
     void FixedUpdate()
@@ -168,7 +174,7 @@ public class PlayerStatus : MonoBehaviour
 
 
 
-
+        if (isParrying) { canTakeDmg = false; }
         if (!canTakeDmg && stuncounter > 0) { stuncounter -= 1; hitAnimation = true; gameObject.layer = LayerMask.NameToLayer("iFrames"); playerAttack.canAttack = false; playerMovement.mov = false; }
         if (stuncounter <= 0 && !playerAttack.canAttack && hitAnimation && !recovered) { recovered = true; playerMovement.mov = true; gameObject.layer = LayerMask.NameToLayer("Invul"); }
         if (stuncounter <= 0 && !canTakeDmg && !hitInvul) { hitInvul = true; }
@@ -180,6 +186,8 @@ public class PlayerStatus : MonoBehaviour
         }
         if (invulcounter <= 0 && hitInvul) { playerAttack.canAttack = true; canTakeDmg = true; hitInvul = false; myRenderer.enabled = true; invulcounter = invulDur; recovered = false; gameObject.layer = LayerMask.NameToLayer("Player"); }
     }
+
+    void Parry() { }
 
     public void TakeDamage(int dmg)
     {
@@ -230,6 +238,7 @@ public class PlayerStatus : MonoBehaviour
             stuncounter = dur;
             print(dur);
         }
+        else if (isParrying) { Parry(); }
         else return;
     }
 
@@ -237,7 +246,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if (canTakeDmg)
         {
-            playerAttack.Recover(); 
+            playerAttack.Recover();
             playerMovement.mov = false;
             playerAttack.canAttack = false;
             //   rb.velocity = Vector2.right * force + Vector2.up * knockup + Vector2.right * knockup;

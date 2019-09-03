@@ -108,7 +108,7 @@ public class Player_Movement : MonoBehaviour
         if (Physics2D.Raycast(transform.position, -Vector2.up, ray, platformMasks)
             || Physics2D.Raycast(transform.position + Vector3.right * raySpacingRight * transform.localScale.x, -Vector2.up, ray, platformMasks)
             || Physics2D.Raycast(transform.position - Vector3.right * raySpacingLeft * transform.localScale.x, -Vector2.up, ray, platformMasks))
-        { ground = true; doubleJumped = false; }
+        { ground = true; doubleJumped = false;}
         else ground = false;
         if (!ground && !wasAirborne) { wasAirborne = true; playerAttackScript.combo = 0; }
         //Resets combo on landing
@@ -202,7 +202,9 @@ public class Player_Movement : MonoBehaviour
                 if (x == 0 && runEnd && ground) { rb.velocity = rb.velocity * 0.95F; }
                 else
                     rb.velocity = new Vector2(x * m_vel * Time.deltaTime, rb.velocity.y);
-                if (ground) rb.velocity = rb.velocity + new Vector2(inheritedVelocity.x, 0);
+                if (ground) { rb.velocity = rb.velocity + new Vector2(inheritedVelocity.x, 0);
+                 
+                }
             }
 
             if (jump)
