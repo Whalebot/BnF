@@ -491,6 +491,7 @@ public class Weapon_Attackscript : MonoBehaviour
         if (inputManager.inputHorizontal < 0) transform.parent.localScale = new Vector3(-1, 1, 1);
         else if (inputManager.inputHorizontal > 0) transform.parent.localScale = new Vector3(1, 1, 1);
 
+        playerStatus.Recover();
         isChargeAttack = move.isChargeAttack;
         playerMov.doubleTap = false;
         AttackCancel();
@@ -556,7 +557,7 @@ public class Weapon_Attackscript : MonoBehaviour
         attackScript.startup = false;
         attackScript.active = false;
         attackScript.recovery = false;
-        //  playerMov.mov = true;
+        playerMov.mov = true;
         attackScript.canAttack = true;
     }
 

@@ -176,15 +176,20 @@ public class PlayerStatus : MonoBehaviour
 
         if (isParrying) { canTakeDmg = false; }
         if (!canTakeDmg && stuncounter > 0) { stuncounter -= 1; hitAnimation = true; gameObject.layer = LayerMask.NameToLayer("iFrames"); playerAttack.canAttack = false; playerMovement.mov = false; }
-        if (stuncounter <= 0 && !playerAttack.canAttack && hitAnimation && !recovered) { recovered = true; playerMovement.mov = true; gameObject.layer = LayerMask.NameToLayer("Invul"); }
+        if (stuncounter <= 0 && !playerAttack.canAttack && hitAnimation && !recovered) { playerAttack.canAttack = true; recovered = true; playerMovement.mov = true; gameObject.layer = LayerMask.NameToLayer("Invul"); }
         if (stuncounter <= 0 && !canTakeDmg && !hitInvul) { hitInvul = true; }
         if (hitInvul)
         {
             if (!playerMovement.dashing) gameObject.layer = LayerMask.NameToLayer("Invul");
-            invulcounter -= 1; hitAnimation = false; flash = !flash; playerMovement.mov = true; playerAttack.canAttack = false;
+            invulcounter -= 1; hitAnimation = false; flash = !flash; playerMovement.mov = true;
             if (flash) { myRenderer.enabled = !myRenderer.enabled; }
+            if (invulcounter <= 5) { playerAttack.canAttack = true; }
+            if (invulcounter <= 0) { Recover(); }
         }
-        if (invulcounter <= 0 && hitInvul) { playerAttack.canAttack = true; canTakeDmg = true; hitInvul = false; myRenderer.enabled = true; invulcounter = invulDur; recovered = false; gameObject.layer = LayerMask.NameToLayer("Player"); }
+    }
+
+    public void Recover() {
+        playerAttack.canAttack = true; canTakeDmg = true; hitInvul = false; myRenderer.enabled = true; invulcounter = invulDur; recovered = false; gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     void Parry() { }

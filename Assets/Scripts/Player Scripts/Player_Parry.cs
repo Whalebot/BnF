@@ -39,11 +39,23 @@ public class Player_Parry : MonoBehaviour
     void OnEnable()
     {
         // StartCoroutine("AttackOnce", activeFrames);
+        ParryState();
+    }
+
+    void ParryState() {
         active = true;
         col.enabled = true;
         transform.parent.parent.gameObject.layer = LayerMask.NameToLayer("Invul");
         transform.parent.parent.gameObject.GetComponent<Rigidbody2D>().mass = 10000;
 
+    }
+
+    void DisableParry() {
+        active = false;
+        col.enabled = false;
+        transform.parent.parent.gameObject.layer = LayerMask.NameToLayer("Player");
+        transform.parent.parent.gameObject.GetComponent<Rigidbody2D>().mass = 1;
+        Reset();
     }
 
     void OnDisable()
@@ -64,6 +76,7 @@ public class Player_Parry : MonoBehaviour
                 triggered = true;
                 transform.parent.parent.gameObject.layer = LayerMask.NameToLayer("Invul");
                 StartCoroutine("ParryStart");
+                enemy.gameObject.SetActive(false);
                 //        transform.parent.GetComponent<Weapon_Attackscript>().ExtraMove();
                 print("PARRY!");
             }
@@ -73,6 +86,7 @@ public class Player_Parry : MonoBehaviour
     IEnumerator ParryStart()
     {
         while (HitStopScript.hitStop) yield return new WaitForEndOfFrame();
+        if (extraID == 0) { transform.parent.GetComponent<Weapon_Attackscript>().AttackCancel(); DisableParry(); }
         if (extraID == 1)transform.parent.GetComponent<Weapon_Attackscript>().ExtraMove(1);
         if (extraID == 2) transform.parent.GetComponent<Weapon_Attackscript>().ExtraMove(2);
     }
