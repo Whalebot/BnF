@@ -1,0 +1,653 @@
+fileFormatVersion: 2
+guid: f73c870fc79ab1e498d039d70c9295a9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2887826164406697186
+    second: Cherry sheet_0
+  - first:
+      213: -2703401150861102377
+    second: Cherry sheet_1
+  - first:
+      213: 1716291500978916487
+    second: Cherry sheet_2
+  - first:
+      213: 838299136890702013
+    second: Cherry sheet_3
+  - first:
+      213: 339663199628962667
+    second: Cherry sheet_4
+  - first:
+      213: 1965414435223945536
+    second: Cherry sheet_5
+  - first:
+      213: -605796917529490091
+    second: Cherry sheet_6
+  - first:
+      213: -6712409372306280444
+    second: Cherry sheet_7
+  - first:
+      213: 3346131825514723156
+    second: Cherry sheet_8
+  - first:
+      213: -6510284747504373021
+    second: Cherry sheet_9
+  - first:
+      213: -3492504433814514555
+    second: Cherry sheet_10
+  - first:
+      213: -1556757221173275559
+    second: Cherry sheet_11
+  - first:
+      213: 1521751907534417151
+    second: Cherry sheet_12
+  - first:
+      213: -433857542107006012
+    second: Cherry sheet_13
+  - first:
+      213: 6440144107473239763
+    second: Cherry sheet_14
+  - first:
+      213: -4388364761705195482
+    second: Cherry sheet_15
+  - first:
+      213: -1589336019496249475
+    second: Cherry sheet_16
+  - first:
+      213: -4761413682197105655
+    second: Cherry sheet_17
+  - first:
+      213: -1599369183822902108
+    second: Cherry sheet_18
+  - first:
+      213: 4663406036575794612
+    second: Cherry sheet_19
+  - first:
+      213: -3476249346842973542
+    second: Cherry sheet_20
+  - first:
+      213: 7069232666939363157
+    second: Cherry sheet_21
+  - first:
+      213: -1526007960688451368
+    second: Cherry sheet_22
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cherry sheet_0
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 764
+        width: 58
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c426345a56590240ad5aca70827db4c
+      internalID: 2887826164406697186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_1
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 777
+        width: 42
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc0737fbcf990914d8179562ef195c5b
+      internalID: -2703401150861102377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_2
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 794
+        width: 32
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a558a1c9db5ca64eb081adef2bbbadd
+      internalID: 1716291500978916487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_3
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 736
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a4a693b78cd1d458c44c0763373d47
+      internalID: 838299136890702013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_4
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 705
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45223a1f1bc05884898682bc53640099
+      internalID: 339663199628962667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_5
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 636
+        width: 41
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8064541c3f0eb30448807d0fa0b9b9a9
+      internalID: 1965414435223945536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_6
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 676
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5090f9cd32bb641b7267880f57c679
+      internalID: -605796917529490091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_7
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 588
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79779fbe77f06a3429b638630e27005c
+      internalID: -6712409372306280444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_8
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 617
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bdadf885d12d9145917ecb70042e0b3
+      internalID: 3346131825514723156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_9
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 587
+        width: 61
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b169b4dad09c3440bff0770b4c21c19
+      internalID: -6510284747504373021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_10
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 585
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f92204d06648e419bc71cf233e4334
+      internalID: -3492504433814514555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_11
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 518
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 863068d30a573e94e91e2e444ab81d1f
+      internalID: -1556757221173275559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_12
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 501
+        width: 53
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552ec7ca428da624c8dac815c7e94f73
+      internalID: 1521751907534417151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_13
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 511
+        width: 39
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23b7cec4aa992f340a376f395506f357
+      internalID: -433857542107006012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_14
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 463
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0eb5e02119620043abcfdded51a1c94
+      internalID: 6440144107473239763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_15
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 425
+        width: 48
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05d42f0b5a33b3740a9a1721da887040
+      internalID: -4388364761705195482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_16
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 403
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c350ba83c5c8b034e810f87c3d6d8960
+      internalID: -1589336019496249475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_17
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 271
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba668d802b03d654eae5e4dc32656b5f
+      internalID: -4761413682197105655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_18
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 322
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03706e3aa6b51b14e8d69af4562f0e43
+      internalID: -1599369183822902108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_19
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 256
+        width: 38
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79bd7be80cb7e694fbf70279bdd8d731
+      internalID: 4663406036575794612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_20
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 213
+        width: 47
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e91cfa6e2d8ac24bbd26322a66ec329
+      internalID: -3476249346842973542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_21
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 225
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75ea0ff93f0cbaa4a963fa4d96694def
+      internalID: 7069232666939363157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherry sheet_22
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 182
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6d626d0341882a4c9e7995fdb7b6626
+      internalID: -1526007960688451368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2543166bf4b9d2a48b2cdd0eb417e5bd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

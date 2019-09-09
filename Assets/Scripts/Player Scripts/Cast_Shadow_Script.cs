@@ -36,7 +36,7 @@ public class Cast_Shadow_Script : MonoBehaviour {
          
         transform.position = shadowRay.point + new Vector2(xOffset*Mathf.Sign(transform.parent.localScale.x),yOffset);
         transform.localScale =  startScale * (1-shadowRay.distance/ rayLength);
-        AnimatorCopy();
+      //  AnimatorCopy();
 	}
 
     void AnimatorCopy() {

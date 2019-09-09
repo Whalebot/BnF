@@ -304,7 +304,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1569718567262724, guid: 62dd72b541c86224eb9d784e0bd85321, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4632770588614628, guid: 62dd72b541c86224eb9d784e0bd85321, type: 3}
       propertyPath: m_LocalPosition.x
@@ -361,7 +361,7 @@ PrefabInstance:
     - target: {fileID: 114277217119167052, guid: 62dd72b541c86224eb9d784e0bd85321,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62dd72b541c86224eb9d784e0bd85321, type: 3}
@@ -1328,6 +1328,30 @@ PrefabInstance:
       propertyPath: activeFrames
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 114627543387382124, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: snowCherryController
+      value: 
+      objectReference: {fileID: 22100000, guid: b49be3231679d8f4fb00c37deb6fddaa,
+        type: 2}
+    - target: {fileID: 114627543387382124, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: bambooController
+      value: 
+      objectReference: {fileID: 22100000, guid: 017770bde033d6c47805ce24181001d9,
+        type: 2}
+    - target: {fileID: 114627543387382124, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: sickleController
+      value: 
+      objectReference: {fileID: 22100000, guid: baa1e41f04570624099b8a7679d60ede,
+        type: 2}
+    - target: {fileID: 114422017863751780, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: moveJ8A
+      value: 
+      objectReference: {fileID: 11400000, guid: 984581c98c8f7ef4fb6191ce40998795,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
 --- !u!1 &425978258
@@ -4563,7 +4587,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1546399543546176, guid: e74d1f85b8311bd43bbdd58a284bdb1a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4268748784380186, guid: e74d1f85b8311bd43bbdd58a284bdb1a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6910,7 +6934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1674496437
 Transform:
   m_ObjectHideFlags: 0
@@ -7134,7 +7158,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1257465560844014, guid: 42404db43d6b6b24293607716bc0a985, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4919209540655546, guid: 42404db43d6b6b24293607716bc0a985, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9178,6 +9202,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3595023895836695334, guid: b4aded586aaeb9d4598dbc93e94e4861,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3595023895917729100, guid: b4aded586aaeb9d4598dbc93e94e4861,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -9212,11 +9241,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Value
       value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 3595023895836695334, guid: b4aded586aaeb9d4598dbc93e94e4861,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4aded586aaeb9d4598dbc93e94e4861, type: 3}

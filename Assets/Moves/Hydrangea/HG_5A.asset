@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
   m_Name: HG_5A
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: 50
   SpCost: 0
   combo: 1
   startUp: 4

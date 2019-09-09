@@ -3,16 +3,18 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
   m_Name: SB_j2A
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: 120
   SpCost: 0
+  combo: 1
   startUp: 6
   active: 10
   recovery: 20
@@ -25,15 +27,21 @@ MonoBehaviour:
   forward3: 0
   up3: 0
   duration3: 0
-  combo: 1
+  startupSound: {fileID: 0}
   jumpCancelable: 1
   specialCancelable: 1
   landCancel: 1
   attackCancelable: 0
   landCancelRecovery: 0
+  landAttackFrames: 0
   iFrames: 0
   invul: 0
+  noClip: 0
+  isChargeAttack: 0
+  justFrameTiming: 22
   canMove: 0
+  keepVel: 0
   keepVerticalVel: 0
   keepHorizontalVel: 0
   interpolate: 0
+  isHoming: 0
