@@ -3,45 +3,58 @@ using System.Collections;
 
 public class CameraScript : MonoBehaviour
 {
-
-    public float dampTime = 0.15f;
-    private Vector3 velocity = Vector3.zero;
+    [Header("General Camera stuff")]
+    [SerializeField] private float dampTime = 0.15f;
+    [SerializeField] private Vector3 velocity = Vector3.zero;
     public Transform target;
     Camera cam;
-    public float directionOffset;
+    [SerializeField] private float directionOffset;
+    Vector3 targetPos;
 
-    public bool xMin;
-    public float xMinValue = 0;
-    public bool xMax;
-    public float xMaxValue = 0;
-    public bool yMin;
-    public float yMinValue = 0;
-    public bool yMax;
-    public float yMaxValue = 0;
-    public float yMinClamp = 0;
-    public float yMaxClamp = 0;
-    public bool lockToPlayerY;
-    public float yLockMin = 0;
-    public float yLockMax = 0;
-    public bool lockToPlayerX;
-    public float xLockMin = 0;
-    public float xLockMax = 0;
-    public bool boundary;
-    public float bufferSpaceX;
-    public float bufferSpaceY;
+   [Header("Zoom")]
+    [SerializeField] private Vector3 zoomTarget;
+    [SerializeField] private bool zooming;
+    private bool positionChange;
+    [SerializeField] private float zoomSize;
+    [SerializeField] private float zoomInVelocity;
+    [SerializeField] private float zoomOutVelocity;
+    [SerializeField] private float zoomInDuration;
+    [SerializeField] private float zoomedDuration;
+    [SerializeField] private float zoomOutDuration;
+    [SerializeField] private float zoomTime;
+    private int count;
+
+    [Header("Camera Boundary")]
+    [SerializeField] private bool xMin;
+    [SerializeField] private float xMinValue = 0;
+    [SerializeField] private bool xMax;
+    [SerializeField] private float xMaxValue = 0;
+    [SerializeField] private bool yMin;
+    [SerializeField] private float yMinValue = 0;
+    [SerializeField] private bool yMax;
+    [SerializeField] private float yMaxValue = 0;
+    [SerializeField] private float yMinClamp = 0;
+    [SerializeField] private float yMaxClamp = 0;
+    [SerializeField] private bool lockToPlayerY;
+    [SerializeField] private float yLockMin = 0;
+    [SerializeField] private float yLockMax = 0;
+    [SerializeField] private bool lockToPlayerX;
+    [SerializeField] private float xLockMin = 0;
+    [SerializeField] private float xLockMax = 0;
+    [SerializeField] private bool boundary;
+    [SerializeField] private float bufferSpaceX;
+    [SerializeField] private float bufferSpaceY;
 
     void Awake()
     {
         cam = GetComponent<Camera>();
     }
 
-    // Update is called once per frame
-
     void OnDrawGizmosSelected()
     {
         cam = GetComponent<Camera>();
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMinValue- cam.orthographicSize, 0), new Vector3(xMaxValue+ cam.orthographicSize * 16 / 9,yMinValue - cam.orthographicSize, 0));
+        Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0), new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0));
         Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0), new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0));
         Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0), new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0));
         Gizmos.DrawLine(new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0), new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0));
@@ -49,50 +62,90 @@ public class CameraScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Debug.DrawLine(new Vector3(-xMinValue, -yMinValue, 0),new Vector3(xMaxValue, -yMinValue, 0), Color.blue);
-        // Debug.DrawLine(new Vector3(-xMinValue, yMaxValue, 0), new Vector3(xMaxValue, yMaxValue, 0), Color.blue);
-        //    Debug.DrawLine(new Vector3(-xMinValue, -yMinValue, 0),new Vector3(xMinValue, yMinValue, 0), Color.blue);
-        //   Debug.DrawLine(new Vector3(xMaxValue, -yMinValue, 0), new Vector3(xMaxValue, yMaxValue, 0), Color.blue);
-
-
-        if (Input.GetKeyDown("b"))
+        if (!zooming)
         {
-            cam.orthographicSize = cam.orthographicSize - 1;
-            //    StartCoroutine("ZoomOut", 1);
+            targetPos = target.position - Vector3.forward * 10 + Vector3.right * Player_Movement.faceDirection * directionOffset;
+
+            if (yMin && yMax) targetPos.y = Mathf.Clamp(targetPos.y, yMinValue, yMaxValue);
+            if (xMin && xMax) targetPos.x = Mathf.Clamp(targetPos.x, xMinValue, xMaxValue);
+            if (!positionChange)
+            {
+                if (!boundary) transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
+                if (boundary)
+                {
+                    transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
+                    if (transform.position.x > target.position.x + bufferSpaceX) transform.position = new Vector3(target.position.x + bufferSpaceX, transform.position.y, -10);
+                    if (transform.position.x < target.position.x - bufferSpaceX) transform.position = new Vector3(target.position.x - bufferSpaceX, transform.position.y, -10);
+
+                    if (transform.position.y > target.position.y + bufferSpaceY) transform.position = new Vector3(transform.position.x, target.position.y + bufferSpaceY, -10);
+                    if (transform.position.y < target.position.y - bufferSpaceY) transform.position = new Vector3(transform.position.x, target.position.y - bufferSpaceY, -10);
+                }
+
+                if (yMin && yMax) transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMinValue, xMaxValue), Mathf.Clamp(transform.position.y, yMinValue, yMaxValue), -10);
+                if (lockToPlayerY) transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMinValue, xMaxValue), Mathf.Clamp(targetPos.y, target.transform.position.y + yLockMin, target.transform.position.y + yLockMax), -10);
+                if (lockToPlayerX) transform.position = new Vector3(Mathf.Clamp(targetPos.x, target.transform.position.x + xLockMin, target.transform.position.x + xLockMax), Mathf.Clamp(transform.position.y, yMinValue, yMaxValue), -10);
+            }
         }
+    }
+
+    private void Update()
+    {
         if (target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
-        Vector3 targetPos = target.position - Vector3.forward * 10 + Vector3.right * Player_Movement.faceDirection * directionOffset;
-        //    if (lockToPlayer) targetPos.y = Mathf.Clamp(targetPos.y, target.transform.position.y - yLockMin, target.transform.position.y + yLockMax);
-        if (yMin && yMax) targetPos.y = Mathf.Clamp(targetPos.y, yMinValue, yMaxValue);
-        if (xMin && xMax) targetPos.x = Mathf.Clamp(targetPos.x, xMinValue, xMaxValue);
+        if (Input.GetKeyDown("b")) { SmoothZoom(zoomTarget); }
+    }
 
-        //targetPos.y = Mathf.Clamp(targetPos.y, transform.position.y - yMinClamp, transform.position.y + yMaxClamp);
-        // transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, target.position.y - yMinClamp, target.position.y + yMaxClamp), transform.position.z);
-        if (!boundary) transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
-        if (boundary)
+    public void SmoothZoom(Vector3 other)
+    {
+        zooming = true;
+        positionChange = true;
+        // transform.position = other;
+        StopAllCoroutines();
+        //Zooming in
+        if (cam.orthographicSize > zoomSize)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
-            if (transform.position.x > target.position.x + bufferSpaceX) transform.position = new Vector3(target.position.x + bufferSpaceX, transform.position.y, -10);// transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
-                                                                                                                                                                       //      else transform.position = new Vector3(transform.position.x, targetPos.y, -10);
-            if (transform.position.x < target.position.x - bufferSpaceX) transform.position = new Vector3(target.position.x - bufferSpaceX, transform.position.y, -10);// transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
-                                                                                                                                                                       //    else transform.position = new Vector3(transform.position.x, targetPos.y, -10);
-
-            if (transform.position.y > target.position.y + bufferSpaceY) transform.position = new Vector3(transform.position.x, target.position.y + bufferSpaceY, -10);
-            //  else transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-            if (transform.position.y < target.position.y - bufferSpaceY) transform.position = new Vector3(transform.position.x, target.position.y - bufferSpaceY, -10);
-            //else transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-
+            print("Obama");
+            StartCoroutine("ZoomInOn", other);
         }
+        //Zooming out
+        else
+        {
+        }
+    }
 
-        if (yMin && yMax) transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMinValue, xMaxValue), Mathf.Clamp(transform.position.y, yMinValue, yMaxValue), -10);
-        if (lockToPlayerY) transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMinValue, xMaxValue), Mathf.Clamp(targetPos.y, target.transform.position.y + yLockMin, target.transform.position.y + yLockMax), -10);
-        if (lockToPlayerX) transform.position = new Vector3(Mathf.Clamp(targetPos.x, target.transform.position.x + xLockMin, target.transform.position.x + xLockMax), Mathf.Clamp(transform.position.y, yMinValue, yMaxValue), -10);
 
-        //transform.position = new Vector3(Mathf.Clamp(transform.position.x, target.position.x+yMinClamp, target.position.x+yMaxClamp), Mathf.Clamp(transform.position.y, target.position.y + yMinClamp, target.position.y + yMaxClamp), transform.position.z);
+    private IEnumerator ZoomInOn(Vector3 other)
+    {
+        while (cam.orthographicSize > zoomSize)
+        {
+            transform.position = Vector3.Lerp(transform.position, other, zoomTime);
+            cam.orthographicSize += zoomInVelocity;
+            yield return new WaitForEndOfFrame();
+        }
+        cam.orthographicSize = zoomSize;
+        while (count < zoomedDuration)
+        {
+            count++;
+            yield return new WaitForEndOfFrame();
+        }
+        count = 0;
+        zooming = false;
+        StartCoroutine("RevertZoom");
+    }
 
+    private IEnumerator RevertZoom()
+    {
+        while (cam.orthographicSize < 15)
+        {
+            transform.position = Vector3.Lerp(transform.position, targetPos, zoomTime * 2);
+
+            cam.orthographicSize += zoomOutVelocity;
+            yield return new WaitForEndOfFrame();
+        }
+        cam.orthographicSize = 15;
+        positionChange = false;
     }
 
     public IEnumerator ZoomOut(float speed)
@@ -102,7 +155,6 @@ public class CameraScript : MonoBehaviour
             cam.orthographicSize += speed;
             yield return new WaitForEndOfFrame();
         }
-
     }
 
     public IEnumerator ZoomIn(float speed)

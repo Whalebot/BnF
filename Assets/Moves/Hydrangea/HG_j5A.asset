@@ -17,7 +17,7 @@ MonoBehaviour:
   combo: 0
   startUp: 6
   active: 10
-  recovery: 10
+  recovery: 6
   forward1: 22
   up1: 0
   duration1: 6

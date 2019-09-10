@@ -101,12 +101,6 @@ public class Enemy_AttackScript : MonoBehaviour
         trueDirection = -Mathf.Sign(transform.position.x - target.transform.position.x);
     }
 
-    void Start()
-    {
-
-
-    }
-
     void Update()
     {
         if (!PauseMenu.gameIsPaused && enemyScript.mode != 0)
@@ -118,7 +112,6 @@ public class Enemy_AttackScript : MonoBehaviour
                 actualDistance = (transform.position - target.transform.position).magnitude;
                 trueDirection = -Mathf.Sign(transform.position.x - target.transform.position.x);
             }
-
         }
     }
 

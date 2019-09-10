@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Slash : MonoBehaviour
 {
-
+    [SerializeField] private Transform center;
     public int dmg;
     public int poiseDamage;
     public float knockback;
@@ -84,6 +84,8 @@ public class Player_Slash : MonoBehaviour
     // Update is called once per frame
     void OnDisable()
     {
+        ResetClash();
+
         if (leaveParticle)
         {
             swordParticle = transform.GetChild(0).gameObject;
@@ -95,27 +97,34 @@ public class Player_Slash : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (clashed && !HitStopScript.hitStop) { DisableCollider(); clashed = false; }
+        if (clashed && !HitStopScript.hitStop) { DisableCollider();}
 
         clashCounter++;
         if (clashCounter >= clashFrames)
         { clashActive = false; }
     }
 
-    void ResetClash() {
+    void ResetClash()
+    {
         clashCounter = 0;
         clashActive = true;
+        clashed = false;
     }
 
-    void Clash(Collider2D enemy) {
-        Instantiate(clashFX, transform.position, Quaternion.identity);
+    void Clash(Collider2D enemy)
+    {
+        if(center != null)
+        Instantiate(clashFX, center.position, Quaternion.identity);
+        else Instantiate(clashFX, transform.position, Quaternion.identity);
         hitStopScript.HitStop(hitstopframes);
         enemy.GetComponent<EnemyDmg>().clashed = true;
         print("Clash");
+        GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManagerScript>().Zoom(transform.position);
         //weaponScript.AttackCancel();
     }
 
-    void DisableCollider() {
+    void DisableCollider()
+    {
         weaponScript.AttackCancel();
     }
 
@@ -128,19 +137,25 @@ public class Player_Slash : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D enemy)
     {
-        if (enemy.CompareTag("EnemyAttack")) {
-            if (clashActive) {
+        if (enemy.CompareTag("EnemyAttack"))
+        {
+            if (clashActive)
+            {
+                clashed = true;
                 Clash(enemy);
-                
             }
         }
-        if (enemy.CompareTag("Enemy") || enemy.CompareTag("Boss"))
+        else if (!clashed)
         {
-            DoDmg(enemy.gameObject);
-            RNGCount = Random.Range(-3, 4);
+            if (enemy.CompareTag("Enemy") || enemy.CompareTag("Boss"))
+            {
+                DoDmg(enemy.gameObject);
+                RNGCount = Random.Range(-3, 4);
 
+            }
         }
-        else if (enemy.CompareTag("EnemyProjectile"))
+
+        if (enemy.CompareTag("EnemyProjectile"))
         {
             RNGCount = Random.Range(-3, 4);
             Instantiate(hitParticle, enemy.transform.position, Quaternion.Euler(0, 0, 15 * RNGCount));

@@ -43,8 +43,13 @@ public class EnemyDmg : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (clashed && !HitStopScript.hitStop) { DisableCollider(); clashed = false; }    
+        if (clashed && !HitStopScript.hitStop) { DisableCollider();}    
         
+    }
+
+    private void OnDisable()
+    {
+        clashed = false;
     }
 
     void OnEnable()
@@ -54,7 +59,6 @@ public class EnemyDmg : MonoBehaviour
         if (ranged && noRotation) Instantiate(fireball, transform.parent.parent.position, transform.parent.parent.rotation);
         else if (ranged && !aimShot && !noRotation)
         {
-            print("potato");
             if (transform.parent.parent.localScale.x > 0) { Instantiate(fireball, transform.parent.parent.position, Quaternion.Euler(0, 0, 0)); }
             else Instantiate(fireball, transform.parent.parent.position, Quaternion.Euler(0, 180, 0));
         }
@@ -90,11 +94,14 @@ public class EnemyDmg : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D enemy)
     {
-        if (enemy.CompareTag("Player") && !ranged)
+        if (enemy.CompareTag("Attack")) {
+            if (enemy.GetComponent<Player_Slash>().clashActive) clashed = true;
+        }
+        
+        if (enemy.CompareTag("Player") && !ranged && !clashed)
         {
             DoDmg(enemy.gameObject);
             RNGCount = Random.Range(-3, 4);
-
         }
     }
 
