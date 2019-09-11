@@ -52,6 +52,8 @@ public class Enemy_Weaponscript : MonoBehaviour
     float momentumDuration3;
     bool phase2Trigger;
 
+    bool targetAirborne;
+
     public List<int> attackQueue;
 
     void Awake()
@@ -90,6 +92,8 @@ public class Enemy_Weaponscript : MonoBehaviour
                 else withinRange = false;
                 if ((transform.position - enemyMov.target.transform.position).magnitude < distance2) withinRange2 = true;
                 else withinRange2 = false;
+
+                targetAirborne = enemyMov.target.transform.position.y > transform.position.y;
             }
 
             if (comboDelay < attackScript.resetCounter) attackScript.combo = 0;
@@ -126,6 +130,7 @@ public class Enemy_Weaponscript : MonoBehaviour
             else if (attackQueue[0] == 3) { TestSlash(movelist.move5AAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 4) { TestSlash(movelist.move2A, movelist.moveObject2A); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 5) { TestSlash(movelist.move8A, movelist.moveObject8A); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 6) { TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 0) { TestSlash(movelist.move5S, movelist.moveObject5S); attackQueue.RemoveAt(0); }
         }
     }
@@ -138,46 +143,59 @@ public class Enemy_Weaponscript : MonoBehaviour
             if (enemyMov.ground)
             {
                 //RANGE CHECK
-                if (!enemyScript.stun && withinRange && attackDelayCounter <= 0 && attackQueue.Count == 0)
+                //SHORT RANGE
+                if (targetAirborne)
                 {
-                    //ATTACK RNG
-                    RNGCount = Random.Range(1, 8);
-                    if (RNGCount == 1 && enemyMov.ground && !enemyScript.stun)
+                    if (enemyMov.ground) enemyMov.Jump();
+                }
+                else
+                {
+                    if (!enemyScript.stun && withinRange && attackDelayCounter <= 0 && attackQueue.Count == 0)
                     {
-                        enemyMov.direction = attackScript.trueDirection;
+                        //ATTACK RNG
+                        RNGCount = Random.Range(1, 8);
+                        if (RNGCount == 1 && enemyMov.ground && !enemyScript.stun)
+                        {
+                            enemyMov.direction = attackScript.trueDirection;
+                            attackDelayCounter = Random.Range(attackDelay, maxDelay);
+                            attackQueue.Add(0);
+                        }
+                        //3 HIT COMBO
+                        else if (RNGCount >= 2 && !enemyScript.stun)
+                        {
+                            if (attackScript.combo == 0)
+                            {
+                                attackScript.tracking = true;
+                                attackQueue.Add(1);
+                            }
+                            else if (attackScript.combo == 1)
+                            {
+                                attackQueue.Add(2);
+                            }
+                            else if (attackScript.combo == 2)
+                            {
+                                attackDelayCounter = maxDelay;
+                                attackScript.tracking = true;
+                                attackQueue.Add(3);
+                            }
+                        }
+                    }
+                    //LONG RANGE
+                    else if (!enemyScript.stun && withinRange2 && !withinRange && attackDelayCounter <= 0 && attackQueue.Count == 0)
+                    {
+                        attackScript.tracking = true;
                         attackDelayCounter = Random.Range(attackDelay, maxDelay);
                         attackQueue.Add(0);
                     }
-                    else if (RNGCount >= 2 && !enemyScript.stun)
-                    {
-                        if (attackScript.target.transform.position.y > transform.position.y && enemyMov.ground) enemyMov.Jump();
+                }
 
-                        if (attackScript.combo == 0)
-                        {
-                            attackScript.tracking = true;
-                            attackQueue.Add(1);
-                        }
-                        else if (attackScript.combo == 1)
-                        {
-                            attackQueue.Add(2);
-                        }
-                        else if (attackScript.combo == 2)
-                        {
-                            attackDelayCounter = maxDelay;
-                            attackScript.tracking = true;
-                            attackQueue.Add(3);
-                        }
-                    }
-                }
-                else if (!enemyScript.stun && withinRange2 && !withinRange && attackDelayCounter <= 0 && attackQueue.Count == 0)
-                {
-                    attackScript.tracking = true;
-                    attackDelayCounter = Random.Range(attackDelay, maxDelay);
-                    attackQueue.Add(0);
-                }
             }
             //AIRBORNE
-            else { }
+            else {
+                attackScript.tracking = true;
+                attackDelayCounter = Random.Range(attackDelay, maxDelay);
+                attackQueue.Add(0);
+            }
         }
     }
 

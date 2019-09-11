@@ -108,13 +108,8 @@ public class Enemy_Movement : MonoBehaviour
                     default: SwanMovement(); break;
                 }
         }
-
-
-
         PushAway();
         Movement();
-
-
     }
 
     void HitstopProperties()
