@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Move", menuName = "Attack moves")]
+[CreateAssetMenu(fileName = "New Move property", menuName = "Attack moves")]
 public class Move : ScriptableObject{
     [HeaderAttribute("General")]
     public int ID;

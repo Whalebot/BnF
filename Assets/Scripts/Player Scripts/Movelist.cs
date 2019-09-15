@@ -108,4 +108,5 @@ public class Movelist : MonoBehaviour {
     public Move moveC2AA;
     public GameObject moveObjectC2AA;
 
+    public MoveProperties[] potato;
 }
