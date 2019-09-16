@@ -56,6 +56,7 @@ public class Player_AttackScript : MonoBehaviour
     public float momentumDuration2;
     public float momentumDuration3;
     public bool keepVel;
+    public bool canMove;
     public bool keepVerticalVel;
     public bool keepHorizontalVel;
     public bool landCancel;
@@ -100,7 +101,7 @@ public class Player_AttackScript : MonoBehaviour
         if (startup)
         {
             startupFrames -= 1;
-            if (startupMov && !keepVel)
+            if (startupMov && !canMove)
             {
                 if (interpolate)
                     Momentum(new Vector2(transform.localScale.x * forward * ((momentumDuration1) / interpol1), up * ((momentumDuration1) / interpol1)));
@@ -109,7 +110,7 @@ public class Player_AttackScript : MonoBehaviour
                     Momentum(new Vector2(transform.localScale.x * forward, up));
                 momentumDuration1 -= 1;
             }
-            else if (startupMov && keepVel) Momentum(new Vector2(playerMov.x * playerMov.m_vel * Time.deltaTime, playerMov.rb.velocity.y));
+            else if (startupMov && canMove) Momentum(new Vector2(playerMov.x * playerMov.m_vel * Time.deltaTime, playerMov.rb.velocity.y));
         }
 
         if (startupFrames <= 0 && startup)
@@ -126,7 +127,7 @@ public class Player_AttackScript : MonoBehaviour
             Momentum(new Vector2(0, playerMov.rb.velocity.y));
             startupMov = false;
         }
-        else if (momentumDuration1 <= 0 && startupMov && keepVel)
+        else if (momentumDuration1 <= 0 && startupMov && canMove)
         {
             startupMov = false;
         }
@@ -140,24 +141,28 @@ public class Player_AttackScript : MonoBehaviour
             else if (hasInvul) gameObject.layer = LayerMask.NameToLayer("Invul");
             else if (noClip) gameObject.layer = LayerMask.NameToLayer("NoClip");
             activeFrames -= 1;
-            if (activeMov && !keepVel)
+            if (activeMov && !canMove)
             {
 
                 momentumDuration2 -= 1;
                 if (interpolate) Momentum(new Vector2(transform.localScale.x * forward2 * (1 - (momentumDuration2) / interpol2), up2 * (1 - (momentumDuration2) / interpol2)));
                 else Momentum(new Vector2(transform.localScale.x * forward2, up2));
-
-
             }
-            else if (activeMov && keepVel) Momentum(new Vector2(playerMov.x * playerMov.m_vel * Time.deltaTime, playerMov.rb.velocity.y));
+            else if (activeMov && canMove) Momentum(new Vector2(playerMov.x * playerMov.m_vel * Time.deltaTime, playerMov.rb.velocity.y));
 
-            if (momentumDuration2 <= 0 && activeMov && !keepVel)
+            if (momentumDuration2 <= 0 && activeMov && !canMove)
             {
+                if(!keepHorizontalVel && !keepVerticalVel)
                 Momentum(new Vector2(0, playerMov.rb.velocity.y));
                 activeMov = false;
             }
-            if (momentumDuration2 <= 0 && !activeMov && !keepVel && playerMov.rb.velocity.x != 0) { Momentum(new Vector2(0, playerMov.rb.velocity.y)); }
-            if (momentumDuration2 <= 0 && activeMov && keepVel)
+
+            if (momentumDuration2 <= 0 && !activeMov && !canMove && playerMov.rb.velocity.x != 0) {
+                if (!keepHorizontalVel && !keepVerticalVel)
+                    Momentum(new Vector2(0, playerMov.rb.velocity.y));
+            }
+
+            if (momentumDuration2 <= 0 && activeMov && canMove)
             {
                 activeMov = false;
             }
@@ -173,7 +178,6 @@ public class Player_AttackScript : MonoBehaviour
             activeFrames = 1;
             recoveryMov = true;
         }
-
     }
 
     void Recovery()
@@ -186,32 +190,31 @@ public class Player_AttackScript : MonoBehaviour
             recoveryFrames -= 1;
 
             playerMov.DashRecovery();
-            if (recoveryMov && !keepVel)
+            if (recoveryMov)
             {
 
                 momentumDuration3 -= 1;
-                if (!keepVerticalVel && !keepHorizontalVel)
+                if (!keepVerticalVel && !keepHorizontalVel && !canMove)
                 {
 
                     Momentum(new Vector2(transform.localScale.x * forward3, up3));
                 }
 
                 else if (keepVerticalVel && !keepHorizontalVel) Momentum(new Vector2(transform.localScale.x * forward3, playerMov.rb.velocity.y));
-                else if (!keepVerticalVel && keepHorizontalVel) { Momentum(new Vector2(playerMov.x * playerMov.m_vel * Time.deltaTime, up3)); }
+                else if (!keepVerticalVel && keepHorizontalVel) { Momentum(new Vector2(playerMov.rb.velocity.x, up3)); }
                 else if (keepVerticalVel && keepHorizontalVel)
                 {
-                    Momentum(new Vector2(playerMov.x * playerMov.m_vel * Time.deltaTime, playerMov.rb.velocity.y));
+                    Momentum(new Vector2(playerMov.rb.velocity.x, playerMov.rb.velocity.y));
                 }
-
-            }
-            else if (recoveryMov && keepVel) Momentum(new Vector2(playerMov.x * playerMov.m_vel * Time.deltaTime, playerMov.rb.velocity.y));
+            }    
         }
-        if (momentumDuration3 <= 0 && recoveryMov && !keepVel)
+        if (momentumDuration3 <= 0 && recoveryMov && !canMove)
         {
-            Momentum(new Vector2(0, playerMov.rb.velocity.y));
+            if (!keepHorizontalVel && !keepVerticalVel)
+                Momentum(new Vector2(0, playerMov.rb.velocity.y));
             recoveryMov = false;
         }
-        else if (momentumDuration3 <= 0 && recoveryMov && keepVel)
+        else if (momentumDuration3 <= 0 && recoveryMov && canMove)
         {
             recoveryMov = false;
         }

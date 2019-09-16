@@ -528,7 +528,7 @@ public class Weapon_Attackscript : MonoBehaviour
         attackScript.jumpCancelable = move.jumpCancelable;
         attackScript.keepVerticalVel = move.keepVerticalVel;
         attackScript.keepHorizontalVel = move.keepHorizontalVel;
-        attackScript.keepVel = move.canMove;
+        attackScript.canMove = move.canMove;
         attackScript.landCancel = move.landCancel;
         attackScript.landCancelRecovery = move.landCancelRecovery;
         attackScript.attackCancelable = move.attackCancelable;

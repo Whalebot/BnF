@@ -109,7 +109,6 @@ public class MoveEditor : Editor
         if (movementType)
         {
             EditorGUILayout.PropertyField(canMove);
-            EditorGUILayout.PropertyField(keepVel);
             EditorGUILayout.PropertyField(keepVerticalVel);
             EditorGUILayout.PropertyField(keepHorizontalVel);
             EditorGUILayout.PropertyField(interpolate);

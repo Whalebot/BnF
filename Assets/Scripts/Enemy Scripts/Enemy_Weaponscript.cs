@@ -246,19 +246,24 @@ public class Enemy_Weaponscript : MonoBehaviour
             {
                 int RNGCounter = Random.Range(1, ai.groundToGroundRNG + 1);
 
+
+                if (RNGCounter < ai.groundToGround.moveSequences[0].RNGWeight)
+                {
+                    for (int j = 0; j < ai.groundToGround.moveSequences[0].moves.Count; j++)
+                    {
+                        //print(i + " + " + j);
+                       // attackDelayCounter = 300;
+                        CheckMove(ai.groundToGround.moveSequences[0].moves[j].attack);
+                    }
+                }
+                else if (RNGCounter < ai.groundToGround.moveSequences[1].RNGWeight)
+                {
+                  //  print(i);
+                }
+
                 for (int i = 0; i < ai.groundToGround.moveSequences.Count; i++)
                 {
-                    if (RNGCounter < ai.groundToGround.moveSequences[0].RNGWeight)
-                    {
-                        for (int j = 0; j < ai.groundToGround.moveSequences[0].moves.Count; j++)
-                        {
-                            attackDelayCounter = 300;
-                            CheckMove(ai.groundToGround.moveSequences[0].moves[j].attack);
-                        }
-                    }
-                    else if (RNGCounter < ai.groundToGround.moveSequences[i].RNGWeight) {
-                        print(i);
-                    }
+                   
                 }
 
 
@@ -720,7 +725,6 @@ public class Enemy_Weaponscript : MonoBehaviour
         attackScript.keepVerticalVel = move.keepVerticalVel;
         attackScript.keepHorizontalVel = move.keepHorizontalVel;
         attackScript.canMove = move.canMove;
-        attackScript.keepVel = move.keepVel;
         attackScript.landCancel = move.landCancel;
         attackScript.landCancelRecovery = move.landCancelRecovery;
         attackScript.attackCancelable = move.attackCancelable;

@@ -45,7 +45,6 @@ public class Move : ScriptableObject{
     [HeaderAttribute("Movement type")]
 
     public bool canMove;
-    public bool keepVel;
     public bool keepVerticalVel;
     public bool keepHorizontalVel;
     public bool interpolate;

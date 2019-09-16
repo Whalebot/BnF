@@ -17,13 +17,13 @@ MonoBehaviour:
   combo: 0
   startUp: 6
   active: 10
-  recovery: 6
+  recovery: 5
   forward1: 22
   up1: 0
   duration1: 6
   forward2: 0
   up2: 0
-  duration2: 0
+  duration2: 8
   forward3: 0
   up3: 0
   duration3: 0
@@ -40,7 +40,6 @@ MonoBehaviour:
   isChargeAttack: 0
   justFrameTiming: 22
   canMove: 1
-  keepVel: 0
   keepVerticalVel: 0
   keepHorizontalVel: 0
   interpolate: 0

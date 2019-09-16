@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
   m_Name: IN_j2A
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 120
   SpCost: 0
   combo: 0
   startUp: 6
@@ -40,7 +40,6 @@ MonoBehaviour:
   isChargeAttack: 0
   justFrameTiming: 22
   canMove: 0
-  keepVel: 0
   keepVerticalVel: 0
   keepHorizontalVel: 0
   interpolate: 0

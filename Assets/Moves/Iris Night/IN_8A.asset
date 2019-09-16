@@ -12,35 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
   m_Name: IN_8A
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 80
   SpCost: 0
   combo: 0
   startUp: 10
-  active: 17
-  recovery: 5
+  active: 20
+  recovery: 20
   forward1: 0
   up1: 0
   duration1: 6
   forward2: -20
   up2: 51
-  duration2: 10
-  forward3: 0
+  duration2: 17
+  forward3: 50
   up3: 0
   duration3: 0
   startupSound: {fileID: 0}
   jumpCancelable: 1
   specialCancelable: 1
-  landCancel: 1
+  landCancel: 0
   attackCancelable: 1
-  landCancelRecovery: 0
-  landAttackFrames: 0
+  landCancelRecovery: 1
+  landAttackFrames: 5
   iFrames: 0
   invul: 0
   noClip: 0
   isChargeAttack: 0
   justFrameTiming: 22
   canMove: 0
-  keepVel: 1
   keepVerticalVel: 1
   keepHorizontalVel: 1
   interpolate: 0
