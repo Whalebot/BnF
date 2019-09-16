@@ -7,6 +7,9 @@ public class Player_Movement : MonoBehaviour
     [HeaderAttribute("Movement attributes")]
     public bool mov = true;
     public float m_vel;
+    public float runSpeed;
+    private float currentSpeed;
+    public float airMultiplier = 1;
     public static float faceDirection;
 
     [HeaderAttribute("Jump attributes")]
@@ -161,7 +164,7 @@ public class Player_Movement : MonoBehaviour
         if (ground && doubleTap) { if (!running) Instantiate(sprintStartParticle, actualPosition - Vector3.up * 2, Quaternion.Euler(0, 0, 90)); running = true; }
         if (running)
         {
-            m_vel = 1500;
+            currentSpeed = runSpeed;
             sprintCounter++;
             if (sprintCounter >= sprintParticleInterval && !dashing && !recovery)
             {
@@ -173,7 +176,7 @@ public class Player_Movement : MonoBehaviour
                 }
             }
         }
-        else { m_vel = 1000; sprintCounter = 0; }
+        else { currentSpeed = m_vel; sprintCounter = 0; }
 
         Debug.DrawLine(transform.position, transform.position + Vector3.down * ray, Color.green);
         Debug.DrawLine(transform.position + Vector3.right * raySpacingRight * transform.localScale.x, transform.position + Vector3.right * raySpacingRight * transform.localScale.x + Vector3.down * ray, Color.green);
@@ -200,16 +203,24 @@ public class Player_Movement : MonoBehaviour
             if (mov && !PauseMenu.gameIsPaused)
             {
                 if (x == 0 && runEnd && ground) { rb.velocity = rb.velocity * 0.95F; }
-                else
-                    rb.velocity = new Vector2(x * m_vel * Time.deltaTime, rb.velocity.y);
-                if (ground) { rb.velocity = rb.velocity + new Vector2(inheritedVelocity.x, 0);
-                 
+                else {
+                    if (ground) {
+                        rb.velocity = new Vector2(x * currentSpeed * Time.deltaTime, rb.velocity.y);
+
+                    }
+                    else { rb.AddForce(new Vector2(x * currentSpeed * airMultiplier * Time.deltaTime, 0), ForceMode2D.Force);
+                        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -(currentSpeed * Time.deltaTime), (currentSpeed * Time.deltaTime)), rb.velocity.y);
+                    }
+                }
+             
+                if (ground) {
+                    rb.velocity = rb.velocity + new Vector2(inheritedVelocity.x, 0);
                 }
             }
 
             if (jump)
             {
-                rb.velocity = Vector2.up * m_jump; jump = false;
+                rb.velocity = new Vector2(rb.velocity.x + x * currentSpeed * Time.deltaTime, 0) + Vector2.up * m_jump; jump = false;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, 0, m_jump));
             }
 
@@ -272,7 +283,7 @@ public class Player_Movement : MonoBehaviour
             }
             else if (!ground)
             {
-                AddVelocity(Vector2.zero);
+                //AddVelocity(Vector2.zero);
                 mov = true;
             }
         }
