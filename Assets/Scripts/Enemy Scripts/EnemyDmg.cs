@@ -95,7 +95,7 @@ public class EnemyDmg : MonoBehaviour
     void OnTriggerEnter2D(Collider2D enemy)
     {
         if (enemy.CompareTag("Attack")) {
-            if (enemy.GetComponent<Player_Slash>().clashActive) clashed = true;
+          if(enemy.GetComponent<Player_Slash>() != null)  if (enemy.GetComponent<Player_Slash>().clashActive) clashed = true;
         }
         
         if (enemy.CompareTag("Player") && !ranged && !clashed)

@@ -30926,6 +30926,7 @@ MonoBehaviour:
     type: 2}
   bambooController: {fileID: 22100000, guid: 017770bde033d6c47805ce24181001d9, type: 2}
   sickleController: {fileID: 22100000, guid: baa1e41f04570624099b8a7679d60ede, type: 2}
+  spearController: {fileID: 22100000, guid: a61aadf102d900d409ec1148bb2be793, type: 2}
 --- !u!95 &95498099862000046
 Animator:
   serializedVersion: 3
@@ -59564,7 +59565,7 @@ MonoBehaviour:
   backdashRecovery: 12
   canElectric: 1
   electricCost: 0
-  move6A: {fileID: 11400000, guid: c3069c7ebcee5b447825d8615bdd5ca1, type: 2}
+  move6A: {fileID: 0}
   moveObject6A: {fileID: 1380632354}
   move5S: {fileID: 11400000, guid: 41f6af5a17b1796419055345c34aad54, type: 2}
   moveObject5S: {fileID: 1889595177136512}
@@ -59580,15 +59581,15 @@ MonoBehaviour:
   moveObjectExtra: {fileID: 0}
   moveExtra2: {fileID: 0}
   moveObjectExtra2: {fileID: 0}
-  move5A: {fileID: 11400000, guid: f246b5a27d358b944ad795fe8d61f7dc, type: 2}
+  move5A: {fileID: 0}
   moveObject5A: {fileID: 1705667760962178}
-  move5AA: {fileID: 11400000, guid: 74426dc4cbb05a3438dbb414ae74ba3f, type: 2}
+  move5AA: {fileID: 0}
   moveObject5AA: {fileID: 1889595177136512}
-  move5AAA: {fileID: 11400000, guid: c92b56f6832de9649bf642a47f8c477d, type: 2}
+  move5AAA: {fileID: 0}
   moveObject5AAA: {fileID: 1380632354}
   move5AAAA: {fileID: 0}
   moveObject5AAAA: {fileID: 0}
-  move8A: {fileID: 11400000, guid: f246b5a27d358b944ad795fe8d61f7dc, type: 2}
+  move8A: {fileID: 0}
   moveObject8A: {fileID: 1979757606}
   move8AA: {fileID: 0}
   moveObject8AA: {fileID: 0}
@@ -62194,7 +62195,7 @@ MonoBehaviour:
   moveset12: {fileID: 1627224384531722}
   weapon1: 1
   weapon2: 2
-  weapon3: 3
+  weapon3: 11
   levelSelect: 0
   player: {fileID: 0}
 --- !u!1 &1981825702673842

@@ -157,7 +157,7 @@ public class Enemy_Weaponscript : MonoBehaviour
             else if (attackQueue[0] == 250) { TestSlash(movelist.move5S, movelist.moveObject5S); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 251) { TestSlash(movelist.move5SS, movelist.moveObject5SS); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 252) { TestSlash(movelist.move5SSS, movelist.moveObject5SSS); attackQueue.RemoveAt(0); }
-            
+           /* 
             switch (attackQueue[0])
             {
 
@@ -200,7 +200,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
                 default: return;
             }
-
+            */
         }
     }
 
@@ -309,17 +309,17 @@ public class Enemy_Weaponscript : MonoBehaviour
                                 if (attackScript.combo == 0)
                                 {
                                     attackScript.tracking = true;
-                                    attackQueue.Add(150);
+                                    attackQueue.Add(50);
                                 }
                                 else if (attackScript.combo == 1)
                                 {
-                                    attackQueue.Add(151);
+                                    attackQueue.Add(51);
                                 }
                                 else if (attackScript.combo == 2)
                                 {
                                     attackDelayCounter = maxDelay;
                                     attackScript.tracking = true;
-                                    attackQueue.Add(152);
+                                    attackQueue.Add(52);
                                 }
                             }
                         }
@@ -684,7 +684,7 @@ public class Enemy_Weaponscript : MonoBehaviour
     void TestSlash(Move move, GameObject moveObject)
     {
         AttackCancel();
-        if (move.startupSound != null) Instantiate(move.startupSound);
+        //if (move.startupSound != null) Instantiate(move.startupSound);
 
         attackScript.attackID = move.ID;
         attackScript.canAttack = false;
