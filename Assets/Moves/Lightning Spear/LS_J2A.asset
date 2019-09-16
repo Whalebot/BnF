@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
+  m_Name: LS_J2A
+  m_EditorClassIdentifier: 
+  ID: 50
+  SpCost: 0
+  combo: 1
+  startUp: 15
+  active: 20
+  recovery: 5
+  forward1: -2
+  up1: 0
+  duration1: 15
+  forward2: 120
+  up2: -80
+  duration2: 8
+  forward3: 10
+  up3: 0
+  duration3: 5
+  startupSound: {fileID: 0}
+  jumpCancelable: 0
+  specialCancelable: 1
+  landCancel: 1
+  attackCancelable: 1
+  landCancelRecovery: 1
+  landAttackFrames: 10
+  iFrames: 0
+  invul: 0
+  noClip: 0
+  isChargeAttack: 0
+  justFrameTiming: 22
+  canMove: 0
+  keepVel: 0
+  keepVerticalVel: 0
+  keepHorizontalVel: 0
+  interpolate: 0
+  isHoming: 0
