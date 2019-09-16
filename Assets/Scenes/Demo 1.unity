@@ -1290,6 +1290,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 042b405982da7154797713a233e1bb9e,
         type: 2}
+    - target: {fileID: 114720821569574778, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: moveJ5A
+      value: 
+      objectReference: {fileID: 11400000, guid: 430327318807abe489a741d66d66551d,
+        type: 2}
+    - target: {fileID: 114720821569574778, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: move6A
+      value: 
+      objectReference: {fileID: 11400000, guid: 6122e05c20f9d484fb31c75a9f62adda,
+        type: 2}
     - target: {fileID: 114489150784172526, guid: 97c1ec0522edae34b8421ca9f3d06825,
         type: 3}
       propertyPath: weapon3
