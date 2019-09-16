@@ -40,7 +40,7 @@ public class AnimationScript : MonoBehaviour
 
         if (playerMov.isBackdashing) anim.SetBool("Backdashing", true);
         else { anim.SetBool("Backdashing", false); }
-        if (playerMov.newDash) { DashClick(); print("bob"); }
+        if (playerMov.newDash) { DashClick(); }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Dash") || anim.GetCurrentAnimatorStateInfo(0).IsName("Backdash")) { anim.SetBool("FromDash", true); }
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Dash") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Backdash"))

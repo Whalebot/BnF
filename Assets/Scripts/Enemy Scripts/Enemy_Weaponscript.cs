@@ -71,10 +71,10 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < ai.groundToGround.moveSequences.Count; i++)
-        {
-            ai.groundToGroundRNG += ai.groundToGround.moveSequences[i].RNGWeight;
-        }
+     //   for (int i = 0; i < ai.groundToGround.moveSequences.Count; i++)
+       // {
+          //  ai.groundToGroundRNG += ai.groundToGround.moveSequences[i].RNGWeight;
+       //}
 
     }
     void OnEnable()
@@ -141,14 +141,100 @@ public class Enemy_Weaponscript : MonoBehaviour
 
         if (attackQueue.Count > 0 && attackScript.canAttack || attackScript.recovery && attackQueue.Count > 0)
         {
-            if (attackQueue[0] == 1) { TestSlash(movelist.move5A, movelist.moveObject5A); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 2) { TestSlash(movelist.move5AA, movelist.moveObject5AA); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 3) { TestSlash(movelist.move5AAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 4) { TestSlash(movelist.move2A, movelist.moveObject2A); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 5) { TestSlash(movelist.move8A, movelist.moveObject8A); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 6) { TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 0) { TestSlash(movelist.move5S, movelist.moveObject5S); attackQueue.RemoveAt(0); }
+            
+            if (attackQueue[0] == 50) { TestSlash(movelist.move5A, movelist.moveObject5A); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 51) { TestSlash(movelist.move5AA, movelist.moveObject5AA); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 52) { TestSlash(movelist.move5AAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 53) { TestSlash(movelist.move5AAAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 20) { TestSlash(movelist.move2A, movelist.moveObject2A); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 21) { TestSlash(movelist.move2AA, movelist.moveObject2AA); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 80) { TestSlash(movelist.move8A, movelist.moveObject8A); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 81) { TestSlash(movelist.move8AA, movelist.moveObject8A); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 150) { TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 151) { TestSlash(movelist.moveJ5AA, movelist.moveObjectJ5AA); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 152) { TestSlash(movelist.moveJ5AAA, movelist.moveObjectJ5AAA); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 153) { TestSlash(movelist.moveJ5AAAA, movelist.moveObjectJ5AAAA); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 250) { TestSlash(movelist.move5S, movelist.moveObject5S); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 251) { TestSlash(movelist.move5SS, movelist.moveObject5SS); attackQueue.RemoveAt(0); }
+            else if (attackQueue[0] == 252) { TestSlash(movelist.move5SSS, movelist.moveObject5SSS); attackQueue.RemoveAt(0); }
+            
+            switch (attackQueue[0])
+            {
+
+                case 50: TestSlash(movelist.move5A, movelist.moveObject5A); attackQueue.RemoveAt(0); return;
+                case 51: TestSlash(movelist.move5AA, movelist.moveObject5AA); attackQueue.RemoveAt(0); return;
+                case 52: TestSlash(movelist.move5AAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); return;
+                case 53: TestSlash(movelist.move5AAAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); return;
+
+                case 20: TestSlash(movelist.move2A, movelist.moveObject2A); attackQueue.RemoveAt(0); return;
+                case 21: TestSlash(movelist.move2AA, movelist.moveObject2AA); attackQueue.RemoveAt(0); return;
+
+                case 80: TestSlash(movelist.move8A, movelist.moveObject8A); attackQueue.RemoveAt(0); return;
+                case 81: TestSlash(movelist.move8AA, movelist.moveObject8A); attackQueue.RemoveAt(0); return;
+
+                case 60: TestSlash(movelist.move6A, movelist.moveObject6A); attackQueue.RemoveAt(0); return;
+
+
+                case 150: TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); return;
+                case 151: TestSlash(movelist.moveJ5AA, movelist.moveObjectJ5AA); attackQueue.RemoveAt(0); return;
+                case 152: TestSlash(movelist.moveJ5AAA, movelist.moveObjectJ5AAA); attackQueue.RemoveAt(0); return;
+                case 153: TestSlash(movelist.moveJ5AAAA, movelist.moveObjectJ5AAAA); attackQueue.RemoveAt(0); return;
+
+                case 120: TestSlash(movelist.moveJ2A, movelist.moveObjectJ2A); attackQueue.RemoveAt(0); return;
+                case 121: TestSlash(movelist.moveJ2AA, movelist.moveObjectJ2AA); attackQueue.RemoveAt(0); return;
+
+                case 180: TestSlash(movelist.moveJ8A, movelist.moveObjectJ8A); attackQueue.RemoveAt(0); return;
+                case 181: TestSlash(movelist.moveJ8AA, movelist.moveObjectJ8AA); attackQueue.RemoveAt(0); return;
+
+                case 160: TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); return;
+
+                case 250: TestSlash(movelist.move5S, movelist.moveObject5S); attackQueue.RemoveAt(0); return;
+                case 251: TestSlash(movelist.move5S, movelist.moveObject5SS); attackQueue.RemoveAt(0); return;
+                case 252: TestSlash(movelist.move5SSS, movelist.moveObject5SSS); attackQueue.RemoveAt(0); return;
+
+                case 280: TestSlash(movelist.move8S, movelist.moveObject8S); attackQueue.RemoveAt(0); return;
+                case 220: TestSlash(movelist.move2S, movelist.moveObject2S); attackQueue.RemoveAt(0); return;
+
+                case 200: TestSlash(movelist.moveExtra, movelist.moveObjectExtra); attackQueue.RemoveAt(0); return;
+                case 201: TestSlash(movelist.moveExtra2, movelist.moveObjectExtra2); attackQueue.RemoveAt(0); return;
+
+                default: return;
+            }
+
         }
+    }
+
+    void CheckMove(MoveProperties.Attack attack)
+    {
+
+        if (attack == MoveProperties.Attack.g5S)
+        {
+            attackQueue.Add(250);
+        }
+        else if (attack == MoveProperties.Attack.g5SS) { attackQueue.Add(251); }
+        else if (attack == MoveProperties.Attack.g5SSS) { attackQueue.Add(252); }
+        else if (attack == MoveProperties.Attack.g8S) { attackQueue.Add(280); }
+        else if (attack == MoveProperties.Attack.g2S) { attackQueue.Add(220); }
+        else if (attack == MoveProperties.Attack.extra1) { attackQueue.Add(200); }
+        else if (attack == MoveProperties.Attack.extra2) { attackQueue.Add(201); }
+        else if (attack == MoveProperties.Attack.g5A) { attackQueue.Add(50); }
+        else if (attack == MoveProperties.Attack.g5AA) { attackQueue.Add(51); }
+        else if (attack == MoveProperties.Attack.g5AAA) { attackQueue.Add(52); }
+        else if (attack == MoveProperties.Attack.g5AAAA) { attackQueue.Add(53); }
+        else if (attack == MoveProperties.Attack.g8A) { attackQueue.Add(80); }
+        else if (attack == MoveProperties.Attack.g8AA) { attackQueue.Add(81); }
+        else if (attack == MoveProperties.Attack.g2A) { attackQueue.Add(20); }
+        else if (attack == MoveProperties.Attack.g2AA) { attackQueue.Add(21); }
+        else if (attack == MoveProperties.Attack.g6A) { attackQueue.Add(60); }
+        else if (attack == MoveProperties.Attack.j5A) { attackQueue.Add(150); }
+        else if (attack == MoveProperties.Attack.j5AA) { attackQueue.Add(151); }
+        else if (attack == MoveProperties.Attack.j5AAA) { attackQueue.Add(152); }
+        else if (attack == MoveProperties.Attack.j5AAAA) { attackQueue.Add(153); }
+        else if (attack == MoveProperties.Attack.j8A) { attackQueue.Add(180); }
+        else if (attack == MoveProperties.Attack.j8AA) { attackQueue.Add(181); }
+        else if (attack == MoveProperties.Attack.j2A) { attackQueue.Add(120); }
+        else if (attack == MoveProperties.Attack.j2AA) { attackQueue.Add(121); }
+        else if (attack == MoveProperties.Attack.j6A) { attackQueue.Add(160); }
     }
 
     void Boss()
@@ -158,15 +244,30 @@ public class Enemy_Weaponscript : MonoBehaviour
         {
             if (!enemyScript.stun && attackDelayCounter <= 0 && attackQueue.Count == 0)
             {
-                foreach (MoveSequence moveSequence in ai.groundToGround.moveSequences)
+                int RNGCounter = Random.Range(1, ai.groundToGroundRNG + 1);
+
+                for (int i = 0; i < ai.groundToGround.moveSequences.Count; i++)
+                {
+                    if (RNGCounter < ai.groundToGround.moveSequences[0].RNGWeight)
+                    {
+                        for (int j = 0; j < ai.groundToGround.moveSequences[0].moves.Count; j++)
+                        {
+                            attackDelayCounter = 300;
+                            CheckMove(ai.groundToGround.moveSequences[0].moves[j].attack);
+                        }
+                    }
+                    else if (RNGCounter < ai.groundToGround.moveSequences[i].RNGWeight) {
+                        print(i);
+                    }
+                }
+
+
+
+                switch (RNGCounter)
                 {
 
-                }
-                int RNGCounter = Random.Range(1,ai.groundToGroundRNG+1);
-                if (RNGCounter < ai.groundToGround.moveSequences[0].RNGWeight) { }
-                if (ai.groundToGround.moveSequences[0].moves[0].attack == MoveProperties.Attack.g5A)
-                {
-                    //Queue 5A slash
+                    default: return;
+
                 }
             }
         }
@@ -200,7 +301,7 @@ public class Enemy_Weaponscript : MonoBehaviour
                             {
                                 enemyMov.direction = attackScript.trueDirection;
                                 attackDelayCounter = Random.Range(attackDelay, maxDelay);
-                                attackQueue.Add(0);
+                                attackQueue.Add(250);
                             }
                             //3 HIT COMBO
                             else if (RNGCount >= 2 && !enemyScript.stun)
@@ -208,17 +309,17 @@ public class Enemy_Weaponscript : MonoBehaviour
                                 if (attackScript.combo == 0)
                                 {
                                     attackScript.tracking = true;
-                                    attackQueue.Add(1);
+                                    attackQueue.Add(150);
                                 }
                                 else if (attackScript.combo == 1)
                                 {
-                                    attackQueue.Add(2);
+                                    attackQueue.Add(151);
                                 }
                                 else if (attackScript.combo == 2)
                                 {
                                     attackDelayCounter = maxDelay;
                                     attackScript.tracking = true;
-                                    attackQueue.Add(3);
+                                    attackQueue.Add(152);
                                 }
                             }
                         }
@@ -227,7 +328,7 @@ public class Enemy_Weaponscript : MonoBehaviour
                         {
                             attackScript.tracking = true;
                             attackDelayCounter = Random.Range(attackDelay, maxDelay);
-                            attackQueue.Add(0);
+                            attackQueue.Add(250);
                         }
                     }
 
@@ -237,7 +338,7 @@ public class Enemy_Weaponscript : MonoBehaviour
                 {
                     attackScript.tracking = true;
                     attackDelayCounter = Random.Range(attackDelay, maxDelay);
-                    attackQueue.Add(0);
+                    attackQueue.Add(250);
                 }
             }
 
@@ -583,7 +684,6 @@ public class Enemy_Weaponscript : MonoBehaviour
     void TestSlash(Move move, GameObject moveObject)
     {
         AttackCancel();
-        print(move);
         if (move.startupSound != null) Instantiate(move.startupSound);
 
         attackScript.attackID = move.ID;

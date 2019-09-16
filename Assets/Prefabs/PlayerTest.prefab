@@ -19621,6 +19621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -24694,6 +24695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -29740,18 +29742,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0464aa464a40c6647b16ae37533f4025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraID: 1
+  extraID: 0
   triggered: 0
   sfx: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   sfx2: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   active: 0
-  activeFrames: 15
+  activeFrames: 20
   durationCounter: 1
   hitPause: 22
   hitParticle: {fileID: 0}
   currentLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!1 &1740407181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1740407182}
+  m_Layer: 16
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1740407182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740407181}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.83, y: -3.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4214407010509546}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1854014290
 GameObject:
   m_ObjectHideFlags: 0
@@ -29974,6 +30006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 10
@@ -30186,6 +30219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -30395,6 +30429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 50
@@ -30560,6 +30595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 0
   knockback: 10
@@ -30589,7 +30625,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95101125973280824
 Animator:
@@ -30886,10 +30922,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hydrangeaController: {fileID: 9100000, guid: b43d2cdd586d9794bad7e85b179333af, type: 2}
-  snowCherryController: {fileID: 9100000, guid: 483b0a6d9b5f2a240a94dd80155731fc,
+  snowCherryController: {fileID: 22100000, guid: b49be3231679d8f4fb00c37deb6fddaa,
     type: 2}
-  bambooController: {fileID: 9100000, guid: e1769d33b5e806042ace07d81ba12c28, type: 2}
-  sickleController: {fileID: 9100000, guid: a30766d7521256a4f97fc93802ea9130, type: 2}
+  bambooController: {fileID: 22100000, guid: 017770bde033d6c47805ce24181001d9, type: 2}
+  sickleController: {fileID: 22100000, guid: baa1e41f04570624099b8a7679d60ede, type: 2}
 --- !u!95 &95498099862000046
 Animator:
   serializedVersion: 3
@@ -31266,6 +31302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 3
   knockback: 5
@@ -31449,6 +31486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 5
@@ -31614,6 +31652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -31798,6 +31837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -32100,6 +32140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 5
@@ -32284,6 +32325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 2
   poiseDamage: 3
   knockback: 40
@@ -32468,6 +32510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 2
   knockback: 0
@@ -32652,6 +32695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -32836,6 +32880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -33020,6 +33065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 20
@@ -33206,6 +33252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -33416,6 +33463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 3
   knockback: 75
@@ -33600,6 +33648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 2
   poiseDamage: 3
   knockback: 20
@@ -33784,6 +33833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -33968,6 +34018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 12
   poiseDamage: 10
   knockback: 10
@@ -33997,7 +34048,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95722476422674696
 Animator:
@@ -34154,6 +34205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 0
@@ -34183,7 +34235,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95014473354332006
 Animator:
@@ -34400,6 +34452,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1132426658373294
 GameObject:
   m_ObjectHideFlags: 0
@@ -34521,6 +34574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -34550,7 +34604,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!95 &95446972244266018
 Animator:
@@ -34705,6 +34759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -34888,6 +34943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 0
   poiseDamage: 0
   knockback: 0
@@ -35053,6 +35109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 4
   knockback: 0
@@ -35237,6 +35294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -35420,6 +35478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 50
@@ -35449,7 +35508,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!114 &114421970596478658
 MonoBehaviour:
@@ -35585,6 +35644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 5
   knockback: -50
@@ -35768,6 +35828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 5
@@ -35797,7 +35858,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!114 &114096791849413746
 MonoBehaviour:
@@ -35932,6 +35993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 5
@@ -36097,6 +36159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 4
   knockback: 0
@@ -36281,6 +36344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -36465,6 +36529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 20
@@ -36494,7 +36559,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95845766946348410
 Animator:
@@ -36649,6 +36714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 2
   knockback: 0
@@ -36678,7 +36744,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95448600029214606
 Animator:
@@ -36833,6 +36899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 5
   knockback: 5
@@ -37017,6 +37084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 4
   knockback: 0
@@ -37235,6 +37303,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1219037326138272
 GameObject:
   m_ObjectHideFlags: 0
@@ -37356,6 +37425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 12
   poiseDamage: 10
   knockback: 50
@@ -37385,7 +37455,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95441850936227206
 Animator:
@@ -37540,6 +37610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -37725,6 +37796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 0
@@ -37909,6 +37981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 6
   poiseDamage: 10
   knockback: 30
@@ -37938,7 +38011,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!95 &95188905607449906
 Animator:
@@ -38093,6 +38166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 4
   knockback: 0
@@ -38276,6 +38350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 0
   poiseDamage: 0
   knockback: 0
@@ -38441,6 +38516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 2
   knockback: 0
@@ -38470,7 +38546,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95209383405562876
 Animator:
@@ -38625,6 +38701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 0
   poiseDamage: 0
   knockback: 0
@@ -38809,6 +38886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 2
   poiseDamage: 4
   knockback: 40
@@ -38993,6 +39071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -39176,6 +39255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 75
@@ -39341,6 +39421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -39525,6 +39606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 2
   knockback: 0
@@ -39554,7 +39636,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95945045945481968
 Animator:
@@ -39733,6 +39815,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1294453474920862
 GameObject:
   m_ObjectHideFlags: 0
@@ -39854,6 +39937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -40038,6 +40122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 5
   knockback: 20
@@ -40221,6 +40306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 5
@@ -40388,6 +40474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 0
@@ -40598,6 +40685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 3
   knockback: 10
@@ -40627,7 +40715,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 20
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95870919708131762
 Animator:
@@ -40782,6 +40870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 12
   poiseDamage: 10
   knockback: 50
@@ -40965,6 +41054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 75
@@ -41135,6 +41225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -41164,7 +41255,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95669780869181510
 Animator:
@@ -41345,6 +41436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -41529,6 +41621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 0
   knockback: 20
@@ -41558,7 +41651,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95187254608383692
 Animator:
@@ -41712,6 +41805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 50
@@ -41876,6 +41970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 75
@@ -42040,6 +42135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 5
@@ -42205,6 +42301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -42468,6 +42565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -42652,6 +42750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -42835,6 +42934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 5
@@ -43000,6 +43100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 2
   knockback: 0
@@ -43185,6 +43286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 0
@@ -43370,6 +43472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 5
   knockback: 50
@@ -43553,6 +43656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -43718,6 +43822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 5
   knockback: -40
@@ -43902,6 +44007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 4
   knockback: 0
@@ -44088,6 +44194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -44300,6 +44407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -44655,6 +44763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 4
   knockback: 0
@@ -44839,6 +44948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -45013,6 +45123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 5
   poiseDamage: 10
   knockback: 10
@@ -45197,6 +45308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 5
   knockback: 75
@@ -45411,6 +45523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -45597,6 +45710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -45951,6 +46065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 0
   poiseDamage: 0
   knockback: 0
@@ -46116,6 +46231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 5
   knockback: 50
@@ -46145,7 +46261,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95917891667931710
 Animator:
@@ -46301,6 +46417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 3
   knockback: 10
@@ -46484,6 +46601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 50
@@ -46650,6 +46768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 3
   knockback: 10
@@ -46834,6 +46953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 5
   knockback: -50
@@ -47020,6 +47140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -47230,6 +47351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 4
   knockback: 0
@@ -47259,7 +47381,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 20
   hitstopframes: 0
-  clashFX: {fileID: 1768467885810194, guid: 61bae48f531cf9c4582c3f1d13671144, type: 3}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!114 &114087489785118858
 MonoBehaviour:
@@ -47414,6 +47536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 0
   knockback: 10
@@ -47597,6 +47720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 75
@@ -47761,6 +47885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 75
@@ -47926,6 +48051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 12
   poiseDamage: 10
   knockback: 10
@@ -48109,6 +48235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -48307,6 +48434,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1627224384531722
 GameObject:
   m_ObjectHideFlags: 0
@@ -48462,6 +48590,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1633068533619754
 GameObject:
   m_ObjectHideFlags: 0
@@ -48583,6 +48712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 0
   knockback: 10
@@ -48612,7 +48742,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95892662565315506
 Animator:
@@ -48801,6 +48931,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1643147121447126
 GameObject:
   m_ObjectHideFlags: 0
@@ -48922,6 +49053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 5
   knockback: 20
@@ -49106,6 +49238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 3
   knockback: 5
@@ -49135,7 +49268,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95519183095874678
 Animator:
@@ -54136,6 +54269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -54362,6 +54496,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1674466734223004
 GameObject:
   m_ObjectHideFlags: 0
@@ -54482,6 +54617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 50
@@ -54647,6 +54783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 5
   knockback: 50
@@ -54676,7 +54813,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 20
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95988196234831508
 Animator:
@@ -54831,6 +54968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 5
   knockback: 20
@@ -55017,6 +55155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -55227,6 +55366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 2
   poiseDamage: 3
   knockback: 20
@@ -55451,6 +55591,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1705667760962178
 GameObject:
   m_ObjectHideFlags: 0
@@ -55572,6 +55713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -55901,6 +56043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -56085,6 +56228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 0
   knockback: 10
@@ -56269,6 +56413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -56298,7 +56443,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!95 &95663822188842650
 Animator:
@@ -56352,7 +56497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4214407010509546
 Transform:
   m_ObjectHideFlags: 0
@@ -56363,7 +56508,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.12, y: 2.96, z: -0.0060406}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1740407182}
   m_Father: {fileID: 4778650079378794}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -56404,7 +56550,7 @@ SpriteRenderer:
   m_SortingLayerID: 330885901
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 286c6f9347184444b9750bfd32e65a2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3bb48a2e9ab1e974cbd39292f319b306, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -56453,6 +56599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 1740407182}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -56482,7 +56629,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 3
   hitstopframes: 20
-  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!95 &95886712702379754
 Animator:
@@ -56637,6 +56784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 2
   poiseDamage: 3
   knockback: 20
@@ -56821,6 +56969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -57005,6 +57154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 5
   knockback: 50
@@ -57191,6 +57341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 15
   knockback: 50
@@ -57220,7 +57371,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95052279798062982
 Animator:
@@ -57401,6 +57552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 4
   knockback: 0
@@ -57584,6 +57736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -57748,6 +57901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 75
@@ -57777,7 +57931,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!114 &114554567589597096
 MonoBehaviour:
@@ -57912,6 +58066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 0
   poiseDamage: 0
   knockback: 0
@@ -57941,7 +58096,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!114 &114105572503292786
 MonoBehaviour:
@@ -58077,6 +58232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 3
   knockback: 75
@@ -58261,6 +58417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 0
   knockback: 20
@@ -58480,6 +58637,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1792090617350936
 GameObject:
   m_ObjectHideFlags: 0
@@ -58601,6 +58759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 3
   knockback: 75
@@ -58789,7 +58948,7 @@ MonoBehaviour:
   moveObjectJ5AAA: {fileID: 1289680298159012}
   moveJ5AAAA: {fileID: 11400000, guid: d096ef541e1c41f4abffd5d53f1840e1, type: 2}
   moveObjectJ5AAAA: {fileID: 1538083080691764}
-  moveJ8A: {fileID: 11400000, guid: 5228e5acd0993ac42a52b28753da2e64, type: 2}
+  moveJ8A: {fileID: 11400000, guid: 984581c98c8f7ef4fb6191ce40998795, type: 2}
   moveObjectJ8A: {fileID: 1930924358109238}
   moveJ8AA: {fileID: 0}
   moveObjectJ8AA: {fileID: 0}
@@ -58820,6 +58979,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1803206604588910
 GameObject:
   m_ObjectHideFlags: 0
@@ -58974,6 +59134,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1807752516933774
 GameObject:
   m_ObjectHideFlags: 0
@@ -59130,6 +59291,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1819364928701694
 GameObject:
   m_ObjectHideFlags: 0
@@ -59251,6 +59413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -59472,6 +59635,7 @@ MonoBehaviour:
   moveObjectC2A: {fileID: 0}
   moveC2AA: {fileID: 0}
   moveObjectC2AA: {fileID: 0}
+  potato: []
 --- !u!1 &1827708741289164
 GameObject:
   m_ObjectHideFlags: 0
@@ -59593,6 +59757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 2
   knockback: 0
@@ -59808,6 +59973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 0
@@ -59991,6 +60157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 0
   poiseDamage: 0
   knockback: 0
@@ -60156,6 +60323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -60340,6 +60508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 0
@@ -60524,6 +60693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -60708,6 +60878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 3
   poiseDamage: 3
   knockback: 10
@@ -60737,7 +60908,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 20
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95917553298626582
 Animator:
@@ -60891,6 +61062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 5
@@ -61055,6 +61227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 0
   poiseDamage: 0
   knockback: 0
@@ -61364,6 +61537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 50
@@ -61529,6 +61703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 5
   knockback: -40
@@ -61713,6 +61888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 10
@@ -61742,7 +61918,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 20
   hitstopframes: 0
-  clashFX: {fileID: 1768467885810194, guid: 61bae48f531cf9c4582c3f1d13671144, type: 3}
+  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
   enemyList: []
 --- !u!95 &95703239531174750
 Animator:
@@ -61897,6 +62073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 4
   poiseDamage: 3
   knockback: 5
@@ -61926,7 +62103,7 @@ MonoBehaviour:
   clashActive: 0
   clashFrames: 0
   hitstopframes: 0
-  clashFX: {fileID: 0}
+  clashFX: {fileID: 1767059946513034, guid: bc1f6d7f9e15d36489c37d67a3d7fcf5, type: 3}
   enemyList: []
 --- !u!95 &95093602408647108
 Animator:
@@ -62140,6 +62317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 8
   poiseDamage: 6
   knockback: 50
@@ -62305,6 +62483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 2
   poiseDamage: 3
   knockback: 40
@@ -62489,6 +62668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {fileID: 0}
   dmg: 0
   poiseDamage: 0
   knockback: 0

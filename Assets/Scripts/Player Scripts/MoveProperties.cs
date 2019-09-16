@@ -20,6 +20,8 @@ public class MoveProperties
         g5AAAA,
         g8A,
         g8AA,
+        g2A,
+        g2AA,
         g6A,
 
 
@@ -37,6 +39,8 @@ public class MoveProperties
         j8A,
         j8AA,
         j2A,
+        j2AA,
+        j6A,
 
         extra1,
         extra2

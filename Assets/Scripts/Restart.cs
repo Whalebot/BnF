@@ -35,7 +35,6 @@ public class Restart : MonoBehaviour
     }
     void Start()
     {
-        print(checkpointNumber);
         if (checkpointNumber == 0) startPos = defaultPosition.transform.position;
         player.transform.position = startPos;
         //      if (checkpointNumber == 1) startPos = startPosition.transform.position;
