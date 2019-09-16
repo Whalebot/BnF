@@ -9,8 +9,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f227000ab89a942aba610e213fd930, type: 3}
-  m_Name: Geese_5A 1
+  m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
+  m_Name: Geese_5A
   m_EditorClassIdentifier: 
-  move: {fileID: 0}
-  hitbox: {fileID: 0}
+  ID: 50
+  SpCost: 0
+  combo: 1
+  startUp: 30
+  active: 12
+  recovery: 20
+  forward1: -5
+  up1: 0
+  duration1: 12
+  forward2: 50
+  up2: 0
+  duration2: 6
+  forward3: 0
+  up3: 0
+  duration3: 0
+  startupSound: {fileID: 0}
+  jumpCancelable: 1
+  specialCancelable: 1
+  landCancel: 1
+  attackCancelable: 1
+  landCancelRecovery: 0
+  landAttackFrames: 0
+  iFrames: 0
+  invul: 0
+  noClip: 0
+  isChargeAttack: 0
+  justFrameTiming: 22
+  canMove: 0
+  keepVel: 0
+  keepVerticalVel: 0
+  keepHorizontalVel: 0
+  interpolate: 0
+  isHoming: 0

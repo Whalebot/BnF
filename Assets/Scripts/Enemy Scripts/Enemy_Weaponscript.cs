@@ -56,6 +56,17 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     public List<int> attackQueue;
 
+    public bool isGroundToGround;
+    public bool isGroundToAir;
+    public bool isAirToGround;
+    public bool isAirToAir;
+
+
+    public AttackState groundToGround;
+    public AttackState groundToAir;
+    public AttackState airToGround;
+    public AttackState airToAir;
+
     void Awake()
     {
         movelist = GetComponent<Movelist>();
@@ -67,6 +78,7 @@ public class Enemy_Weaponscript : MonoBehaviour
     void Start()
     {
         //   attackDelayCounter = attackDelay;
+        //moveSequences[0].
 
     }
     void OnEnable()
@@ -88,6 +100,13 @@ public class Enemy_Weaponscript : MonoBehaviour
             attackScript.resetCounter++;
             if (enemyMov.target != null)
             {
+                //  for (int i = 0; i < ranges.Count; i++)
+                //   {
+                //      if ((transform.position - enemyMov.target.transform.position).magnitude < ranges[i]) withinRanges[i] = true;
+                //      else withinRanges[i] = false;
+                //  }
+
+
                 if ((transform.position - enemyMov.target.transform.position).magnitude < distance) withinRange = true;
                 else withinRange = false;
                 if ((transform.position - enemyMov.target.transform.position).magnitude < distance2) withinRange2 = true;
@@ -106,6 +125,7 @@ public class Enemy_Weaponscript : MonoBehaviour
         if (enemyScript.detected && enemyScript.requiresTrigger || !enemyScript.requiresTrigger)
             if (isBoss)
             {
+                if (behaviorID == 0) Boss();
                 if (behaviorID == 1) BossGeese();
                 if (behaviorID == 2) BossBamboo();
                 if (behaviorID == 3) BossLilac();
@@ -135,67 +155,85 @@ public class Enemy_Weaponscript : MonoBehaviour
         }
     }
 
-    void BossGeese()
+    void Boss()
     {
+
         if (attackScript.canAttack || attackScript.recovery)
         {
-            //GROUND
-            if (enemyMov.ground)
+            if (!enemyScript.stun && attackDelayCounter <= 0 && attackQueue.Count == 0)
+            { }
+        }
+    }
+
+    void BossGeese()
+    {
+
+        if (attackScript.canAttack || attackScript.recovery)
+        {
+            if (!enemyScript.stun && attackDelayCounter <= 0 && attackQueue.Count == 0)
             {
-                //RANGE CHECK
-                //SHORT RANGE
-                if (targetAirborne)
+                //GROUNDED
+                if (enemyMov.ground)
                 {
-                    if (enemyMov.ground) enemyMov.Jump();
-                }
-                else
-                {
-                    if (!enemyScript.stun && withinRange && attackDelayCounter <= 0 && attackQueue.Count == 0)
+                    //TARGET IS AIRBORNE
+                    if (targetAirborne)
                     {
-                        //ATTACK RNG
-                        RNGCount = Random.Range(1, 8);
-                        if (RNGCount == 1 && enemyMov.ground && !enemyScript.stun)
+                        //       if (enemyMov.ground) enemyMov.Jump();
+                    }
+                    //TARGET IS GROUDED
+                    else
+                    {
+                        //RANGE CHECK
+                        //SHORT RANGE
+                        if (withinRange)
                         {
-                            enemyMov.direction = attackScript.trueDirection;
+                            //ATTACK RNG
+                            RNGCount = Random.Range(1, 8);
+                            if (RNGCount == 1 && enemyMov.ground && !enemyScript.stun)
+                            {
+                                enemyMov.direction = attackScript.trueDirection;
+                                attackDelayCounter = Random.Range(attackDelay, maxDelay);
+                                attackQueue.Add(0);
+                            }
+                            //3 HIT COMBO
+                            else if (RNGCount >= 2 && !enemyScript.stun)
+                            {
+                                if (attackScript.combo == 0)
+                                {
+                                    attackScript.tracking = true;
+                                    attackQueue.Add(1);
+                                }
+                                else if (attackScript.combo == 1)
+                                {
+                                    attackQueue.Add(2);
+                                }
+                                else if (attackScript.combo == 2)
+                                {
+                                    attackDelayCounter = maxDelay;
+                                    attackScript.tracking = true;
+                                    attackQueue.Add(3);
+                                }
+                            }
+                        }
+                        //LONG RANGE
+                        else if (withinRange2 && !withinRange)
+                        {
+                            attackScript.tracking = true;
                             attackDelayCounter = Random.Range(attackDelay, maxDelay);
                             attackQueue.Add(0);
                         }
-                        //3 HIT COMBO
-                        else if (RNGCount >= 2 && !enemyScript.stun)
-                        {
-                            if (attackScript.combo == 0)
-                            {
-                                attackScript.tracking = true;
-                                attackQueue.Add(1);
-                            }
-                            else if (attackScript.combo == 1)
-                            {
-                                attackQueue.Add(2);
-                            }
-                            else if (attackScript.combo == 2)
-                            {
-                                attackDelayCounter = maxDelay;
-                                attackScript.tracking = true;
-                                attackQueue.Add(3);
-                            }
-                        }
                     }
-                    //LONG RANGE
-                    else if (!enemyScript.stun && withinRange2 && !withinRange && attackDelayCounter <= 0 && attackQueue.Count == 0)
-                    {
-                        attackScript.tracking = true;
-                        attackDelayCounter = Random.Range(attackDelay, maxDelay);
-                        attackQueue.Add(0);
-                    }
-                }
 
+                }
+                //AIRBORNE
+                else
+                {
+                    attackScript.tracking = true;
+                    attackDelayCounter = Random.Range(attackDelay, maxDelay);
+                    attackQueue.Add(0);
+                }
             }
-            //AIRBORNE
-            else {
-                attackScript.tracking = true;
-                attackDelayCounter = Random.Range(attackDelay, maxDelay);
-                attackQueue.Add(0);
-            }
+
         }
     }
 

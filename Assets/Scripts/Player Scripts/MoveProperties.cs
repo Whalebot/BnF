@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "New Move", menuName = "Moves")]
-public class MoveProperties : ScriptableObject
+[System.Serializable]
+public class MoveProperties
 {
     public Move move;
     public GameObject hitbox;
