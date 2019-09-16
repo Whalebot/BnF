@@ -1260,6 +1260,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: a61aadf102d900d409ec1148bb2be793,
         type: 2}
+    - target: {fileID: 1821107479144270, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380632355, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380632354, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114720821569574778, guid: 97c1ec0522edae34b8421ca9f3d06825,
         type: 3}
       propertyPath: move5A
@@ -1306,6 +1318,20 @@ PrefabInstance:
         type: 3}
       propertyPath: weapon3
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380632360, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
+      propertyPath: knockback
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114767634071053046, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: knockback
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114435741846697158, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: knockback
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
@@ -2804,22 +2830,30 @@ MonoBehaviour:
       RNGWeight: 6
       moves:
       - attack: 5
+        isTracking: 0
       - attack: 6
+        isTracking: 0
       - attack: 7
+        isTracking: 0
     - rangeID: 1
       RNGWeight: 2
       moves:
       - attack: 5
+        isTracking: 0
       - attack: 6
+        isTracking: 0
       - attack: 0
+        isTracking: 0
     - rangeID: 1
       RNGWeight: 1
       moves:
       - attack: 0
+        isTracking: 0
     - rangeID: 2
       RNGWeight: 1
       moves:
       - attack: 0
+        isTracking: 0
   groundToAir:
     ranges: []
     withinRanges: 
