@@ -4263,10 +4263,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4642327021935116037, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
+    - target: {fileID: 867824610900728337, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
         type: 3}
-      propertyPath: m_Name
-      value: TEMP_GEESE
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2915611827563524020, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
         type: 3}
@@ -4323,10 +4323,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 867824610900728337, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
+    - target: {fileID: 4642327021935116037, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Name
+      value: TEMP_GEESE
       objectReference: {fileID: 0}
     - target: {fileID: 1077911464, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
       propertyPath: moves.Array.size
@@ -4358,7 +4358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1077911464, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
       propertyPath: groundToAir.moveSequences.Array.data[0].moves.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1077911464, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
       propertyPath: groundToGround.moveSequences.Array.size
@@ -4462,6 +4462,22 @@ PrefabInstance:
     - target: {fileID: 1077911464, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
       propertyPath: groundToGround.ranges.Array.data[0]
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077911464, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
+      propertyPath: aEnum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077911464, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
+      propertyPath: groundToAir.moveSequences.Array.data[0].moves.Array.data[0].attack
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077911464, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
+      propertyPath: groundToAir.moveSequences.Array.data[0].moves.Array.data[1].attack
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077911464, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
+      propertyPath: groundToAir.moveSequences.Array.data[0].moves.Array.data[2].attack
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
@@ -9151,14 +9167,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4642327021935116037, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
+    - target: {fileID: 2969285508371883003, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
         type: 3}
-      propertyPath: m_Name
-      value: AI_TEST
-      objectReference: {fileID: 0}
-    - target: {fileID: 4642327021935116037, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
-        type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2915611827563524020, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
@@ -9216,16 +9227,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4642327021935116037, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
+        type: 3}
+      propertyPath: m_Name
+      value: AI_TEST
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642327021935116037, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8098341182520103799, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b43d2cdd586d9794bad7e85b179333af, type: 2}
-    - target: {fileID: 2969285508371883003, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 338680893905315443, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
         type: 3}
       propertyPath: stoppingDistance

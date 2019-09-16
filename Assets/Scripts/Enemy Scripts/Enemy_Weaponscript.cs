@@ -6,6 +6,8 @@ public class Enemy_Weaponscript : MonoBehaviour
 {
     public int behaviorID = 1;
     public bool isBoss = false;
+
+    AttackAI ai;
     Movelist movelist;
     [HeaderAttribute("Moveset attributes")]
     Enemy_AttackScript attackScript;
@@ -56,16 +58,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     public List<int> attackQueue;
 
-    public bool isGroundToGround;
-    public bool isGroundToAir;
-    public bool isAirToGround;
-    public bool isAirToAir;
 
-
-    public AttackState groundToGround;
-    public AttackState groundToAir;
-    public AttackState airToGround;
-    public AttackState airToAir;
 
     void Awake()
     {
@@ -73,12 +66,15 @@ public class Enemy_Weaponscript : MonoBehaviour
         enemyMov = GetComponentInParent<Enemy_Movement>();
         enemyScript = GetComponentInParent<EnemyScript>();
         attackScript = GetComponentInParent<Enemy_AttackScript>();
+        ai = GetComponent<AttackAI>();
     }
 
     void Start()
     {
-        //   attackDelayCounter = attackDelay;
-        //moveSequences[0].
+        for (int i = 0; i < ai.groundToGround.moveSequences.Count; i++)
+        {
+            ai.groundToGroundRNG += ai.groundToGround.moveSequences[i].RNGWeight;
+        }
 
     }
     void OnEnable()
@@ -161,7 +157,18 @@ public class Enemy_Weaponscript : MonoBehaviour
         if (attackScript.canAttack || attackScript.recovery)
         {
             if (!enemyScript.stun && attackDelayCounter <= 0 && attackQueue.Count == 0)
-            { }
+            {
+                foreach (MoveSequence moveSequence in ai.groundToGround.moveSequences)
+                {
+
+                }
+                int RNGCounter = Random.Range(1,ai.groundToGroundRNG+1);
+                if (RNGCounter < ai.groundToGround.moveSequences[0].RNGWeight) { }
+                if (ai.groundToGround.moveSequences[0].moves[0].attack == MoveProperties.Attack.g5A)
+                {
+                    //Queue 5A slash
+                }
+            }
         }
     }
 

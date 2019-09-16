@@ -6,8 +6,6 @@ using UnityEngine;
 public class MoveSequence
 {
     public int rangeID;
-    public bool targetAirborne;
-    public bool requiresAirborne;
     public int RNGWeight;
     public List<MoveProperties> moves;
 }
