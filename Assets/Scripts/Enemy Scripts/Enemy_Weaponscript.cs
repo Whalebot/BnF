@@ -71,10 +71,10 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     void Start()
     {
-     //   for (int i = 0; i < ai.groundToGround.moveSequences.Count; i++)
-       // {
-          //  ai.groundToGroundRNG += ai.groundToGround.moveSequences[i].RNGWeight;
-       //}
+        for (int i = 0; i < ai.groundToGround.moveSequences.Count; i++)
+        {
+            ai.groundToGroundRNG += ai.groundToGround.moveSequences[i].RNGWeight;
+        }
 
     }
     void OnEnable()
@@ -141,7 +141,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
         if (attackQueue.Count > 0 && attackScript.canAttack || attackScript.recovery && attackQueue.Count > 0)
         {
-            
+
             if (attackQueue[0] == 50) { TestSlash(movelist.move5A, movelist.moveObject5A); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 51) { TestSlash(movelist.move5AA, movelist.moveObject5AA); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 52) { TestSlash(movelist.move5AAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); }
@@ -157,50 +157,50 @@ public class Enemy_Weaponscript : MonoBehaviour
             else if (attackQueue[0] == 250) { TestSlash(movelist.move5S, movelist.moveObject5S); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 251) { TestSlash(movelist.move5SS, movelist.moveObject5SS); attackQueue.RemoveAt(0); }
             else if (attackQueue[0] == 252) { TestSlash(movelist.move5SSS, movelist.moveObject5SSS); attackQueue.RemoveAt(0); }
-           /* 
-            switch (attackQueue[0])
-            {
+            /* 
+             switch (attackQueue[0])
+             {
 
-                case 50: TestSlash(movelist.move5A, movelist.moveObject5A); attackQueue.RemoveAt(0); return;
-                case 51: TestSlash(movelist.move5AA, movelist.moveObject5AA); attackQueue.RemoveAt(0); return;
-                case 52: TestSlash(movelist.move5AAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); return;
-                case 53: TestSlash(movelist.move5AAAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); return;
+                 case 50: TestSlash(movelist.move5A, movelist.moveObject5A); attackQueue.RemoveAt(0); return;
+                 case 51: TestSlash(movelist.move5AA, movelist.moveObject5AA); attackQueue.RemoveAt(0); return;
+                 case 52: TestSlash(movelist.move5AAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); return;
+                 case 53: TestSlash(movelist.move5AAAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); return;
 
-                case 20: TestSlash(movelist.move2A, movelist.moveObject2A); attackQueue.RemoveAt(0); return;
-                case 21: TestSlash(movelist.move2AA, movelist.moveObject2AA); attackQueue.RemoveAt(0); return;
+                 case 20: TestSlash(movelist.move2A, movelist.moveObject2A); attackQueue.RemoveAt(0); return;
+                 case 21: TestSlash(movelist.move2AA, movelist.moveObject2AA); attackQueue.RemoveAt(0); return;
 
-                case 80: TestSlash(movelist.move8A, movelist.moveObject8A); attackQueue.RemoveAt(0); return;
-                case 81: TestSlash(movelist.move8AA, movelist.moveObject8A); attackQueue.RemoveAt(0); return;
+                 case 80: TestSlash(movelist.move8A, movelist.moveObject8A); attackQueue.RemoveAt(0); return;
+                 case 81: TestSlash(movelist.move8AA, movelist.moveObject8A); attackQueue.RemoveAt(0); return;
 
-                case 60: TestSlash(movelist.move6A, movelist.moveObject6A); attackQueue.RemoveAt(0); return;
+                 case 60: TestSlash(movelist.move6A, movelist.moveObject6A); attackQueue.RemoveAt(0); return;
 
 
-                case 150: TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); return;
-                case 151: TestSlash(movelist.moveJ5AA, movelist.moveObjectJ5AA); attackQueue.RemoveAt(0); return;
-                case 152: TestSlash(movelist.moveJ5AAA, movelist.moveObjectJ5AAA); attackQueue.RemoveAt(0); return;
-                case 153: TestSlash(movelist.moveJ5AAAA, movelist.moveObjectJ5AAAA); attackQueue.RemoveAt(0); return;
+                 case 150: TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); return;
+                 case 151: TestSlash(movelist.moveJ5AA, movelist.moveObjectJ5AA); attackQueue.RemoveAt(0); return;
+                 case 152: TestSlash(movelist.moveJ5AAA, movelist.moveObjectJ5AAA); attackQueue.RemoveAt(0); return;
+                 case 153: TestSlash(movelist.moveJ5AAAA, movelist.moveObjectJ5AAAA); attackQueue.RemoveAt(0); return;
 
-                case 120: TestSlash(movelist.moveJ2A, movelist.moveObjectJ2A); attackQueue.RemoveAt(0); return;
-                case 121: TestSlash(movelist.moveJ2AA, movelist.moveObjectJ2AA); attackQueue.RemoveAt(0); return;
+                 case 120: TestSlash(movelist.moveJ2A, movelist.moveObjectJ2A); attackQueue.RemoveAt(0); return;
+                 case 121: TestSlash(movelist.moveJ2AA, movelist.moveObjectJ2AA); attackQueue.RemoveAt(0); return;
 
-                case 180: TestSlash(movelist.moveJ8A, movelist.moveObjectJ8A); attackQueue.RemoveAt(0); return;
-                case 181: TestSlash(movelist.moveJ8AA, movelist.moveObjectJ8AA); attackQueue.RemoveAt(0); return;
+                 case 180: TestSlash(movelist.moveJ8A, movelist.moveObjectJ8A); attackQueue.RemoveAt(0); return;
+                 case 181: TestSlash(movelist.moveJ8AA, movelist.moveObjectJ8AA); attackQueue.RemoveAt(0); return;
 
-                case 160: TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); return;
+                 case 160: TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); return;
 
-                case 250: TestSlash(movelist.move5S, movelist.moveObject5S); attackQueue.RemoveAt(0); return;
-                case 251: TestSlash(movelist.move5S, movelist.moveObject5SS); attackQueue.RemoveAt(0); return;
-                case 252: TestSlash(movelist.move5SSS, movelist.moveObject5SSS); attackQueue.RemoveAt(0); return;
+                 case 250: TestSlash(movelist.move5S, movelist.moveObject5S); attackQueue.RemoveAt(0); return;
+                 case 251: TestSlash(movelist.move5S, movelist.moveObject5SS); attackQueue.RemoveAt(0); return;
+                 case 252: TestSlash(movelist.move5SSS, movelist.moveObject5SSS); attackQueue.RemoveAt(0); return;
 
-                case 280: TestSlash(movelist.move8S, movelist.moveObject8S); attackQueue.RemoveAt(0); return;
-                case 220: TestSlash(movelist.move2S, movelist.moveObject2S); attackQueue.RemoveAt(0); return;
+                 case 280: TestSlash(movelist.move8S, movelist.moveObject8S); attackQueue.RemoveAt(0); return;
+                 case 220: TestSlash(movelist.move2S, movelist.moveObject2S); attackQueue.RemoveAt(0); return;
 
-                case 200: TestSlash(movelist.moveExtra, movelist.moveObjectExtra); attackQueue.RemoveAt(0); return;
-                case 201: TestSlash(movelist.moveExtra2, movelist.moveObjectExtra2); attackQueue.RemoveAt(0); return;
+                 case 200: TestSlash(movelist.moveExtra, movelist.moveObjectExtra); attackQueue.RemoveAt(0); return;
+                 case 201: TestSlash(movelist.moveExtra2, movelist.moveObjectExtra2); attackQueue.RemoveAt(0); return;
 
-                default: return;
-            }
-            */
+                 default: return;
+             }
+             */
         }
     }
 
@@ -244,35 +244,26 @@ public class Enemy_Weaponscript : MonoBehaviour
         {
             if (!enemyScript.stun && attackDelayCounter <= 0 && attackQueue.Count == 0)
             {
-                int RNGCounter = Random.Range(1, ai.groundToGroundRNG + 1);
 
-
-                if (RNGCounter < ai.groundToGround.moveSequences[0].RNGWeight)
-                {
-                    for (int j = 0; j < ai.groundToGround.moveSequences[0].moves.Count; j++)
-                    {
-                        //print(i + " + " + j);
-                       // attackDelayCounter = 300;
-                        CheckMove(ai.groundToGround.moveSequences[0].moves[j].attack);
-                    }
-                }
-                else if (RNGCounter < ai.groundToGround.moveSequences[1].RNGWeight)
-                {
-                  //  print(i);
-                }
-
+                int tempRNGCounter = 0;
+                RNGCount = Random.Range(1, ai.groundToGroundRNG + 1);
                 for (int i = 0; i < ai.groundToGround.moveSequences.Count; i++)
                 {
-                   
-                }
+                    if (ai.groundToGround.moveSequences.Count > 0)
+                    {
+                        if (RNGCount < ai.groundToGround.moveSequences[i].RNGWeight + tempRNGCounter && RNGCount >= tempRNGCounter)
+                        {
+                            for (int j = 0; j < ai.groundToGround.moveSequences[i].moves.Count; j++)
+                            {
+                                attackDelayCounter = 30;
+                                CheckMove(ai.groundToGround.moveSequences[i].moves[j].attack);
+                                if (ai.groundToGround.moveSequences[i].moves[j].isTracking) attackScript.tracking = true; ;
+                            }
+                            return;
+                        }
+                        else { tempRNGCounter += ai.groundToGround.moveSequences[i].RNGWeight; }
 
-
-
-                switch (RNGCounter)
-                {
-
-                    default: return;
-
+                    }
                 }
             }
         }

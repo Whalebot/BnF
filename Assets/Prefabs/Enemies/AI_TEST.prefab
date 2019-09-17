@@ -1437,7 +1437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4398845196309273927
 Transform:
   m_ObjectHideFlags: 0
@@ -2015,6 +2015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8488989573416207126}
+  - component: {fileID: 869547520}
   - component: {fileID: 6939762643238845751}
   - component: {fileID: 1077911464}
   m_Layer: 9
@@ -2047,6 +2048,72 @@ Transform:
   m_Father: {fileID: 2915611827563524020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &869547520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9188587068736117116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f3db7422975cd40bfdd6508a91cd2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGroundToGround: 0
+  isGroundToAir: 0
+  isAirToGround: 0
+  isAirToAir: 0
+  groundToGroundRNG: 0
+  groundToAirRNG: 0
+  airToGroundRNG: 0
+  airToAirRNG: 0
+  groundToGround:
+    ranges:
+    - 10
+    - 15
+    withinRanges: 0000
+    moveSequences:
+    - rangeID: 1
+      RNGWeight: 6
+      moves:
+      - attack: 5
+        isTracking: 1
+      - attack: 6
+        isTracking: 0
+      - attack: 7
+        isTracking: 1
+    - rangeID: 1
+      RNGWeight: 2
+      moves:
+      - attack: 5
+        isTracking: 1
+      - attack: 6
+        isTracking: 0
+      - attack: 0
+        isTracking: 1
+    - rangeID: 1
+      RNGWeight: 1
+      moves:
+      - attack: 0
+        isTracking: 1
+    - rangeID: 2
+      RNGWeight: 1
+      moves:
+      - attack: 0
+        isTracking: 1
+  groundToAir:
+    ranges: []
+    withinRanges: 
+    moveSequences: []
+  airToGround:
+    ranges: []
+    withinRanges: 
+    moveSequences: []
+  airToAir:
+    ranges: []
+    withinRanges: 
+    moveSequences: []
 --- !u!114 &6939762643238845751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2151,7 +2218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad7a740709e5e9479f958efd3d5817c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviorID: 1
+  behaviorID: 0
   isBoss: 1
   currentAttack: {fileID: 0}
   attackID: 0
