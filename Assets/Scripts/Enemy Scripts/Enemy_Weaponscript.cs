@@ -57,6 +57,7 @@ public class Enemy_Weaponscript : MonoBehaviour
     bool targetAirborne;
 
     public List<int> attackQueue;
+    public List<bool> homingQueue;
 
 
 
@@ -138,25 +139,28 @@ public class Enemy_Weaponscript : MonoBehaviour
                     else if (behaviorID == 10) PhysicsTest();
                 }
             }
+        if (homingQueue.Count > 0) {
+            if(homingQueue[0]) attackScript.tracking = true;
+        }
 
         if (attackQueue.Count > 0 && attackScript.canAttack || attackScript.recovery && attackQueue.Count > 0)
         {
 
-            if (attackQueue[0] == 50) { TestSlash(movelist.move5A, movelist.moveObject5A); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 51) { TestSlash(movelist.move5AA, movelist.moveObject5AA); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 52) { TestSlash(movelist.move5AAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 53) { TestSlash(movelist.move5AAAA, movelist.moveObject5AAA); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 20) { TestSlash(movelist.move2A, movelist.moveObject2A); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 21) { TestSlash(movelist.move2AA, movelist.moveObject2AA); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 80) { TestSlash(movelist.move8A, movelist.moveObject8A); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 81) { TestSlash(movelist.move8AA, movelist.moveObject8A); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 150) { TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 151) { TestSlash(movelist.moveJ5AA, movelist.moveObjectJ5AA); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 152) { TestSlash(movelist.moveJ5AAA, movelist.moveObjectJ5AAA); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 153) { TestSlash(movelist.moveJ5AAAA, movelist.moveObjectJ5AAAA); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 250) { TestSlash(movelist.move5S, movelist.moveObject5S); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 251) { TestSlash(movelist.move5SS, movelist.moveObject5SS); attackQueue.RemoveAt(0); }
-            else if (attackQueue[0] == 252) { TestSlash(movelist.move5SSS, movelist.moveObject5SSS); attackQueue.RemoveAt(0); }
+            if (attackQueue[0] == 50) { TestSlash(movelist.move5A, movelist.moveObject5A); }
+            else if (attackQueue[0] == 51) { TestSlash(movelist.move5AA, movelist.moveObject5AA); }
+            else if (attackQueue[0] == 52) { TestSlash(movelist.move5AAA, movelist.moveObject5AAA);  }
+            else if (attackQueue[0] == 53) { TestSlash(movelist.move5AAAA, movelist.moveObject5AAA); }
+            else if (attackQueue[0] == 20) { TestSlash(movelist.move2A, movelist.moveObject2A);  }
+            else if (attackQueue[0] == 21) { TestSlash(movelist.move2AA, movelist.moveObject2AA);  }
+            else if (attackQueue[0] == 80) { TestSlash(movelist.move8A, movelist.moveObject8A); }
+            else if (attackQueue[0] == 81) { TestSlash(movelist.move8AA, movelist.moveObject8A);  }
+            else if (attackQueue[0] == 150) { TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A);  }
+            else if (attackQueue[0] == 151) { TestSlash(movelist.moveJ5AA, movelist.moveObjectJ5AA); }
+            else if (attackQueue[0] == 152) { TestSlash(movelist.moveJ5AAA, movelist.moveObjectJ5AAA);  }
+            else if (attackQueue[0] == 153) { TestSlash(movelist.moveJ5AAAA, movelist.moveObjectJ5AAAA); }
+            else if (attackQueue[0] == 250) { TestSlash(movelist.move5S, movelist.moveObject5S);  }
+            else if (attackQueue[0] == 251) { TestSlash(movelist.move5SS, movelist.moveObject5SS);  }
+            else if (attackQueue[0] == 252) { TestSlash(movelist.move5SSS, movelist.moveObject5SSS); }
             /* 
              switch (attackQueue[0])
              {
@@ -204,6 +208,8 @@ public class Enemy_Weaponscript : MonoBehaviour
         }
     }
 
+
+
     void CheckMove(MoveProperties.Attack attack)
     {
 
@@ -235,6 +241,11 @@ public class Enemy_Weaponscript : MonoBehaviour
         else if (attack == MoveProperties.Attack.j2A) { attackQueue.Add(120); }
         else if (attack == MoveProperties.Attack.j2AA) { attackQueue.Add(121); }
         else if (attack == MoveProperties.Attack.j6A) { attackQueue.Add(160); }
+    }
+
+    void ResetHoming() {
+        homingQueue.RemoveAt(0);
+       
     }
 
     void Boss()
@@ -657,19 +668,6 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     public void Dash() { if (!enemyMov.dashing) enemyMov.Dash(); }
 
-    public void GenericAttack()
-    {
-        attackScript.resetCounter = 0;
-        if (attackScript.combo == 0 && enemyMov.ground) TestSlash(movelist.move5A, movelist.moveObject5A);
-        else if (attackScript.combo == 1 && enemyMov.ground) TestSlash(movelist.move5AA, movelist.moveObject5AA);
-        else if (attackScript.combo == 2 && enemyMov.ground) TestSlash(movelist.move5AAA, movelist.moveObject5AAA);
-        else if (attackScript.combo == 3 && enemyMov.ground) TestSlash(movelist.move5AAAA, movelist.moveObject5AAAA);
-
-        else if (attackScript.combo == 0 && !enemyMov.ground) TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A);
-        else if (attackScript.combo == 1 && !enemyMov.ground) TestSlash(movelist.moveJ5AA, movelist.moveObjectJ5AA);
-        else if (attackScript.combo == 2 && !enemyMov.ground) TestSlash(movelist.moveJ5AAA, movelist.moveObjectJ5AAA);
-        else if (attackScript.combo == 3 && !enemyMov.ground) TestSlash(movelist.moveJ5AAAA, movelist.moveObjectJ5AAAA);
-    }
 
     public void ExtraMove()
     {
@@ -731,6 +729,8 @@ public class Enemy_Weaponscript : MonoBehaviour
 
         attackScript.startup = true;
         attackScript.startupMov = true;
+        attackQueue.RemoveAt(0);
+        ResetHoming();
     }
 
 

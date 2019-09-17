@@ -4116,6 +4116,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEMP_GEESE
       objectReference: {fileID: 0}
+    - target: {fileID: 4642327021935116037, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2915611827563524020, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4943,6 +4948,7 @@ MonoBehaviour:
   withinRange2: 0
   RNGCount: 0
   attackQueue: 
+  homingQueue: 
 --- !u!1 &1323567485
 GameObject:
   m_ObjectHideFlags: 0
