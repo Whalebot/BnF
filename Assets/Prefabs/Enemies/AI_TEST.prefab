@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 62879672}
   m_Layer: 18
   m_Name: slashup
-  m_TagString: Attack
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 166901447}
   m_Layer: 18
   m_Name: Air1
-  m_TagString: Attack
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 178854126}
   m_Layer: 18
   m_Name: Hadouken
-  m_TagString: Attack
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 664500427}
   m_Layer: 18
   m_Name: Attack2
-  m_TagString: Attack
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 725494763}
   m_Layer: 18
   m_Name: Attack1
-  m_TagString: Attack
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -896,7 +896,7 @@ GameObject:
   - component: {fileID: 979175568}
   m_Layer: 18
   m_Name: 6A
-  m_TagString: Attack
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1081,7 +1081,7 @@ GameObject:
   - component: {fileID: 1556702326}
   m_Layer: 18
   m_Name: Attack1 (1)
-  m_TagString: Attack
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1266,7 +1266,7 @@ GameObject:
   - component: {fileID: 2102691915}
   m_Layer: 18
   m_Name: Attack3
-  m_TagString: Attack
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
