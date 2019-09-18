@@ -1315,30 +1315,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114141454890653824, guid: 97c1ec0522edae34b8421ca9f3d06825,
-        type: 3}
-      propertyPath: airMultiplier
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114141454890653824, guid: 97c1ec0522edae34b8421ca9f3d06825,
-        type: 3}
-      propertyPath: runSpeed
-      value: 1800
-      objectReference: {fileID: 0}
-    - target: {fileID: 114141454890653824, guid: 97c1ec0522edae34b8421ca9f3d06825,
-        type: 3}
-      propertyPath: airDrag
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114489150784172526, guid: 97c1ec0522edae34b8421ca9f3d06825,
-        type: 3}
-      propertyPath: weapon3
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1705667760962178, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
 --- !u!1 &425978258

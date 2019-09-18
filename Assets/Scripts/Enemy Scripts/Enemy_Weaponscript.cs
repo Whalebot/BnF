@@ -240,7 +240,7 @@ public class Enemy_Weaponscript : MonoBehaviour
         else if (attack == MoveProperties.Attack.j2A) { attackQueue.Add(120); }
         else if (attack == MoveProperties.Attack.j2AA) { attackQueue.Add(121); }
         else if (attack == MoveProperties.Attack.j6A) { attackQueue.Add(160); }
-        else if (attack == MoveProperties.Attack.jump) { enemyMov.Jump(); attackDelayCounter = 5;  print("Jump"); }
+    //    else if (attack == MoveProperties.Attack.jump) { enemyMov.Jump(); attackDelayCounter = 5;  print("Jump"); }
     }
 
     void ResetHoming()
@@ -742,7 +742,6 @@ public class Enemy_Weaponscript : MonoBehaviour
         attackScript.hasIFrames = move.iFrames;
         attackScript.hasInvul = move.invul;
 
-
         attackScript.momentumDuration1 = move.duration1;
         attackScript.momentumDuration2 = move.duration2;
         attackScript.momentumDuration3 = move.duration3;
@@ -785,9 +784,11 @@ public class Enemy_Weaponscript : MonoBehaviour
         {
             if (homingQueue[0]) attackScript.tracking = true;
             else attackScript.tracking = false;
+            ResetHoming();
+
         }
 
-        ResetHoming();
+      
     }
 
 

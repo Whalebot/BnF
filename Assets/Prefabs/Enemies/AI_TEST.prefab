@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 62879671}
   - component: {fileID: 62879675}
   - component: {fileID: 62879674}
-  - component: {fileID: 62879673}
   - component: {fileID: 62879672}
+  - component: {fileID: 322374737}
   m_Layer: 18
   m_Name: slashup
   m_TagString: EnemyAttack
@@ -108,50 +108,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.624811, y: 9.833252}
   m_EdgeRadius: 0
---- !u!114 &62879673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 62879670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8fff98098ab05c44877a5cca439c342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  center: {fileID: 0}
-  dmg: 4
-  poiseDamage: 3
-  knockback: 5
-  knockup: 50
-  hitstun: 60
-  chargeAmount: 3
-  hitPause: 8
-  activeFrames: 10
-  singleHit: 1
-  freeze: 0
-  freezeFrames: 0
-  pulling: 0
-  hitParticle: {fileID: 1368283096543812, guid: 6deab2aa5782b8e4fabc94e35280a58c,
-    type: 3}
-  pullTarget: {fileID: 0}
-  leaveParticle: 0
-  ranged: 0
-  fireball: {fileID: 0}
-  hasRecoil: 0
-  upRecoil: 0
-  sideRecoil: 0
-  hasGroundBounce: 0
-  gBKnockback: 0
-  gBKnockup: 0
-  gBHitstun: 0
-  canClash: 0
-  clashActive: 0
-  clashFrames: 0
-  hitstopframes: 0
-  clashFX: {fileID: 1767059946513034, guid: 5fee1ce4503bf7a44877458577c22e85, type: 3}
-  enemyList: []
 --- !u!114 &62879672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +121,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfx: {fileID: 1010623709305340, guid: b9875c741535d6c498f2318a0dd35da3, type: 3}
+--- !u!114 &322374737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62879670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc57d461c49a8cf4ea0a69ec2f956bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 1
+  knockback: 25
+  knockup: 25
+  hitstun: 15
+  activeTime: 5
+  hitParticle: {fileID: 1635683614925030, guid: 2d4ea7ff6dc1e3d4f8d5d8177f7e8ac5,
+    type: 3}
+  ranged: 0
+  aimShot: 0
+  spread: 0
+  noRotation: 0
+  fireball: {fileID: 0}
+  blank: 0
+  clashed: 0
 --- !u!1 &85854482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,7 +1389,7 @@ MonoBehaviour:
   knockback: 25
   knockup: 25
   hitstun: 15
-  activeTime: 30
+  activeTime: 5
   hitParticle: {fileID: 1635683614925030, guid: 2d4ea7ff6dc1e3d4f8d5d8177f7e8ac5,
     type: 3}
   ranged: 0
@@ -2102,22 +2084,46 @@ MonoBehaviour:
       - attack: 0
         isTracking: 1
     - rangeID: 0
-      RNGWeight: 1
+      RNGWeight: 2
       moves:
       - attack: 0
         isTracking: 1
+    - rangeID: 0
+      RNGWeight: 2
+      moves:
+      - attack: 5
+        isTracking: 1
+      - attack: 11
+        isTracking: 0
+      - attack: 8
+        isTracking: 0
+      - attack: 8
+        isTracking: 1
+      - attack: 8
+        isTracking: 0
+      - attack: 11
+        isTracking: 0
+      - attack: 8
+        isTracking: 1
+      - attack: 6
+        isTracking: 0
+      - attack: 7
+        isTracking: 0
     - rangeID: 1
       RNGWeight: 1
       moves:
       - attack: 0
         isTracking: 1
   groundToAir:
-    ranges: []
+    ranges:
+    - 20
     withinRanges: 
     moveSequences:
     - rangeID: 0
-      RNGWeight: 0
-      moves: []
+      RNGWeight: 1
+      moves:
+      - attack: 9
+        isTracking: 1
   airToGround:
     ranges: []
     withinRanges: 
@@ -2174,14 +2180,14 @@ MonoBehaviour:
   moveObject5AA: {fileID: 664500425}
   move5AAA: {fileID: 11400000, guid: f0f7a18f1d09ae7438735b084bc4eb97, type: 2}
   moveObject5AAA: {fileID: 2102691913}
-  move5AAAA: {fileID: 0}
-  moveObject5AAAA: {fileID: 0}
-  move8A: {fileID: 0}
-  moveObject8A: {fileID: 0}
-  move8AA: {fileID: 0}
-  moveObject8AA: {fileID: 0}
-  move2A: {fileID: 0}
-  moveObject2A: {fileID: 0}
+  move5AAAA: {fileID: 11400000, guid: cf0acbb111749cb4baddaf33a152d841, type: 2}
+  moveObject5AAAA: {fileID: 725494761}
+  move8A: {fileID: 11400000, guid: 069c7b1dcc761344abfaa41395774fb5, type: 2}
+  moveObject8A: {fileID: 62879670}
+  move8AA: {fileID: 11400000, guid: ce64c18deadea514db76ac65e2582d70, type: 2}
+  moveObject8AA: {fileID: 664500425}
+  move2A: {fileID: 11400000, guid: ce64c18deadea514db76ac65e2582d70, type: 2}
+  moveObject2A: {fileID: 664500425}
   move2AA: {fileID: 0}
   moveObject2AA: {fileID: 0}
   moveJ5A: {fileID: 11400000, guid: 3cb40b9ab00cbcf4e9a0568515478c14, type: 2}
