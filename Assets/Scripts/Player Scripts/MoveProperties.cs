@@ -43,7 +43,9 @@ public class MoveProperties
         j6A,
 
         extra1,
-        extra2
+        extra2,
+        jump
+           
 
         
 

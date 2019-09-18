@@ -702,7 +702,7 @@ MonoBehaviour:
   knockback: 25
   knockup: 25
   hitstun: 15
-  activeTime: 30
+  activeTime: 5
   hitParticle: {fileID: 1635683614925030, guid: 2d4ea7ff6dc1e3d4f8d5d8177f7e8ac5,
     type: 3}
   ranged: 0
@@ -870,7 +870,7 @@ MonoBehaviour:
   knockback: 25
   knockup: 25
   hitstun: 15
-  activeTime: 30
+  activeTime: 5
   hitParticle: {fileID: 1635683614925030, guid: 2d4ea7ff6dc1e3d4f8d5d8177f7e8ac5,
     type: 3}
   ranged: 0
@@ -1542,7 +1542,7 @@ MonoBehaviour:
   knockback: 25
   knockup: 25
   hitstun: 15
-  activeTime: 30
+  activeTime: 5
   hitParticle: {fileID: 1635683614925030, guid: 2d4ea7ff6dc1e3d4f8d5d8177f7e8ac5,
     type: 3}
   ranged: 0
@@ -1662,7 +1662,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d1c1d4e63d0a0104eb0b873655c81236, type: 3}
-  m_Color: {r: 1, g: 0.7783019, b: 0.893233, a: 1}
+  m_Color: {r: 1, g: 0.6745283, b: 0.8458292, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1705,18 +1705,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3a444591233b5418df7c5a0950ef6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 1
-  isStoryMode: 1
+  enemyType: 3
+  isStoryMode: 0
   knockout: 0
-  health: 40000
+  health: 250
   triggerHealth: 0
   special: 0
-  mode: 2
+  mode: 1
   modeLayers:
     serializedVersion: 2
-    m_Bits: 142592
-  knockdownSound: {fileID: 0}
-  isBoss: 0
+    m_Bits: 9472
+  knockdownSound: {fileID: 1340405024301830, guid: 1db36d031c8aab54fbb76b4b19c64e3a,
+    type: 3}
+  isBoss: 1
   requiresTrigger: 0
   detected: 0
   comboCount: 0
@@ -1725,12 +1726,12 @@ MonoBehaviour:
   hitstun: 0
   hitstunReductionAir: 0.5
   stun: 0
-  canDizzy: 0
+  canDizzy: 1
   dizzy: 0
   hyperArmor: 0
-  poiseArmor: 0
-  poise: 10
-  poiseHealth: 10
+  poiseArmor: 1
+  poise: 50
+  poiseHealth: 50
   willRetreat: 1
   canInterrupt: 1
   canKnockback: 1
@@ -1743,11 +1744,12 @@ MonoBehaviour:
   retreatJumpX: 20
   retreatJumpY: 30
   retreatJump: 0
-  retreatTime: 25
+  retreatTime: 12
   knockdown: 0
-  knockdownForce: 0
-  knockdownTime: 0
-  deathObject: {fileID: 0}
+  knockdownForce: 40
+  knockdownTime: 45
+  deathObject: {fileID: 1280213372175314, guid: 1e05494829addd04cb515fe457f35536,
+    type: 3}
 --- !u!114 &6523871373626348668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1774,6 +1776,7 @@ MonoBehaviour:
   canAttack: 1
   canMove: 0
   hasIFrames: 0
+  noClip: 0
   actualDistance: 0
   trueDirection: 0
   massive: 0
@@ -1807,7 +1810,6 @@ MonoBehaviour:
   jumpCancelable: 0
   specialCancelable: 0
   attackCancelable: 0
-  keepVel: 0
   keepVerticalVel: 0
   keepHorizontalVel: 0
   landCancel: 0
@@ -1875,12 +1877,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8c9605910b96944818e90b4ce4cb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: 0
-  velocity: 10
+  boss: 1
+  velocity: 15
+  airMultiplier: 5
   maxSpeed: 100
   directionChangeDur: 2
   movementID: 0
   mode: 0
+  jumpVel: 50
   mov: 1
   ray: 0
   rayGround: 9.85
@@ -2060,21 +2064,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f3db7422975cd40bfdd6508a91cd2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   isGroundToGround: 0
   isGroundToAir: 0
   isAirToGround: 0
   isAirToAir: 0
-  groundToGroundRNG: 0
-  groundToAirRNG: 0
-  airToGroundRNG: 0
-  airToAirRNG: 0
+  groundToGroundRNG: 0000000000000000000000000000000000000000
+  groundToAirRNG: 
+  airToGroundRNG: 
+  airToAirRNG: 
+  groundToGroundRanges: 0000000000000000000000000000000000000000
+  groundToAirRanges: 
+  airToGroundRanges: 
+  airToAirRanges: 
   groundToGround:
     ranges:
-    - 10
-    - 15
-    withinRanges: 0000
+    - 20
+    - 35
+    withinRanges: 0000000000
     moveSequences:
-    - rangeID: 1
+    - rangeID: 0
       RNGWeight: 6
       moves:
       - attack: 5
@@ -2083,7 +2092,7 @@ MonoBehaviour:
         isTracking: 0
       - attack: 7
         isTracking: 1
-    - rangeID: 1
+    - rangeID: 0
       RNGWeight: 2
       moves:
       - attack: 5
@@ -2092,12 +2101,12 @@ MonoBehaviour:
         isTracking: 0
       - attack: 0
         isTracking: 1
-    - rangeID: 1
+    - rangeID: 0
       RNGWeight: 1
       moves:
       - attack: 0
         isTracking: 1
-    - rangeID: 2
+    - rangeID: 1
       RNGWeight: 1
       moves:
       - attack: 0
@@ -2105,15 +2114,24 @@ MonoBehaviour:
   groundToAir:
     ranges: []
     withinRanges: 
-    moveSequences: []
+    moveSequences:
+    - rangeID: 0
+      RNGWeight: 0
+      moves: []
   airToGround:
     ranges: []
     withinRanges: 
     moveSequences: []
   airToAir:
-    ranges: []
+    ranges:
+    - 30
     withinRanges: 
-    moveSequences: []
+    moveSequences:
+    - rangeID: 0
+      RNGWeight: 1
+      moves:
+      - attack: 19
+        isTracking: 1
 --- !u!114 &6939762643238845751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2166,8 +2184,8 @@ MonoBehaviour:
   moveObject2A: {fileID: 0}
   move2AA: {fileID: 0}
   moveObject2AA: {fileID: 0}
-  moveJ5A: {fileID: 0}
-  moveObjectJ5A: {fileID: 0}
+  moveJ5A: {fileID: 11400000, guid: 3cb40b9ab00cbcf4e9a0568515478c14, type: 2}
+  moveObjectJ5A: {fileID: 166901445}
   moveJ5AA: {fileID: 0}
   moveObjectJ5AA: {fileID: 0}
   moveJ5AAA: {fileID: 0}
@@ -2222,9 +2240,8 @@ MonoBehaviour:
   isBoss: 1
   currentAttack: {fileID: 0}
   attackID: 0
-  attackDelay: 150
-  maxDelay: 250
-  comboDelay: 250
+  attackDelay: 30
+  maxDelay: 0
   comboStart: 0
   distance: 20
   distance2: 25
@@ -2232,3 +2249,4 @@ MonoBehaviour:
   withinRange2: 0
   RNGCount: 0
   attackQueue: 
+  homingQueue: 

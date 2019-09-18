@@ -10,6 +10,7 @@ public class Player_Movement : MonoBehaviour
     public float runSpeed;
     private float currentSpeed;
     public float airMultiplier = 1;
+    public float airDrag = 1;
     public static float faceDirection;
 
     [HeaderAttribute("Jump attributes")]
@@ -209,7 +210,7 @@ public class Player_Movement : MonoBehaviour
 
                     }
                     else { rb.AddForce(new Vector2(x * currentSpeed * airMultiplier * Time.deltaTime, 0), ForceMode2D.Force);
-                        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -(currentSpeed * Time.deltaTime), (currentSpeed * Time.deltaTime)), rb.velocity.y);
+                        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -(currentSpeed * Time.deltaTime) * airDrag, (currentSpeed * Time.deltaTime) * airDrag) , rb.velocity.y);
                     }
                 }
              

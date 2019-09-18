@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
-  m_Name: Geese_5AA
+  m_Name: New Move property
   m_EditorClassIdentifier: 
-  ID: 51
+  ID: 0
   SpCost: 0
-  combo: 2
+  combo: 0
   startUp: 5
   active: 12
-  recovery: 30
-  forward1: -5
+  recovery: 5
+  forward1: 0
   up1: 0
-  duration1: 12
-  forward2: 50
+  duration1: 0
+  forward2: 0
   up2: 0
-  duration2: 6
+  duration2: 0
   forward3: 0
   up3: 0
   duration3: 0

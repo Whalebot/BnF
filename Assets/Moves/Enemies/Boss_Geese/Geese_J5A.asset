@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
-  m_Name: Geese_5AA
+  m_Name: Geese_J5A
   m_EditorClassIdentifier: 
-  ID: 51
+  ID: 150
   SpCost: 0
-  combo: 2
-  startUp: 5
+  combo: 1
+  startUp: 30
   active: 12
-  recovery: 30
-  forward1: -5
-  up1: 0
-  duration1: 12
-  forward2: 50
+  recovery: 15
+  forward1: 0
+  up1: 5
+  duration1: 20
+  forward2: 10
   up2: 0
-  duration2: 6
+  duration2: 5
   forward3: 0
   up3: 0
   duration3: 0
-  startupSound: {fileID: 0}
+  startupSound: {fileID: 2835054656803727678, guid: bb839c3eef1927b488bcecdf64254b84,
+    type: 3}
   jumpCancelable: 1
   specialCancelable: 1
   landCancel: 1
@@ -39,7 +40,7 @@ MonoBehaviour:
   noClip: 0
   isChargeAttack: 0
   justFrameTiming: 22
-  canMove: 0
+  canMove: 1
   keepVerticalVel: 0
   keepHorizontalVel: 0
   interpolate: 0

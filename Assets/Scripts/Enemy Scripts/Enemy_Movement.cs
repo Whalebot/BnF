@@ -7,10 +7,13 @@ public class Enemy_Movement : MonoBehaviour
     [HeaderAttribute("Movement attributes")]
     public bool boss;
     public int velocity;
+    public float airMultiplier = 1F;
     public float maxSpeed;
     public float directionChangeDur = 2;
     public int movementID = 0;
     public int mode = 0;
+    public float jumpVel = 50;
+
 
     public bool mov = true;
     public float ray;
@@ -185,9 +188,21 @@ public class Enemy_Movement : MonoBehaviour
         
         if (!enemyScript.stun && mov)
         {
-            if (!inRange) { rb.velocity = new Vector2(direction * velocity, rb.velocity.y); }
+            if (!inRange)
+            {
+                if (ground)
+                {
+                    rb.velocity = new Vector2(direction * velocity, rb.velocity.y);
+
+                }
+                else
+                {
+                    rb.AddForce( new Vector2(direction * velocity * airMultiplier, 0), ForceMode2D.Force);
+                    rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, Physics2D.gravity.y, 50));
+                }
+            }
             
-            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, Physics2D.gravity.y, 50));
+            
             //Flying 
             Flying();
            
@@ -420,7 +435,7 @@ public class Enemy_Movement : MonoBehaviour
         }
     }
 
-    public void Jump() { rb.velocity += new Vector2(0, 50); }
+    public void Jump() { rb.velocity += new Vector2(0, jumpVel); }
 
     public void AddVelocity(Vector2 dir)
     {

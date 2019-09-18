@@ -141,9 +141,9 @@ public class Player_AttackScript : MonoBehaviour
             else if (hasInvul) gameObject.layer = LayerMask.NameToLayer("Invul");
             else if (noClip) gameObject.layer = LayerMask.NameToLayer("NoClip");
             activeFrames -= 1;
+
             if (activeMov && !canMove)
             {
-
                 momentumDuration2 -= 1;
                 if (interpolate) Momentum(new Vector2(transform.localScale.x * forward2 * (1 - (momentumDuration2) / interpol2), up2 * (1 - (momentumDuration2) / interpol2)));
                 else Momentum(new Vector2(transform.localScale.x * forward2, up2));

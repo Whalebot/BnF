@@ -241,7 +241,7 @@ public class PlayerStatus : MonoBehaviour
         {
             playerAttack.AttackCancel();
             stuncounter = dur;
-            print(dur);
+          
         }
         else if (isParrying) { Parry(); }
         else return;

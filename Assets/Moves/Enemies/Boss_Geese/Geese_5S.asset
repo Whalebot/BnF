@@ -27,7 +27,8 @@ MonoBehaviour:
   forward3: 0
   up3: 0
   duration3: 0
-  startupSound: {fileID: 0}
+  startupSound: {fileID: 8234237033620641977, guid: d95e85c60d9285b4f9b8172c7ef3d30f,
+    type: 3}
   jumpCancelable: 1
   specialCancelable: 1
   landCancel: 1
@@ -40,7 +41,6 @@ MonoBehaviour:
   isChargeAttack: 0
   justFrameTiming: 22
   canMove: 0
-  keepVel: 0
   keepVerticalVel: 0
   keepHorizontalVel: 0
   interpolate: 0
