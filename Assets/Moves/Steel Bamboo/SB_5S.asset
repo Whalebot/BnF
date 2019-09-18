@@ -34,13 +34,12 @@ MonoBehaviour:
   attackCancelable: 0
   landCancelRecovery: 0
   landAttackFrames: 0
-  iFrames: 0
+  iFrames: 1
   invul: 1
   noClip: 0
   isChargeAttack: 0
   justFrameTiming: 22
   canMove: 0
-  keepVel: 0
   keepVerticalVel: 0
   keepHorizontalVel: 0
   interpolate: 0

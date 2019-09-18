@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 62879674}
   - component: {fileID: 62879673}
   - component: {fileID: 62879672}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: slashup
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 85854483}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 166901449}
   - component: {fileID: 166901448}
   - component: {fileID: 166901447}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Air1
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 178854128}
   - component: {fileID: 178854127}
   - component: {fileID: 178854126}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Hadouken
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   - component: {fileID: 664500429}
   - component: {fileID: 664500428}
   - component: {fileID: 664500427}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Attack2
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 725494765}
   - component: {fileID: 725494764}
   - component: {fileID: 725494763}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Attack1
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 979175570}
   - component: {fileID: 979175569}
   - component: {fileID: 979175568}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: 6A
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 1556702328}
   - component: {fileID: 1556702327}
   - component: {fileID: 1556702326}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Attack1 (1)
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -1264,7 +1264,7 @@ GameObject:
   - component: {fileID: 2102691917}
   - component: {fileID: 2102691916}
   - component: {fileID: 2102691915}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Attack3
   m_TagString: Attack
   m_Icon: {fileID: 0}
