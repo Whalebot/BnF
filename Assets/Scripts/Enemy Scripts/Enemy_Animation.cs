@@ -38,7 +38,7 @@ public class Enemy_Animation : MonoBehaviour
         else anim.SetBool("Retreat", false);
 
 
-        if (enemyMov.mov && enemyMov.rb.velocity.x != 0) { anim.SetBool("Walking", true); }
+        if (enemyMov.mov && enemyMov.direction != 0) { anim.SetBool("Walking", true); }
         else { anim.SetBool("Walking", false); }
 
         if (enemyScript.stun) { anim.SetBool("Hitstun", true); }

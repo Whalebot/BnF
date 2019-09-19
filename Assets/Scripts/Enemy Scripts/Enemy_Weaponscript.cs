@@ -192,7 +192,7 @@ public class Enemy_Weaponscript : MonoBehaviour
                 case 160: TestSlash(movelist.moveJ5A, movelist.moveObjectJ5A); return;
 
                 case 250: TestSlash(movelist.move5S, movelist.moveObject5S); return;
-                case 251: TestSlash(movelist.move5S, movelist.moveObject5SS); return;
+                case 251: TestSlash(movelist.move5SS, movelist.moveObject5SS); return;
                 case 252: TestSlash(movelist.move5SSS, movelist.moveObject5SSS); return;
 
                 case 280: TestSlash(movelist.move8S, movelist.moveObject8S); return;
@@ -281,7 +281,7 @@ public class Enemy_Weaponscript : MonoBehaviour
             //CHECK IF WITHIN RANGE
             if (ai.groundToGround.withinRanges[i])
             {
-                RNGCount = Random.Range(0, ai.groundToGroundRNG[i]);
+                RNGCount = Random.Range(0, ai.groundToGroundRNG[i]+1);
                 print(RNGCount);
                 for (int j = 0; j < ai.groundToGround.moveSequences.Count; j++)
                 {

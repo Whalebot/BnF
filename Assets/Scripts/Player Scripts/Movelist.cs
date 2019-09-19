@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movelist : MonoBehaviour {
+public class Movelist : MonoBehaviour
+{
 
     [HeaderAttribute("Dash attributes")]
     [Space(10)]
@@ -107,6 +108,4 @@ public class Movelist : MonoBehaviour {
     public GameObject moveObjectC2A;
     public Move moveC2AA;
     public GameObject moveObjectC2AA;
-
-    public MoveProperties[] potato;
 }

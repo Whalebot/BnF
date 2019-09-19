@@ -61,7 +61,7 @@ public class Player_Parry : MonoBehaviour
     void OnDisable()
     {
         Reset();
-
+        if (extraID == 0) DisableParry();
     }
 
     void OnTriggerEnter2D(Collider2D enemy)

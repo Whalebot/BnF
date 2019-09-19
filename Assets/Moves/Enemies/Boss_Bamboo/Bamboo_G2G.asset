@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4a99c78b49ddf41a52a738fdd7dce7, type: 3}
+  m_Name: Bamboo_G2G
+  m_EditorClassIdentifier: 
+  ranges:
+  - 15
+  - 35
+  withinRanges: 0001
+  moveSequences:
+  - rangeID: 0
+    RNGWeight: 2
+    moves:
+    - attack: 5
+      isTracking: 1
+    - attack: 6
+      isTracking: 0
+    - attack: 7
+      isTracking: 1
+  - rangeID: 0
+    RNGWeight: 2
+    moves:
+    - attack: 5
+      isTracking: 1
+    - attack: 6
+      isTracking: 0
+    - attack: 0
+      isTracking: 1
+  - rangeID: 0
+    RNGWeight: 2
+    moves:
+    - attack: 5
+      isTracking: 1
+    - attack: 6
+      isTracking: 0
+    - attack: 4
+      isTracking: 1
+  - rangeID: 0
+    RNGWeight: 4
+    moves:
+    - attack: 3
+      isTracking: 1
+  - rangeID: 0
+    RNGWeight: 1
+    moves:
+    - attack: 13
+      isTracking: 1
+  - rangeID: 0
+    RNGWeight: 1
+    moves:
+    - attack: 2
+      isTracking: 1
+  - rangeID: 0
+    RNGWeight: 1
+    moves:
+    - attack: 1
+      isTracking: 1
+  - rangeID: 0
+    RNGWeight: 1
+    moves:
+    - attack: 0
+      isTracking: 1
+  - rangeID: 0
+    RNGWeight: 1
+    moves:
+    - attack: 4
+      isTracking: 1
+    - attack: 0
+      isTracking: 1
+  - rangeID: 1
+    RNGWeight: 6
+    moves:
+    - attack: 4
+      isTracking: 1
+  - rangeID: 1
+    RNGWeight: 1
+    moves:
+    - attack: 13
+      isTracking: 1
+  - rangeID: 1
+    RNGWeight: 1
+    moves:
+    - attack: 2
+      isTracking: 1
+  - rangeID: 1
+    RNGWeight: 1
+    moves:
+    - attack: 1
+      isTracking: 1

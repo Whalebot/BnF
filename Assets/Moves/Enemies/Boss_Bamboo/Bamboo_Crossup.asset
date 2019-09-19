@@ -3,15 +3,16 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
   m_Name: Bamboo_Crossup
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 280
   SpCost: 0
   combo: 0
   startUp: 20
@@ -27,7 +28,7 @@ MonoBehaviour:
   up3: 0
   duration3: 0
   startupSound: {fileID: 1507711209477404, guid: 818f7eb062d75344aa0043c306478ca3,
-    type: 2}
+    type: 3}
   jumpCancelable: 1
   specialCancelable: 1
   landCancel: 1
@@ -40,7 +41,6 @@ MonoBehaviour:
   isChargeAttack: 0
   justFrameTiming: 22
   canMove: 0
-  keepVel: 0
   keepVerticalVel: 1
   keepHorizontalVel: 1
   interpolate: 0
