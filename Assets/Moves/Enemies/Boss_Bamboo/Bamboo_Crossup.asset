@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
   m_Name: Bamboo_Crossup
   m_EditorClassIdentifier: 
-  ID: 280
+  ID: 220
   SpCost: 0
   combo: 0
   startUp: 20

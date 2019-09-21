@@ -54,6 +54,7 @@ public class MoveEditor : Editor
         var keepHorizontalVel = serializedObject.FindProperty("keepHorizontalVel");
         var interpolate = serializedObject.FindProperty("interpolate");
         var isHoming = serializedObject.FindProperty("isHoming");
+        var spin = serializedObject.FindProperty("spin");
 
 
         showSettings = EditorGUILayout.Foldout(showSettings, "Show settings");
@@ -113,7 +114,8 @@ public class MoveEditor : Editor
             EditorGUILayout.PropertyField(keepHorizontalVel);
             EditorGUILayout.PropertyField(interpolate);
             EditorGUILayout.PropertyField(isHoming);
-        
+            EditorGUILayout.PropertyField(spin);
+
         }
 
         serializedObject.ApplyModifiedProperties();

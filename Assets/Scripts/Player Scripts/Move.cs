@@ -49,4 +49,5 @@ public class Move : ScriptableObject{
     public bool keepHorizontalVel;
     public bool interpolate;
     public bool isHoming;
+    public bool spin;
 }

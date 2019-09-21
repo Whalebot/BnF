@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class MoveSequence
 {
-    public int rangeID;
+    public int range;
     public int RNGWeight;
     public List<MoveProperties> moves;
 }

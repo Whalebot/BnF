@@ -12,87 +12,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4a99c78b49ddf41a52a738fdd7dce7, type: 3}
   m_Name: Bamboo_G2G
   m_EditorClassIdentifier: 
+  numberOfRanges: 0
+  tempRanges: 
+  temp2Ranges: 
+  RNGlevels: 1300000009000000
+  rangeLevels: 0900000004000000
   ranges:
   - 15
   - 35
-  withinRanges: 0001
+  withinRanges: 0101
   moveSequences:
   - rangeID: 0
-    RNGWeight: 2
+    RNGWeight: 6
     moves:
     - attack: 5
-      isTracking: 1
+      tracking: 1
     - attack: 6
-      isTracking: 0
+      tracking: 0
     - attack: 7
-      isTracking: 1
+      tracking: 0
   - rangeID: 0
     RNGWeight: 2
     moves:
     - attack: 5
-      isTracking: 1
+      tracking: 1
     - attack: 6
-      isTracking: 0
+      tracking: 0
     - attack: 0
-      isTracking: 1
+      tracking: 1
   - rangeID: 0
     RNGWeight: 2
     moves:
     - attack: 5
-      isTracking: 1
+      tracking: 1
     - attack: 6
-      isTracking: 0
+      tracking: 0
     - attack: 4
-      isTracking: 1
+      tracking: 1
   - rangeID: 0
     RNGWeight: 4
     moves:
     - attack: 3
-      isTracking: 1
+      tracking: 1
   - rangeID: 0
     RNGWeight: 1
     moves:
     - attack: 13
-      isTracking: 1
+      tracking: 0
   - rangeID: 0
     RNGWeight: 1
     moves:
     - attack: 2
-      isTracking: 1
+      tracking: 1
   - rangeID: 0
     RNGWeight: 1
     moves:
     - attack: 1
-      isTracking: 1
+      tracking: 0
   - rangeID: 0
     RNGWeight: 1
     moves:
     - attack: 0
-      isTracking: 1
+      tracking: 1
   - rangeID: 0
     RNGWeight: 1
     moves:
     - attack: 4
-      isTracking: 1
+      tracking: 1
     - attack: 0
-      isTracking: 1
+      tracking: 1
   - rangeID: 1
     RNGWeight: 6
     moves:
     - attack: 4
-      isTracking: 1
+      tracking: 0
   - rangeID: 1
     RNGWeight: 1
     moves:
     - attack: 13
-      isTracking: 1
+      tracking: 1
   - rangeID: 1
     RNGWeight: 1
     moves:
     - attack: 2
-      isTracking: 1
+      tracking: 1
   - rangeID: 1
     RNGWeight: 1
     moves:
     - attack: 1
-      isTracking: 1
+      tracking: 1

@@ -185,7 +185,7 @@ public class Enemy_Movement : MonoBehaviour
         if (direction < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
         else if (direction > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
         ground = Physics2D.Raycast(transform.position, -Vector2.up, rayGround, LayerMask.GetMask("Platform"));
-        
+
         if (!enemyScript.stun && mov)
         {
             if (!inRange)
@@ -197,15 +197,15 @@ public class Enemy_Movement : MonoBehaviour
                 }
                 else
                 {
-                    rb.AddForce( new Vector2(direction * velocity * airMultiplier, 0), ForceMode2D.Force);
+                    rb.AddForce(new Vector2(direction * velocity * airMultiplier, 0), ForceMode2D.Force);
                     rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, Physics2D.gravity.y, 50));
                 }
             }
-            
-            
+
+
             //Flying 
             Flying();
-           
+
         }
         //Gravity
         if (!flying || flying && enemyScript.stun)
@@ -219,7 +219,8 @@ public class Enemy_Movement : MonoBehaviour
         }
     }
 
-    void Flying() {
+    void Flying()
+    {
         if (flying)
         {
             flyRay = Physics2D.Raycast(this.transform.position, -Vector2.up, 500, LayerMask.GetMask("Platform"));
@@ -348,22 +349,16 @@ public class Enemy_Movement : MonoBehaviour
 
     void MeleeMovement()
     {
-        if (mode == 0) direction = 0;
-        if (mode == 1)
+       // if (mode == 0) direction = 0;
+     //   if (mode == 1)
         {
-            if (Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = 1;
-            else if (Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = -1;
-        }
-        if (mode == 2)
-        {
-
-            if (Time.time > lastDirectionChange + directionChangeDur && mov)
+            if (!inRange)
             {
-                lastDirectionChange = Time.time;
-                if (Vector2.Distance(target.transform.position, transform.position) > 0)
-                    if ((target.transform.position.x - transform.position.x) > 0) { direction = 1; }
-                    else if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
+                if (Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = 1;
+                else if (Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = -1;
+
             }
+            else direction = 0;
         }
     }
 

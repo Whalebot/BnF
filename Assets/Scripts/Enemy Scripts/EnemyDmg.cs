@@ -56,21 +56,21 @@ public class EnemyDmg : MonoBehaviour
     {
         if (!ranged && !blank) { SR.enabled = true; StartCoroutine("AttackOnce", activeTime); }
 
-        if (ranged && noRotation) Instantiate(fireball, transform.parent.parent.position, transform.parent.parent.rotation);
+        if (ranged && noRotation) Instantiate(fireball, transform.position, transform.parent.parent.rotation);
         else if (ranged && !aimShot && !noRotation)
         {
-            if (transform.parent.parent.localScale.x > 0) { Instantiate(fireball, transform.parent.parent.position, Quaternion.Euler(0, 0, 0)); }
-            else Instantiate(fireball, transform.parent.parent.position, Quaternion.Euler(0, 180, 0));
+            if (transform.parent.parent.localScale.x > 0) { Instantiate(fireball, transform.position, Quaternion.Euler(0, 0, 0)); }
+            else Instantiate(fireball, transform.position, Quaternion.Euler(0, 180, 0));
         }
         else if (ranged && aimShot && !spread)
         {
             if (transform.parent.parent.localScale.x > 0)
             {
-                Instantiate(fireball, transform.parent.parent.position, Quaternion.Euler(0, 0, 360.0f - Vector3.Angle(Vector3.up, direction)));
+                Instantiate(fireball, transform.position, Quaternion.Euler(0, 0, 360.0f - Vector3.Angle(Vector3.up, direction)));
             }
             else
             {
-                Instantiate(fireball, transform.parent.parent.position, Quaternion.Euler(0, 0, 360.0f + Vector3.Angle(Vector3.up, direction)));
+                Instantiate(fireball, transform.position, Quaternion.Euler(0, 0, 360.0f + Vector3.Angle(Vector3.up, direction)));
             }
         }
 

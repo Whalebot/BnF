@@ -15,7 +15,7 @@ public class Enemy_Weaponscript : MonoBehaviour
     Enemy_Movement enemyMov;
 
     [HeaderAttribute("Attack attributes")]
-    public GameObject currentAttack;
+    [HideInInspector] public GameObject currentAttack;
     public int attackID;
 
     public int attackDelay;
@@ -23,14 +23,10 @@ public class Enemy_Weaponscript : MonoBehaviour
     public int maxDelay;
     int attackDelayCounter;
 
-    public bool comboStart;
-
     public float distance;
     public float distance2;
 
     bool hasIFrames;
-    public bool withinRange;
-    public bool withinRange2;
 
     [HeaderAttribute("Frame attributes")]
 
@@ -76,32 +72,41 @@ public class Enemy_Weaponscript : MonoBehaviour
     }
     void OnEnable()
     {
-      //  attackScript.keepVel = false;
+        //  attackScript.keepVel = false;
         UpdateDash();
     }
 
     void RangeDetection()
     {
-        if (ai.groundToGround.ranges.Count > 0)
-            for (int i = 0; i < ai.groundToGround.ranges.Count; i++)
-            {
-                ai.groundToGround.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.groundToGround.ranges[i];
-            }
-        if (ai.groundToAir.ranges.Count > 0)
-            for (int i = 0; i < ai.groundToAir.ranges.Count; i++)
-            {
-                ai.groundToAir.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.groundToAir.ranges[i];
-            }
-        if (ai.airToGround.ranges.Count > 0)
-            for (int i = 0; i < ai.airToGround.ranges.Count; i++)
-            {
-                ai.airToGround.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.airToGround.ranges[i];
-            }
-        if (ai.airToAir.ranges.Count > 0)
-            for (int i = 0; i < ai.airToAir.ranges.Count; i++)
-            {
-                ai.airToAir.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.airToAir.ranges[i];
-            }
+        if (enemyMov.target != null)
+        {
+
+
+            targetAirborne = enemyMov.target.transform.position.y > transform.position.y;
+
+
+
+            if (ai.groundToGround.numberOfRanges > 0)
+                for (int i = 0; i < ai.groundToGround.numberOfRanges; i++)
+                {
+                    ai.groundToGround.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.groundToGround.temp2Ranges[i];
+                }
+            if (ai.groundToAir.numberOfRanges > 0)
+                for (int i = 0; i < ai.groundToAir.numberOfRanges; i++)
+                {
+                    ai.groundToAir.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.groundToAir.temp2Ranges[i];
+                }
+            if (ai.airToGround.numberOfRanges > 0)
+                for (int i = 0; i < ai.airToGround.numberOfRanges; i++)
+                {
+                    ai.airToGround.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.airToGround.temp2Ranges[i];
+                }
+            if (ai.airToAir.numberOfRanges > 0)
+                for (int i = 0; i < ai.airToAir.numberOfRanges; i++)
+                {
+                    ai.airToAir.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.airToAir.temp2Ranges[i];
+                }
+        }
     }
     void FixedUpdate()
     {
@@ -118,15 +123,6 @@ public class Enemy_Weaponscript : MonoBehaviour
 
             PerformAction();
             attackScript.resetCounter++;
-            if (enemyMov.target != null)
-            {
-                if ((transform.position - enemyMov.target.transform.position).magnitude < distance) withinRange = true;
-                else withinRange = false;
-                if ((transform.position - enemyMov.target.transform.position).magnitude < distance2) withinRange2 = true;
-                else withinRange2 = false;
-
-                targetAirborne = enemyMov.target.transform.position.y > transform.position.y;
-            }
 
             if (!targetAirborne && enemyMov.ground) ai.state = 0;
             else if (targetAirborne && enemyMov.ground) ai.state = 1;
@@ -142,23 +138,7 @@ public class Enemy_Weaponscript : MonoBehaviour
             if (isBoss)
             {
                 if (behaviorID == 0) Boss();
-                if (behaviorID == 1) BossGeese();
-                if (behaviorID == 2) BossBamboo();
-                if (behaviorID == 3) BossLilac();
             }
-            else
-            {
-                if (attackQueue.Count == 0)
-                {
-                    if (behaviorID == 1) SwordEnemy();
-                    else if (behaviorID == 2) SpearEnemy();
-                    else if (behaviorID == 3) TenguEnemy();
-                    else if (behaviorID == 4) RangedTengu();
-                    else if (behaviorID == 10) PhysicsTest();
-                }
-            }
-
-
         if (attackQueue.Count > 0 && attackScript.canAttack || attackScript.recovery && attackQueue.Count > 0)
         {
             switch (attackQueue[0])
@@ -240,7 +220,7 @@ public class Enemy_Weaponscript : MonoBehaviour
         else if (attack == MoveProperties.Attack.j2A) { attackQueue.Add(120); }
         else if (attack == MoveProperties.Attack.j2AA) { attackQueue.Add(121); }
         else if (attack == MoveProperties.Attack.j6A) { attackQueue.Add(160); }
-    //    else if (attack == MoveProperties.Attack.jump) { enemyMov.Jump(); attackDelayCounter = 5;  print("Jump"); }
+        //    else if (attack == MoveProperties.Attack.jump) { enemyMov.Jump(); attackDelayCounter = 5;  print("Jump"); }
     }
 
     void ResetHoming()
@@ -258,240 +238,54 @@ public class Enemy_Weaponscript : MonoBehaviour
             {
                 switch (ai.state)
                 {
-
-                    case 3: AirToAir(); return;
-                    //case 2: GroundToGround(); return;
-                    case 1: GroundToAir(); return;
-                    case 0: GroundToGround(); return;
-                    default: GroundToGround(); return;
+                    case 3: AttackAlgorhythm(ai.airToAir); return;
+                    case 2: AttackAlgorhythm(ai.airToGround); return;
+                    case 1: AttackAlgorhythm(ai.groundToAir); return;
+                    case 0: AttackAlgorhythm(ai.groundToGround); return;
+                    default: AttackAlgorhythm(ai.groundToGround); return;
                 }
 
             }
         }
     }
 
-    void GroundToGround()
+    void AttackAlgorhythm(AttackState attackState)
     {
         int tempRangeCounter = 0;
         int tempRNGCounter = 0;
 
         //FOR EACH RANGE
-        for (int i = 0; i < ai.groundToGround.withinRanges.Count; i++)
+        for (int i = 0; i < attackState.withinRanges.Count; i++)
         {
             //CHECK IF WITHIN RANGE
-            if (ai.groundToGround.withinRanges[i])
+            if (attackState.withinRanges[i])
             {
-                RNGCount = Random.Range(0, ai.groundToGroundRNG[i]+1);
+                RNGCount = Random.Range(0, attackState.RNGlevels[i] + 1);
                 print(RNGCount);
-                for (int j = 0; j < ai.groundToGround.moveSequences.Count; j++)
+                for (int j = 0; j < attackState.moveSequences.Count; j++)
                 {
-                    if (ai.groundToGround.moveSequences[j].rangeID == i)
+                    if (attackState.moveSequences[j].range == attackState.temp2Ranges[i])
                     {
                         tempRangeCounter++;
 
-                        if (RNGCount <= ai.groundToGround.moveSequences[j].RNGWeight + tempRNGCounter && RNGCount >= tempRNGCounter)
+                        if (RNGCount <= attackState.moveSequences[j].RNGWeight + tempRNGCounter && RNGCount >= tempRNGCounter)
                         {
-                            for (int k = 0; k < ai.groundToGround.moveSequences[j].moves.Count; k++)
+                            for (int k = 0; k < attackState.moveSequences[j].moves.Count; k++)
                             {
                                 attackDelayCounter = attackDelay;
-                                CheckMove(ai.groundToGround.moveSequences[j].moves[k].attack);
-                                if (ai.groundToGround.moveSequences[j].moves[k].isTracking) homingQueue.Add(true);
-                                else homingQueue.Add(false);
+                                CheckMove(attackState.moveSequences[j].moves[k].attack);
+                                homingQueue.Add(attackState.moveSequences[j].moves[k].tracking);
+
                             }
                             return;
                         }
-                        else { tempRNGCounter += ai.groundToGround.moveSequences[j].RNGWeight; }
+                        else { tempRNGCounter += attackState.moveSequences[j].RNGWeight; }
                     }
                 }
             }
         }
     }
-
-    void GroundToAir()
-    {
-        int tempRangeCounter = 0;
-        int tempRNGCounter = 0;
-
-        //FOR EACH RANGE
-        for (int i = 0; i < ai.groundToAir.withinRanges.Count; i++)
-        {
-            //CHECK IF WITHIN RANGE
-            if (ai.groundToAir.withinRanges[i])
-            {
-                RNGCount = Random.Range(0, ai.groundToAirRNG[i]);
-                //print(RNGCount);
-                for (int j = 0; j < ai.groundToAir.moveSequences.Count; j++)
-                {
-                    if (ai.groundToAir.moveSequences[j].rangeID == i)
-                    {
-                        tempRangeCounter++;
-
-                        if (RNGCount <= ai.groundToAir.moveSequences[j].RNGWeight + tempRNGCounter && RNGCount >= tempRNGCounter)
-                        {
-                            for (int k = 0; k < ai.groundToAir.moveSequences[j].moves.Count; k++)
-                            {
-                                attackDelayCounter = 60;
-                                CheckMove(ai.groundToAir.moveSequences[j].moves[k].attack);
-                                if (ai.groundToAir.moveSequences[j].moves[k].isTracking) homingQueue.Add(true);
-                                else homingQueue.Add(false);
-                            }
-                            return;
-                        }
-                        else { tempRNGCounter += ai.groundToAir.moveSequences[j].RNGWeight; }
-                    }
-                }
-            }
-        }
-    }
-
-    void AirToGround()
-    {
-        int tempRangeCounter = 0;
-        int tempRNGCounter = 0;
-
-        //FOR EACH RANGE
-        for (int i = 0; i < ai.airToGround.withinRanges.Count; i++)
-        {
-            //CHECK IF WITHIN RANGE
-            if (ai.airToGround.withinRanges[i])
-            {
-                RNGCount = Random.Range(0, ai.airToGroundRNG[i]);
-                print(RNGCount);
-                for (int j = 0; j < ai.airToGround.moveSequences.Count; j++)
-                {
-                    if (ai.airToGround.moveSequences[j].rangeID == i)
-                    {
-                        tempRangeCounter++;
-
-                        if (RNGCount <= ai.airToGround.moveSequences[j].RNGWeight + tempRNGCounter && RNGCount >= tempRNGCounter)
-                        {
-                            for (int k = 0; k < ai.airToGround.moveSequences[j].moves.Count; k++)
-                            {
-                                attackDelayCounter = 60;
-                                CheckMove(ai.airToGround.moveSequences[j].moves[k].attack);
-                                if (ai.airToGround.moveSequences[j].moves[k].isTracking) homingQueue.Add(true);
-                                else homingQueue.Add(false);
-                            }
-                            return;
-                        }
-                        else { tempRNGCounter += ai.airToGround.moveSequences[j].RNGWeight; }
-                    }
-                }
-            }
-        }
-    }
-
-    void AirToAir()
-    {
-        int tempRangeCounter = 0;
-        int tempRNGCounter = 0;
-
-        //FOR EACH RANGE
-        for (int i = 0; i < ai.airToAir.withinRanges.Count; i++)
-        {
-            //CHECK IF WITHIN RANGE
-            if (ai.airToAir.withinRanges[i])
-            {
-                RNGCount = Random.Range(0, ai.airToAirRNG[i]);
-                print(RNGCount);
-                for (int j = 0; j < ai.airToAir.moveSequences.Count; j++)
-                {
-                    if (ai.airToAir.moveSequences[j].rangeID == i)
-                    {
-                        tempRangeCounter++;
-
-                        if (RNGCount <= ai.airToAir.moveSequences[j].RNGWeight + tempRNGCounter && RNGCount >= tempRNGCounter)
-                        {
-                            for (int k = 0; k < ai.airToAir.moveSequences[j].moves.Count; k++)
-                            {
-                                print(ai.airToAir.moveSequences[j].moves[k].attack);
-                                attackDelayCounter = 60;
-                                CheckMove(ai.airToAir.moveSequences[j].moves[k].attack);
-                                if (ai.airToAir.moveSequences[j].moves[k].isTracking) homingQueue.Add(true);
-                                else homingQueue.Add(false);
-                            }
-                            return;
-                        }
-                        else { tempRNGCounter += ai.airToAir.moveSequences[j].RNGWeight; }
-                    }
-                }
-            }
-        }
-    }
-
-
-    void BossGeese()
-    {
-
-        if (attackScript.canAttack || attackScript.recovery)
-        {
-            if (!enemyScript.stun && attackDelayCounter <= 0 && attackQueue.Count == 0)
-            {
-                //GROUNDED
-                if (enemyMov.ground)
-                {
-                    //TARGET IS AIRBORNE
-                    if (targetAirborne)
-                    {
-                        //       if (enemyMov.ground) enemyMov.Jump();
-                    }
-                    //TARGET IS GROUDED
-                    else
-                    {
-                        //RANGE CHECK
-                        //SHORT RANGE
-                        if (withinRange)
-                        {
-                            //ATTACK RNG
-                            RNGCount = Random.Range(1, 8);
-                            if (RNGCount == 1 && enemyMov.ground && !enemyScript.stun)
-                            {
-                                enemyMov.direction = attackScript.trueDirection;
-                                attackDelayCounter = Random.Range(attackDelay, maxDelay);
-                                attackQueue.Add(250);
-                            }
-                            //3 HIT COMBO
-                            else if (RNGCount >= 2 && !enemyScript.stun)
-                            {
-                                if (attackScript.combo == 0)
-                                {
-                                    attackScript.tracking = true;
-                                    attackQueue.Add(50);
-                                }
-                                else if (attackScript.combo == 1)
-                                {
-                                    attackQueue.Add(51);
-                                }
-                                else if (attackScript.combo == 2)
-                                {
-                                    attackDelayCounter = maxDelay;
-                                    attackScript.tracking = true;
-                                    attackQueue.Add(52);
-                                }
-                            }
-                        }
-                        //LONG RANGE
-                        else if (withinRange2 && !withinRange)
-                        {
-                            attackScript.tracking = true;
-                            attackDelayCounter = Random.Range(attackDelay, maxDelay);
-                            attackQueue.Add(250);
-                        }
-                    }
-
-                }
-                //AIRBORNE
-                else
-                {
-                    attackScript.tracking = true;
-                    attackDelayCounter = Random.Range(attackDelay, maxDelay);
-                    attackQueue.Add(250);
-                }
-            }
-
-        }
-    }
-
+    /*
     void BossLilac()
     {
         if (attackScript.canAttack && attackDelayCounter <= 0 && withinRange2 && !withinRange && !enemyScript.stun)
@@ -534,8 +328,8 @@ public class Enemy_Weaponscript : MonoBehaviour
             attackDelayCounter = maxDelay;
 
         }
-    }
-
+    }*/
+    /*
     void BossBamboo()
     {
         if (enemyScript.mode == 1)
@@ -625,7 +419,7 @@ public class Enemy_Weaponscript : MonoBehaviour
             }
         }
     }
-
+    */
     void SwordEnemy()
     {
         if (attackScript.canAttack && attackDelayCounter <= 0 && (transform.position - attackScript.target.transform.position).magnitude < distance && !enemyScript.stun)
@@ -648,7 +442,7 @@ public class Enemy_Weaponscript : MonoBehaviour
                 attackQueue.Add(1);
             }
     }
-
+    /*
     void RangedTengu()
     {
         if (attackScript.canAttack && attackDelayCounter <= 0 && withinRange2 && !withinRange && !enemyScript.stun)
@@ -700,7 +494,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
         }
     }
-
+    */
 
     void PhysicsTest()
     {
@@ -737,7 +531,7 @@ public class Enemy_Weaponscript : MonoBehaviour
         enemyScript.special -= move.SpCost;
 
         attackScript.resetCounter = 0;
-        attackScript.combo = move.combo;
+        //attackScript.combo = move.combo;
 
         attackScript.hasIFrames = move.iFrames;
         attackScript.hasInvul = move.invul;
@@ -768,6 +562,7 @@ public class Enemy_Weaponscript : MonoBehaviour
         attackScript.attackCancelable = move.attackCancelable;
         attackScript.interpolate = move.interpolate;
         attackScript.homing = move.isHoming;
+        attackScript.tornado = move.spin;
 
         if (attackScript.interpolate)
         {
@@ -782,13 +577,13 @@ public class Enemy_Weaponscript : MonoBehaviour
 
         if (homingQueue.Count > 0)
         {
-            if (homingQueue[0]) attackScript.tracking = true;
-            else attackScript.tracking = false;
+            attackScript.tracking = homingQueue[0];
+        
             ResetHoming();
 
         }
 
-      
+
     }
 
 

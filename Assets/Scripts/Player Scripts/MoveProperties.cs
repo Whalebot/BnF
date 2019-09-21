@@ -57,5 +57,5 @@ public class MoveProperties
     };
 
     public Attack attack;
-    public bool isTracking;
+    public bool tracking;
 }

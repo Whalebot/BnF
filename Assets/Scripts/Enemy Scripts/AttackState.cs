@@ -8,8 +8,20 @@ using UnityEngine;
 [System.Serializable]
 public class AttackState : ScriptableObject
 {
-    public List<float> ranges;
+    [HideInInspector]
+    public int numberOfRanges;
+    [HideInInspector]
+    public List<int> tempRanges;
+    [HideInInspector]
+    public List<int> temp2Ranges;
+    [HideInInspector]
+    public int[] RNGlevels;
+   [HideInInspector]
+    public int[] rangeLevels;
+
     [HideInInspector]
     public List<bool> withinRanges;
     public List<MoveSequence> moveSequences;
+
+
 }

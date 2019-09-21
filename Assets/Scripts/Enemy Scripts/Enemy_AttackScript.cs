@@ -19,9 +19,7 @@ public class Enemy_AttackScript : MonoBehaviour
     public GameObject currentAttack;
     public int attackID;
 
-    public float comboDelay;
-    public int combo;
-    public int comboCounter;
+    
     public int resetCounter;
     public bool comboStart;
     public bool canAttack = true;
@@ -30,7 +28,6 @@ public class Enemy_AttackScript : MonoBehaviour
     public bool hasIFrames;
     public bool noClip;
     Vector3 targetAim;
-    float lastAttacked;
 
     //   public float attackStart;
 
@@ -53,51 +50,51 @@ public class Enemy_AttackScript : MonoBehaviour
     int RNGCount;
 
     [HeaderAttribute("Frame attributes")]
-    public bool startup;
-    public bool active;
-    public bool recovery;
-    public bool startupMov;
-    public bool activeMov;
-    public bool recoveryMov;
-    public int startupFrames;
-    public int activeFrames;
-    public int recoveryFrames;
+
+    [HideInInspector] public bool startup;
+    [HideInInspector] public bool active;
+    [HideInInspector] public bool recovery;
+    [HideInInspector] public bool startupMov;
+    [HideInInspector] public bool activeMov;
+    [HideInInspector] public bool recoveryMov;
+    [HideInInspector] public int startupFrames;
+    [HideInInspector] public int activeFrames;
+    [HideInInspector] public int recoveryFrames;
     public bool setStartVelocity;
     public bool setEndVelocity;
     Vector3 startVelocity;
 
-    public int forward;
-    public int forward2;
-    public int forward3;
-    public int up;
-    public int up2;
-    public int up3;
-    public int momentumDuration1;
-    public int momentumDuration2;
-    public int momentumDuration3;
+    [HideInInspector] public int forward;
+    [HideInInspector] public int forward2;
+    [HideInInspector] public int forward3;
+    [HideInInspector] public int up;
+    [HideInInspector] public int up2;
+    [HideInInspector] public int up3;
+    [HideInInspector] public int momentumDuration1;
+    [HideInInspector] public int momentumDuration2;
+    [HideInInspector] public int momentumDuration3;
 
-    public bool setYVel;
-    public bool willJump;
-    public bool hasInvul;
+    [HideInInspector] public bool setYVel;
+    [HideInInspector] public bool willJump;
+    [HideInInspector] public bool hasInvul;
 
-    public bool jumpCancelable;
-    public bool specialCancelable;
-    public bool attackCancelable;
-    public bool keepVerticalVel;
-    public bool keepHorizontalVel;
-    public bool landCancel;
-    public bool landCancelRecovery;
-    public bool interpolate;
-    public int interpol1;
-    public int interpol2;
-    public int interpol3;
+    [HideInInspector] public bool jumpCancelable;
+    [HideInInspector] public bool specialCancelable;
+    [HideInInspector] public bool attackCancelable;
+    [HideInInspector] public bool keepVerticalVel;
+    [HideInInspector] public bool keepHorizontalVel;
+    [HideInInspector] public bool landCancel;
+    [HideInInspector] public bool landCancelRecovery;
+    [HideInInspector] public bool interpolate;
+    [HideInInspector] public int interpol1;
+    [HideInInspector] public int interpol2;
+    [HideInInspector] public int interpol3;
 
     void Awake()
     {
         enemyMov = GetComponent<Enemy_Movement>();
         target = GameObject.FindGameObjectWithTag("Player");
         enemyScript = GetComponent<EnemyScript>();
-        lastAttacked = Random.Range(0, 1.5F);
         trueDirection = -Mathf.Sign(transform.position.x - target.transform.position.x);
     }
 
@@ -131,7 +128,7 @@ public class Enemy_AttackScript : MonoBehaviour
                 if (directionChangeDelay <= directionChange) { enemyMov.direction = trueDirection; directionChange = 0; tornadoChange = false; }
 
             }
-            comboCounter++;
+
             //  if (comboDelay < comboCounter) { combo = 0; comboCounter = 0; }
             Startup();
             Active();

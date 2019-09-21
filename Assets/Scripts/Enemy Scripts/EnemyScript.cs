@@ -8,7 +8,7 @@ public class EnemyScript : MonoBehaviour
     public int enemyType;
     public bool isStoryMode;
     public bool knockout;
-    
+
 
     public int health;
     public int triggerHealth;
@@ -39,10 +39,10 @@ public class EnemyScript : MonoBehaviour
     public bool canKnockback = true;
 
 
-    public int moveDamage;
-    public int comboDamage;
-    public int comboHits;
-    public float hitStunBar;
+    [HideInInspector] public int moveDamage;
+    [HideInInspector] public int comboDamage;
+    [HideInInspector] public int comboHits;
+    [HideInInspector] public float hitStunBar;
 
     //Ground bounce
     bool willGroundBounce;
@@ -120,7 +120,8 @@ public class EnemyScript : MonoBehaviour
                 }
                 else if (enemyMov.ground) Knockout();
             }
-            if (!EnclosedBattle.inBattle && knockout) {
+            if (!EnclosedBattle.inBattle && knockout)
+            {
                 gameObject.layer = LayerMask.NameToLayer("Enemy");
             }
 
@@ -174,13 +175,13 @@ public class EnemyScript : MonoBehaviour
                 if (freezeCounter > freezeTime) { rb.velocity = oldVel; freezeStart = false; rb.constraints = RigidbodyConstraints2D.FreezeRotation; }
             }
 
-           if (hitstun <= 0 && !retreatJump && stun)
+            if (hitstun <= 0 && !retreatJump && stun)
             {
                 freezeStart = false; rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 Retreat(); poise = poiseHealth; willGroundBounce = false;
             }
             if (retreatJump) retreatCounter -= 1;
-            if (retreatJump && retreatCounter <= 0) { comboDamage = 0;  comboHits = 0; retreatCounter = retreatTime; comboCount = 0; hitstun = 0; stun = false; retreatJump = false; dizzy = false; enemyAttack.canAttack = true; enemyMov.mov = true; }
+            if (retreatJump && retreatCounter <= 0) { comboDamage = 0; comboHits = 0; retreatCounter = retreatTime; comboCount = 0; hitstun = 0; stun = false; retreatJump = false; dizzy = false; enemyAttack.canAttack = true; enemyMov.mov = true; }
 
             //Rays for ground detection, player detection and fly height
             if (enemyMov.ground && stun && willGroundBounce || Input.GetKeyDown("o"))
@@ -308,12 +309,15 @@ public class EnemyScript : MonoBehaviour
         detected = true;
     }
 
-    public void Retreat() { retreatJump = true; rb.velocity = new Vector2(Mathf.Sign(transform.position.x - enemyMov.target.transform.position.x) * retreatJumpX, retreatJumpY);
-        enemyMov.direction = -Mathf.Sign(transform.position.x - enemyMov.target.transform.position.x); }
+    public void Retreat()
+    {
+        retreatJump = true; rb.velocity = new Vector2(Mathf.Sign(transform.position.x - enemyMov.target.transform.position.x) * retreatJumpX, retreatJumpY);
+        enemyMov.direction = -Mathf.Sign(transform.position.x - enemyMov.target.transform.position.x);
+    }
 
     public void Knockout()
     {
-      //  rb.isKinematic = true;
+        //  rb.isKinematic = true;
         gameObject.layer = LayerMask.NameToLayer("iFrames");
         retreatJump = false;
         stun = false;
@@ -324,7 +328,7 @@ public class EnemyScript : MonoBehaviour
         enemyMov.mov = false;
         playOnce = true;
         rb.velocity = Vector2.zero;
-   //     enemyMov.AddVelocity(Vector2.zero);
+        //     enemyMov.AddVelocity(Vector2.zero);
     }
 
     IEnumerator Death()

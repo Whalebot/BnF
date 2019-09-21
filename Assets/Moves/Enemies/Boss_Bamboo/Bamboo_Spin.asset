@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
   m_Name: Bamboo_Spin
   m_EditorClassIdentifier: 
-  ID: 10
+  ID: 251
   SpCost: 0
   combo: 0
   startUp: 120
@@ -44,3 +44,4 @@ MonoBehaviour:
   keepHorizontalVel: 0
   interpolate: 0
   isHoming: 1
+  spin: 1

@@ -15,12 +15,12 @@ MonoBehaviour:
   ID: 51
   SpCost: 0
   combo: 2
-  startUp: 12
-  active: 30
-  recovery: 12
-  forward1: -5
+  startUp: 5
+  active: 12
+  recovery: 10
+  forward1: 0
   up1: 0
-  duration1: 6
+  duration1: 0
   forward2: 50
   up2: 0
   duration2: 1
@@ -44,3 +44,4 @@ MonoBehaviour:
   keepHorizontalVel: 0
   interpolate: 0
   isHoming: 0
+  spin: 0
