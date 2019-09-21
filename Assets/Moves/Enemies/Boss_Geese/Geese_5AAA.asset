@@ -40,7 +40,6 @@ MonoBehaviour:
   isChargeAttack: 0
   justFrameTiming: 22
   canMove: 0
-  keepVel: 0
   keepVerticalVel: 0
   keepHorizontalVel: 0
   interpolate: 0

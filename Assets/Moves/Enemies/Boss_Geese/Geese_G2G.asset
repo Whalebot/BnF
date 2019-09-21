@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4a99c78b49ddf41a52a738fdd7dce7, type: 3}
   m_Name: Geese_G2G
   m_EditorClassIdentifier: 
-  numberOfRanges: 0
-  tempRanges: 
-  temp2Ranges: 
-  RNGlevels: 
-  rangeLevels: 
-  withinRanges: 0000
+  numberOfRanges: 2
+  tempRanges: 0a0000000a0000003200000032000000
+  temp2Ranges: 0a00000032000000
+  RNGlevels: 080000000a000000
+  rangeLevels: 0200000002000000
+  withinRanges: 0101
   moveSequences:
-  - range: 15
-    RNGWeight: 6
+  - range: 10
+    RNGWeight: 5
     moves:
     - attack: 5
       tracking: 1
@@ -28,8 +28,8 @@ MonoBehaviour:
       tracking: 0
     - attack: 7
       tracking: 1
-  - range: 15
-    RNGWeight: 2
+  - range: 10
+    RNGWeight: 3
     moves:
     - attack: 5
       tracking: 1
@@ -37,23 +37,13 @@ MonoBehaviour:
       tracking: 0
     - attack: 0
       tracking: 1
-  - range: 15
-    RNGWeight: 1
-    moves:
-    - attack: 1
-      tracking: 1
-  - range: 35
-    RNGWeight: 1
+  - range: 50
+    RNGWeight: 5
     moves:
     - attack: 0
       tracking: 1
-  - range: 35
-    RNGWeight: 2
+  - range: 50
+    RNGWeight: 5
     moves:
     - attack: 1
-      tracking: 1
-  - range: 35
-    RNGWeight: 1
-    moves:
-    - attack: 0
       tracking: 1

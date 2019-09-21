@@ -1260,6 +1260,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: a61aadf102d900d409ec1148bb2be793,
         type: 2}
+    - target: {fileID: 114141454890653824, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: runSpeed
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 114141454890653824, guid: 97c1ec0522edae34b8421ca9f3d06825,
+        type: 3}
+      propertyPath: airMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1821107479144270, guid: 97c1ec0522edae34b8421ca9f3d06825, type: 3}
       propertyPath: m_IsActive
       value: 0
