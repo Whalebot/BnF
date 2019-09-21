@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackAI : MonoBehaviour
 {
     public int state;
+    public float lineLength;
 
     public bool isGroundToGround;
     public bool isGroundToAir;
@@ -16,6 +17,11 @@ public class AttackAI : MonoBehaviour
     public AttackState airToGround;
     public AttackState airToAir;
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Sign(transform.parent.localScale.x) * lineLength, 0, 0));
+    }
 
 
     void Setup(AttackState attackState)

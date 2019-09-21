@@ -4056,11 +4056,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEMP_GEESE
       objectReference: {fileID: 0}
-    - target: {fileID: 4642327021935116037, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2915611827563524020, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4116,22 +4111,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 178854125, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 178854124, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 869547520, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
-      propertyPath: groundToGround
-      value: 
-      objectReference: {fileID: 11400000, guid: 6e16e3a0854b6dc47872a9651c6ff2a5,
-        type: 2}
-    - target: {fileID: 178854128, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: lineLength
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb9f47e14e13c6e4cb13eb9b11cff2d8, type: 3}
