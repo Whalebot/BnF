@@ -74,7 +74,7 @@ public class Enemy_Movement : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        //direction = attackScript.trueDirection;
+        direction = attackScript.trueDirection;
         playerMov = target.GetComponent<Player_Movement>();
     }
 
@@ -97,7 +97,9 @@ public class Enemy_Movement : MonoBehaviour
 
         if (mov && attackScript.canAttack)
         {
-            if (!boss)
+
+            MeleeMovement();
+            /*if (!boss)
             {
                 if (movementID == -1) AIMovement();
                 if (movementID == 0) MeleeMovement();
@@ -109,7 +111,7 @@ public class Enemy_Movement : MonoBehaviour
                 {
                     case 02: SwanMovement(); break;
                     default: SwanMovement(); break;
-                }
+                }*/
         }
         PushAway();
         Movement();
@@ -262,27 +264,6 @@ public class Enemy_Movement : MonoBehaviour
     }
 
 
-    void AIMovement()
-    {
-        if (mode == 0) direction = 0;
-        if (mode == 1)
-        {
-            if (Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = 1;
-            else if (Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = -1;
-        }
-        if (mode == 2)
-        {
-            if (Time.time > lastDirectionChange + directionChangeDur && mov)
-            {
-                lastDirectionChange = Time.time;
-                if (Vector2.Distance(target.transform.position, transform.position) > 0)
-                    if ((target.transform.position.x - transform.position.x) > 0) { direction = 1; }
-                    else if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
-            }
-        }
-    }
-
-
     void SwanMovement()
     {
         if (mode == 0) direction = 0;
@@ -349,13 +330,16 @@ public class Enemy_Movement : MonoBehaviour
 
     void MeleeMovement()
     {
-       // if (mode == 0) direction = 0;
-     //   if (mode == 1)
+        // if (mode == 0) direction = 0;
+        //   if (mode == 1)
+
+        /*                if (Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = 1;
+                else if (Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = -1;*/
         {
             if (!inRange)
             {
-                if (Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = 1;
-                else if (Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = -1;
+                if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
+                else direction = 1;
 
             }
             else direction = 0;

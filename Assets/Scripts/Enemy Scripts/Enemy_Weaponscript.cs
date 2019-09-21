@@ -54,7 +54,9 @@ public class Enemy_Weaponscript : MonoBehaviour
     public List<int> attackQueue;
     public List<bool> homingQueue;
 
-
+    public float currentDistance;
+    int walkCounter;
+   public bool walking;
 
     void Awake()
     {
@@ -81,7 +83,7 @@ public class Enemy_Weaponscript : MonoBehaviour
         if (enemyMov.target != null)
         {
 
-
+            currentDistance = Mathf.Abs(transform.position.x - enemyMov.target.transform.position.x);
             targetAirborne = enemyMov.target.transform.position.y > transform.position.y;
 
 
@@ -89,22 +91,22 @@ public class Enemy_Weaponscript : MonoBehaviour
             if (ai.groundToGround.numberOfRanges > 0)
                 for (int i = 0; i < ai.groundToGround.numberOfRanges; i++)
                 {
-                    ai.groundToGround.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.groundToGround.temp2Ranges[i];
+                    ai.groundToGround.withinRanges[i] = Mathf.Abs(transform.position.x - enemyMov.target.transform.position.x) < ai.groundToGround.temp2Ranges[i];
                 }
             if (ai.groundToAir.numberOfRanges > 0)
                 for (int i = 0; i < ai.groundToAir.numberOfRanges; i++)
                 {
-                    ai.groundToAir.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.groundToAir.temp2Ranges[i];
+                    ai.groundToAir.withinRanges[i] = Mathf.Abs(transform.position.x - enemyMov.target.transform.position.x) < ai.groundToAir.temp2Ranges[i];
                 }
             if (ai.airToGround.numberOfRanges > 0)
                 for (int i = 0; i < ai.airToGround.numberOfRanges; i++)
                 {
-                    ai.airToGround.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.airToGround.temp2Ranges[i];
+                    ai.airToGround.withinRanges[i] = Mathf.Abs(transform.position.x - enemyMov.target.transform.position.x) < ai.airToGround.temp2Ranges[i];
                 }
             if (ai.airToAir.numberOfRanges > 0)
                 for (int i = 0; i < ai.airToAir.numberOfRanges; i++)
                 {
-                    ai.airToAir.withinRanges[i] = (transform.position - enemyMov.target.transform.position).magnitude < ai.airToAir.temp2Ranges[i];
+                    ai.airToAir.withinRanges[i] = Mathf.Abs(transform.position.x - enemyMov.target.transform.position.x) < ai.airToAir.temp2Ranges[i];
                 }
         }
     }
@@ -123,6 +125,17 @@ public class Enemy_Weaponscript : MonoBehaviour
 
             PerformAction();
             attackScript.resetCounter++;
+
+            if (walking ) {
+                walkCounter--;
+                attackScript.canAttack = false;
+                if (walkCounter <= 0 || currentDistance <= ai.walkDistance)
+                {
+                    walking = false;
+                    attackScript.canAttack = true;
+                    walkCounter = 0;
+                }
+            }
 
             if (!targetAirborne && enemyMov.ground) ai.state = 0;
             else if (targetAirborne && enemyMov.ground) ai.state = 1;
@@ -143,6 +156,7 @@ public class Enemy_Weaponscript : MonoBehaviour
         {
             switch (attackQueue[0])
             {
+                case 6: WalkForward(); return;
 
                 case 50: TestSlash(movelist.move5A, movelist.moveObject5A); return;
                 case 51: TestSlash(movelist.move5AA, movelist.moveObject5AA); return;
@@ -220,7 +234,8 @@ public class Enemy_Weaponscript : MonoBehaviour
         else if (attack == MoveProperties.Attack.j2A) { attackQueue.Add(120); }
         else if (attack == MoveProperties.Attack.j2AA) { attackQueue.Add(121); }
         else if (attack == MoveProperties.Attack.j6A) { attackQueue.Add(160); }
-        //    else if (attack == MoveProperties.Attack.jump) { enemyMov.Jump(); attackDelayCounter = 5;  print("Jump"); }
+        else if (attack == MoveProperties.Attack.walk) { attackQueue.Add(6); }
+        else if (attack == MoveProperties.Attack.jump) { enemyMov.Jump(); attackDelayCounter = 5;  print("Jump"); }
     }
 
     void ResetHoming()
@@ -249,6 +264,14 @@ public class Enemy_Weaponscript : MonoBehaviour
         }
     }
 
+    void WalkForward() {
+        print("Obama");
+        walking = true;
+        walkCounter = ai.walkDuration;
+        attackQueue.RemoveAt(0);
+        homingQueue.RemoveAt(0);
+    }
+
     void AttackAlgorhythm(AttackState attackState)
     {
         int tempRangeCounter = 0;
@@ -261,7 +284,7 @@ public class Enemy_Weaponscript : MonoBehaviour
             if (attackState.withinRanges[i])
             {
                 RNGCount = Random.Range(0, attackState.RNGlevels[i] + 1);
-                print(RNGCount);
+            
                 for (int j = 0; j < attackState.moveSequences.Count; j++)
                 {
                     if (attackState.moveSequences[j].range == attackState.temp2Ranges[i])

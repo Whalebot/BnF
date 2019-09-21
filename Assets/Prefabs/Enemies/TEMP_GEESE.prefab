@@ -1838,7 +1838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8c9605910b96944818e90b4ce4cb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: 1
+  boss: 0
   velocity: 15
   airMultiplier: 5
   maxSpeed: 100
@@ -2026,10 +2026,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  isGroundToGround: 0
-  isGroundToAir: 0
-  isAirToGround: 0
-  isAirToAir: 0
+  lineLength: 50
+  walkDistance: 20
+  walkDuration: 300
   groundToGround: {fileID: 11400000, guid: 6e16e3a0854b6dc47872a9651c6ff2a5, type: 2}
   groundToAir: {fileID: 11400000, guid: a4f2c49e39069b44abeb331cb4ad5b1b, type: 2}
   airToGround: {fileID: 11400000, guid: 4b490a1d6d4092e4394d834b32f39d53, type: 2}
@@ -2148,3 +2147,5 @@ MonoBehaviour:
   RNGCount: 0
   attackQueue: 
   homingQueue: 
+  currentDistance: 0
+  walking: 0

@@ -44,16 +44,10 @@ public class MoveProperties
 
         extra1,
         extra2,
-        jump
+        jump,
+        walk
+
            
-
-        
-
-
-
-
-
-
     };
 
     public Attack attack;

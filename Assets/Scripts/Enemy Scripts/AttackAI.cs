@@ -7,10 +7,8 @@ public class AttackAI : MonoBehaviour
     public int state;
     public float lineLength;
 
-    public bool isGroundToGround;
-    public bool isGroundToAir;
-    public bool isAirToGround;
-    public bool isAirToAir;
+    public float walkDistance;
+    public int walkDuration;
 
     public AttackState groundToGround;
     public AttackState groundToAir;
@@ -69,6 +67,5 @@ public class AttackAI : MonoBehaviour
         Setup(groundToAir);
         Setup(airToGround);
         Setup(airToAir);
-
     }
 }
