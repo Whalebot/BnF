@@ -62,7 +62,7 @@ public class TrapScript : MonoBehaviour
     */
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("TrapTrigger"))
+        if (other.CompareTag("TrapTrigger") && !active)
         {
             Activate();
         }
@@ -72,5 +72,15 @@ public class TrapScript : MonoBehaviour
     {
         trap.SetActive(true);
         active = true;
+        StartCoroutine("ResetTrap");
+    }
+
+    IEnumerator ResetTrap()
+    {
+        yield return new WaitForSeconds(delay);
+        {
+            trap.SetActive(false);
+            active = false;
+        }
     }
 }

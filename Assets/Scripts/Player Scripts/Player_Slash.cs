@@ -140,7 +140,7 @@ public class Player_Slash : MonoBehaviour
     {
         if (enemy.CompareTag("EnemyAttack"))
         {
-            if (clashActive)
+            if (clashActive && canClash)
             {
                 clashed = true;
                 Clash(enemy);
