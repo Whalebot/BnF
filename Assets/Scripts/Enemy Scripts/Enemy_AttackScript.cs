@@ -5,49 +5,40 @@ using UnityEngine;
 public class Enemy_AttackScript : MonoBehaviour
 {
 
-    //   public Movelist movelist;
     [HeaderAttribute("Moveset attributes")]
-    public Weapon_MovesetScript moveset;
-    public int bossID;
-    //  Weapon_MovesetScript moveset;
+    [HideInInspector] public Weapon_MovesetScript moveset;
     EnemyScript enemyScript;
     Enemy_Movement enemyMov;
-    public GameObject target;
-    public bool targetIsAirborne;
+    [HideInInspector] public GameObject target;
+    [HideInInspector] public bool targetIsAirborne;
 
     [HeaderAttribute("Attack attributes")]
-    public GameObject currentAttack;
-    public int attackID;
+    [HideInInspector] public GameObject currentAttack;
+    [HideInInspector] public int attackID;
 
-    
-    public int resetCounter;
-    public bool comboStart;
+
     public bool canAttack = true;
     public bool canMove;
 
-    public bool hasIFrames;
-    public bool noClip;
+    [HideInInspector] public bool hasIFrames;
+    [HideInInspector] public bool noClip;
     Vector3 targetAim;
 
-    //   public float attackStart;
 
-    public float actualDistance;
-    public float trueDirection;
+    [HideInInspector] public float actualDistance;
+    [HideInInspector] public float trueDirection;
 
-    public bool massive;
-    public bool tornado;
-    bool tornadoChange;
-    bool isLeft;
-    public bool homing;
-    public bool tracking;
+    [HideInInspector] public bool massive;
+    [HideInInspector] public bool tornado;
+    [HideInInspector] bool tornadoChange;
+    [HideInInspector] bool isLeft;
+    [HideInInspector] public bool homing;
+    [HideInInspector] public bool tracking;
     public float directionChangeDelay;
-    int crossUpDirection;
-    int ray;
+
     [HeaderAttribute("Frame attributes")]
-
-
-    int directionChange;
-    int RNGCount;
+    private int directionChange;
+    private readonly int RNGCount;
 
     [HeaderAttribute("Frame attributes")]
 
@@ -60,8 +51,8 @@ public class Enemy_AttackScript : MonoBehaviour
     [HideInInspector] public int startupFrames;
     [HideInInspector] public int activeFrames;
     [HideInInspector] public int recoveryFrames;
-    public bool setStartVelocity;
-    public bool setEndVelocity;
+    [HideInInspector] public bool setStartVelocity;
+    [HideInInspector] public bool setEndVelocity;
     Vector3 startVelocity;
 
     [HideInInspector] public int forward;
@@ -129,7 +120,6 @@ public class Enemy_AttackScript : MonoBehaviour
 
             }
 
-            //  if (comboDelay < comboCounter) { combo = 0; comboCounter = 0; }
             Startup();
             Active();
             Recovery();
@@ -195,10 +185,11 @@ public class Enemy_AttackScript : MonoBehaviour
             {
                 momentumDuration2 -= 1;
                 if (homing) Momentum(targetAim * forward2);
-                if (interpolate) Momentum(new Vector2(transform.localScale.x * forward2 * (1 - (momentumDuration2) / interpol2), up2 * (1 - (momentumDuration2) / interpol2)));
+                else if (interpolate) Momentum(new Vector2(transform.localScale.x * forward2 * (1 - (momentumDuration2) / interpol2), up2 * (1 - (momentumDuration2) / interpol2)));
                 else Momentum(new Vector2(transform.localScale.x * forward2, up2));
             }
-            else if (activeMov && canMove) { //Momentum(new Vector2(enemyMov.direction * enemyMov.velocity * Time.deltaTime, enemyMov.rb.velocity.y));
+            else if (activeMov && canMove)
+            { //Momentum(new Vector2(enemyMov.direction * enemyMov.velocity * Time.deltaTime, enemyMov.rb.velocity.y));
             }
 
             if (momentumDuration2 <= 0 && activeMov && !canMove)
@@ -286,6 +277,8 @@ public class Enemy_AttackScript : MonoBehaviour
             enemyMov.dashing = false;
             enemyMov.mov = true;
             DisableObjects();
+
+            enemyMov.direction = 0;
         }
     }
 

@@ -100,6 +100,9 @@ public class Player_AttackScript : MonoBehaviour
     {
         if (startup)
         {
+            if (hasIFrames) gameObject.layer = LayerMask.NameToLayer("iFrames");
+            else if (hasInvul) gameObject.layer = LayerMask.NameToLayer("Invul");
+            else if (noClip) gameObject.layer = LayerMask.NameToLayer("NoClip");
             startupFrames -= 1;
             if (startupMov && !canMove)
             {

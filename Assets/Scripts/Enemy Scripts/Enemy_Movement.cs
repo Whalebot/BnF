@@ -20,7 +20,7 @@ public class Enemy_Movement : MonoBehaviour
     public float rayGround;
     public bool ground;
 
-    bool inContact;
+    public bool inContact;
     public float push = 10;
 
     bool inRange;
@@ -50,20 +50,20 @@ public class Enemy_Movement : MonoBehaviour
     bool hitStopped;
     EnemyScript enemyScript;
     Enemy_AttackScript attackScript;
-    public Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     RaycastHit2D hit;
     RaycastHit2D ihit;
     Vector3 oldVel;
 
     [HeaderAttribute("Generic dash attributes")]
     public GameObject dashObject;
-    public bool usingMovesetDash;
-    public float dashSpeed;
-    public float dashDuration;
-    public float dashRecovery;
-    public bool dashing = false;
-    public float currentDuration;
-    public float currentRecovery;
+    [HideInInspector] public bool usingMovesetDash;
+    [HideInInspector] public float dashSpeed;
+    [HideInInspector] public float dashDuration;
+    [HideInInspector] public float dashRecovery;
+    [HideInInspector] public bool dashing = false;
+    [HideInInspector] public float currentDuration;
+  [HideInInspector]  public float currentRecovery;
     Player_Movement playerMov;
 
     // Use this for initialization
@@ -78,7 +78,22 @@ public class Enemy_Movement : MonoBehaviour
         playerMov = target.GetComponent<Player_Movement>();
     }
 
-    void Update() { if (target == null) { target = GameObject.FindGameObjectWithTag("Player"); } }
+    void Update()
+    {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player");
+
+
+        
+        }
+        if (mov && attackScript.canAttack)
+        {
+            MeleeMovement();
+        }
+    }
+
+
 
 
     void FixedUpdate()
@@ -95,24 +110,7 @@ public class Enemy_Movement : MonoBehaviour
         HitstopProperties();
 
 
-        if (mov && attackScript.canAttack)
-        {
 
-            MeleeMovement();
-            /*if (!boss)
-            {
-                if (movementID == -1) AIMovement();
-                if (movementID == 0) MeleeMovement();
-                if (movementID == 1) RangedMovement();
-                if (movementID == 2) FlyingMovement();
-                if (movementID == 10) LilacMovement();
-            }
-            else switch (movementID)
-                {
-                    case 02: SwanMovement(); break;
-                    default: SwanMovement(); break;
-                }*/
-        }
         PushAway();
         Movement();
     }
@@ -176,7 +174,7 @@ public class Enemy_Movement : MonoBehaviour
         {
             print("push");
             mov = false;
-            rb.velocity = new Vector2(Mathf.Sign((transform.position.x - target.transform.position.x)) * push, rb.velocity.y);
+           transform.Translate(new Vector2(Mathf.Sign((transform.position.x - target.transform.position.x)) * push, 0));
         }
     }
 
@@ -286,47 +284,6 @@ public class Enemy_Movement : MonoBehaviour
             }
     }
 
-    void BambooMovement()
-    {
-        if (mode == 1)
-        {
-            if (Time.time > lastDirectionChange + directionChangeDur && mov && attackScript.canAttack)
-            {
-                RNGCounter = Random.Range(1, 10);
-                lastDirectionChange = Time.time;
-                if (RNGCounter <= 4)
-                {
-                    if ((target.transform.position.x - transform.position.x) < 0) { direction = 1; }
-                    else direction = -1;
-                }
-                if (RNGCounter == 8)
-                {
-                    if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
-                    else direction = 1;
-                }
-                if (RNGCounter == 9) direction = 0;
-            }
-        }
-        if (mode == 2)
-        {
-            if (Time.time > lastDirectionChange + directionChangeDur && mov && attackScript.canAttack)
-            {
-                RNGCounter = Random.Range(1, 10);
-                lastDirectionChange = Time.time;
-                if (RNGCounter <= 4)
-                {
-                    if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
-                    else direction = 1;
-                }
-                if (RNGCounter == 8)
-                {
-                    if ((target.transform.position.x - transform.position.x) < 0) { direction = 1; }
-                    else direction = -1;
-                }
-                if (RNGCounter == 9) direction = 0;
-            }
-        }
-    }
 
     void MeleeMovement()
     {
@@ -430,9 +387,9 @@ public class Enemy_Movement : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         if (!enemyScript.knockout)
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Feet"))
             {
-                // inContact = true;
+                 inContact = true;
             }
             else if (other.CompareTag("Enemy"))
             {
@@ -443,7 +400,7 @@ public class Enemy_Movement : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if (!enemyScript.knockout)
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Feet"))
             {
                 inContact = false;
                 mov = true;

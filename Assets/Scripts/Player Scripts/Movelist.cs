@@ -79,7 +79,7 @@ public class Movelist : MonoBehaviour
     public Move moveJ2AA;
     public GameObject moveObjectJ2AA;
 
-    [HeaderAttribute("Jump attacks")]
+    [HeaderAttribute("Unique properties")]
     [Space(10)]
     public bool limitJ8A;
     public bool chargeWeapon = false;

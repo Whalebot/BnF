@@ -12,6 +12,7 @@ public class Player_Slash : MonoBehaviour
 
     public float hitstun;
     public float chargeAmount = 1;
+    public bool willAlwaysHitpause;
     public float hitPause = 0.1F;
 
     public float activeFrames = 0.1F;
@@ -97,7 +98,7 @@ public class Player_Slash : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (clashed && !HitStopScript.hitStop) { DisableCollider();}
+        if (clashed && !HitStopScript.hitStop) { DisableCollider(); }
 
         clashCounter++;
         if (clashCounter >= clashFrames)
@@ -113,8 +114,8 @@ public class Player_Slash : MonoBehaviour
 
     void Clash(Collider2D enemy)
     {
-        if(center != null)
-        Instantiate(clashFX, center.position, Quaternion.identity);
+        if (center != null)
+            Instantiate(clashFX, center.position, Quaternion.identity);
         else Instantiate(clashFX, transform.position, Quaternion.identity);
         hitStopScript.HitStop(hitstopframes);
         enemy.GetComponent<EnemyDmg>().clashed = true;
@@ -180,11 +181,17 @@ public class Player_Slash : MonoBehaviour
                     enemyList.Add(enemy);
                     playerStatus.special += chargeAmount;
 
-                    if (manager != null)
-                        if (enemy.GetComponent<EnemyScript>().stun && !HitStopScript.hitStop && !hitPauseOnce)
-                        {
-                            hitStopScript.HitStop(hitPause); hitPauseOnce = true;
-                        }
+
+                    if (enemy.GetComponent<EnemyScript>().stun && !HitStopScript.hitStop && !hitPauseOnce && !willAlwaysHitpause)
+                    {
+                        hitStopScript.HitStop(hitPause); hitPauseOnce = true;
+                    }
+                    else if (willAlwaysHitpause && !HitStopScript.hitStop && !hitPauseOnce)
+                    {
+                        hitStopScript.HitStop(hitPause); hitPauseOnce = true;
+                    }
+
+
 
                     if (hasRecoil) GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Movement>().AddRecoil(sideRecoil, upRecoil);
                     if (manager != null) uiManager.ComboUp();

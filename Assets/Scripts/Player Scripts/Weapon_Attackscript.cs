@@ -151,8 +151,8 @@ public class Weapon_Attackscript : MonoBehaviour
         {
             chargeCounter = 0;
             chargeStart = true;
-            ////////
             //JUMP//
+            ////////
             ////////
             if (inputManager.inputQueue[0] == 0)
             {
@@ -380,7 +380,7 @@ public class Weapon_Attackscript : MonoBehaviour
             else if (inputManager.inputQueue[0] == 6)
             {
                 if (movelist.move5S != null)
-                    if (attackScript.recovery && attackScript.specialCancelable || attackScript.canAttack && playerMov.mov || attackScript.canAttack && playerMov.recovery)
+                    if (attackScript.recovery && attackScript.specialCancelable || playerMov.mov || attackScript.canAttack && playerMov.recovery)
                     {
                         if (playerStatus.special >= movelist.move5S.SpCost)
                         {
@@ -505,7 +505,10 @@ public class Weapon_Attackscript : MonoBehaviour
 
         attackScript.combo = move.combo;
         attackScript.hasIFrames = move.iFrames;
+        //if (move.iFrames) 
         attackScript.hasInvul = move.invul;
+        if (move.invul)
+        attackScript.gameObject.layer = LayerMask.NameToLayer("Invul");
         attackScript.noClip = move.noClip;
 
         attackScript.momentumDuration1 = move.duration1;
@@ -533,6 +536,7 @@ public class Weapon_Attackscript : MonoBehaviour
         attackScript.landCancelRecovery = move.landCancelRecovery;
         attackScript.attackCancelable = move.attackCancelable;
         attackScript.interpolate = move.interpolate;
+
         if (attackScript.interpolate)
         {
             attackScript.interpol1 = move.duration1;

@@ -56,7 +56,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     public float currentDistance;
     int walkCounter;
-   public bool walking;
+   bool walkForward;
 
     void Awake()
     {
@@ -116,22 +116,19 @@ public class Enemy_Weaponscript : MonoBehaviour
         {
             PhysicsTest();
 
-            if (Input.GetKeyDown("t")) { enemyMov.direction = -attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move8A, movelist.moveObject8A); }
-            if (Input.GetKeyDown("g")) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.moveJ2A, movelist.moveObjectJ2A); }
             if (enemyScript.stun) attackQueue.Clear();
             // if (attackScript.recovery) attackDelayCounter = 0;
 
             RangeDetection();
 
             PerformAction();
-            attackScript.resetCounter++;
-
-            if (walking ) {
+  
+            if (walkForward ) {
                 walkCounter--;
                 attackScript.canAttack = false;
                 if (walkCounter <= 0 || currentDistance <= ai.walkDistance)
                 {
-                    walking = false;
+                    walkForward = false;
                     attackScript.canAttack = true;
                     walkCounter = 0;
                 }
@@ -146,7 +143,12 @@ public class Enemy_Weaponscript : MonoBehaviour
 
     void PerformAction()
     {
-        if (attackScript.canAttack) attackDelayCounter--;
+        if (attackScript.canAttack) { attackDelayCounter--;
+            if (attackDelayCounter <= 0) enemyMov.mov = true;
+            else { enemyMov.mov = false; }
+        }
+
+
         if (enemyScript.detected && enemyScript.requiresTrigger || !enemyScript.requiresTrigger)
             if (isBoss)
             {
@@ -265,8 +267,7 @@ public class Enemy_Weaponscript : MonoBehaviour
     }
 
     void WalkForward() {
-        print("Obama");
-        walking = true;
+        walkForward = true;
         walkCounter = ai.walkDuration;
         attackQueue.RemoveAt(0);
         homingQueue.RemoveAt(0);
@@ -284,7 +285,7 @@ public class Enemy_Weaponscript : MonoBehaviour
             if (attackState.withinRanges[i])
             {
                 RNGCount = Random.Range(0, attackState.RNGlevels[i] + 1);
-            
+                homingQueue.Clear();
                 for (int j = 0; j < attackState.moveSequences.Count; j++)
                 {
                     if (attackState.moveSequences[j].range == attackState.temp2Ranges[i])
@@ -352,97 +353,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
         }
     }*/
-    /*
-    void BossBamboo()
-    {
-        if (enemyScript.mode == 1)
-        {
-            if (!enemyScript.stun && withinRange && attackScript.canAttack && attackDelayCounter <= 0 && enemyMov.ground)
-            {
-                RNGCount = Random.Range(1, 16);
-                if (RNGCount >= 1 && RNGCount <= 4 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5S, movelist.moveObject5S); }
-                if (RNGCount == 5 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move8A, movelist.moveObject8A); }
-                if (RNGCount == 6 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move2A, movelist.moveObject2A); }
-                if (RNGCount == 7 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5S, movelist.moveObject5S); }
-                if (RNGCount == 8 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move6A, movelist.moveObject6A); }
-                if (RNGCount == 9 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.moveJ2A, movelist.moveObjectJ2A); }
-                if (RNGCount >= 10 && !enemyScript.stun)
-                {
-                    if (attackScript.combo == 0)
-                    {
-                        enemyMov.direction = attackScript.trueDirection;
-                        TestSlash(movelist.move5A, movelist.moveObject5A);
-                    }
-                    else if (attackScript.combo == 1)
-                    {
-                        enemyMov.direction = attackScript.trueDirection;
-                        TestSlash(movelist.move5AA, movelist.moveObject5AA);
-                    }
-                    else if (attackScript.combo == 2)
-                    {
-                        attackDelayCounter = maxDelay;
-                        enemyMov.direction = attackScript.trueDirection;
-                        TestSlash(movelist.move5AAA, movelist.moveObject5AAA);
-                    }
-                }
-            }
-            else if (!enemyScript.stun && withinRange2 && !withinRange && attackScript.canAttack && attackDelayCounter <= 0)
-            {
-                RNGCount = Random.Range(1, 6);
-                if (RNGCount == 1) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move6A, movelist.moveObject6A); }
-                //      else if (RNGCount == 2) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5SS, movelist.moveObject5SS); attackScript.tornado = true; }
-                else { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(30, attackDelay); TestSlash(movelist.move2A, movelist.moveObject2A); }
-            }
-        }
-
-        else if (enemyScript.mode == 2)
-        {
-            if (!phase2Trigger && enemyMov.ground && !enemyScript.stun)
-            {
-                phase2Trigger = true;
-                enemyMov.direction = attackScript.trueDirection; attackDelayCounter = maxDelay; TestSlash(movelist.move5SS, movelist.moveObject5SS); attackScript.tornado = true;
-            }
-            else if (!enemyScript.stun && withinRange && attackScript.canAttack && attackDelayCounter <= 0 && enemyMov.ground)
-            {
-                RNGCount = Random.Range(1, 12);
-                if (RNGCount == 1 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5S, movelist.moveObject5S); }
-                if (RNGCount == 2 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = -attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move8A, movelist.moveObject8A); }
-                if (RNGCount == 3 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move2A, movelist.moveObject2A); }
-                if (RNGCount == 4 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move5SS, movelist.moveObject5SS); attackScript.tornado = true; }
-                if (RNGCount == 5 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move6A, movelist.moveObject6A); }
-                if (RNGCount == 6 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.moveJ2A, movelist.moveObjectJ2A); }
-                if (RNGCount == 7 && enemyMov.ground && !enemyScript.stun) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move8A, movelist.moveObject8A); }
-                if (RNGCount >= 8 && !enemyScript.stun)
-                {
-                    //  if (attackScript.target.transform.position.y > transform.position.y && enemyMov.ground) enemyMov.Jump();
-                    if (attackScript.combo == 0)
-                    {
-                        enemyMov.direction = attackScript.trueDirection;
-                        TestSlash(movelist.move5A, movelist.moveObject5A);
-                    }
-                    else if (attackScript.combo == 1)
-                    {
-                        enemyMov.direction = attackScript.trueDirection;
-                        TestSlash(movelist.move5AA, movelist.moveObject5AA);
-                    }
-                    else if (attackScript.combo == 2)
-                    {
-                        attackDelayCounter = maxDelay;
-                        enemyMov.direction = attackScript.trueDirection;
-                        TestSlash(movelist.move5AAA, movelist.moveObject5AAA);
-                    }
-                }
-            }
-            else if (!enemyScript.stun && withinRange2 && !withinRange && attackScript.canAttack && attackDelayCounter <= 0)
-            {
-                RNGCount = Random.Range(1, 6);
-                if (RNGCount == 1) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(attackDelay, maxDelay); TestSlash(movelist.move6A, movelist.moveObject6A); }
-                else if (RNGCount == 2) { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = maxDelay; TestSlash(movelist.move5SS, movelist.moveObject5SS); attackScript.tornado = true; }
-                else { enemyMov.direction = attackScript.trueDirection; attackDelayCounter = Random.Range(30, attackDelay); TestSlash(movelist.move2A, movelist.moveObject2A); }
-            }
-        }
-    }
-    */
+  
     void SwordEnemy()
     {
         if (attackScript.canAttack && attackDelayCounter <= 0 && (transform.position - attackScript.target.transform.position).magnitude < distance && !enemyScript.stun)
@@ -553,7 +464,6 @@ public class Enemy_Weaponscript : MonoBehaviour
 
         enemyScript.special -= move.SpCost;
 
-        attackScript.resetCounter = 0;
         //attackScript.combo = move.combo;
 
         attackScript.hasIFrames = move.iFrames;

@@ -34,7 +34,7 @@ MonoBehaviour:
   attackCancelable: 0
   landCancelRecovery: 0
   landAttackFrames: 0
-  iFrames: 1
+  iFrames: 0
   invul: 1
   noClip: 0
   isChargeAttack: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   keepHorizontalVel: 0
   interpolate: 0
   isHoming: 0
+  spin: 0

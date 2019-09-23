@@ -20,6 +20,8 @@ TagManager:
   - BGMManager
   - Camera_Manager
   - Iris
+  - Feet
+  - Head
   layers:
   - Default
   - TransparentFX

@@ -10,37 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7091b6f02f5c3114da33e0233fb83d1f, type: 3}
-  m_Name: SB_Extra
+  m_Name: Geese_8AA
   m_EditorClassIdentifier: 
-  ID: 50
+  ID: 52
   SpCost: 0
-  combo: 0
-  startUp: 6
+  combo: 1
+  startUp: 30
   active: 12
-  recovery: 24
+  recovery: 15
   forward1: 0
   up1: 0
-  duration1: 0
+  duration1: 12
   forward2: 0
   up2: 0
-  duration2: 12
+  duration2: 0
   forward3: 0
   up3: 0
   duration3: 0
   startupSound: {fileID: 0}
   jumpCancelable: 1
   specialCancelable: 1
-  landCancel: 0
+  landCancel: 1
   attackCancelable: 1
   landCancelRecovery: 0
   landAttackFrames: 0
   iFrames: 0
-  invul: 1
+  invul: 0
   noClip: 0
   isChargeAttack: 0
   justFrameTiming: 22
   canMove: 0
-  keepVerticalVel: 0
+  keepVerticalVel: 1
   keepHorizontalVel: 0
   interpolate: 0
   isHoming: 0

@@ -12,12 +12,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4a99c78b49ddf41a52a738fdd7dce7, type: 3}
   m_Name: Geese_G2A
   m_EditorClassIdentifier: 
-  ranges:
-  - 15
-  withinRanges: 01
+  numberOfRanges: 4
+  tempRanges: 0f0000000f0000000f0000000f00000032000000320000003200000050000000feffffff
+  temp2Ranges: 0f0000003200000050000000feffffff
+  RNGlevels: 0a000000070000000100000001000000
+  rangeLevels: 04000000030000000100000001000000
+  withinRanges: 01010100
   moveSequences:
-  - rangeID: 0
+  - range: 15
+    RNGWeight: 5
+    moves:
+    - attack: 9
+      tracking: 1
+  - range: 15
+    RNGWeight: 1
+    moves:
+    - attack: 5
+      tracking: 1
+    - attack: 6
+      tracking: 0
+    - attack: 7
+      tracking: 1
+  - range: 15
+    RNGWeight: 1
+    moves:
+    - attack: 1
+      tracking: 1
+  - range: 15
+    RNGWeight: 3
+    moves:
+    - attack: 10
+      tracking: 1
+  - range: 50
+    RNGWeight: 3
+    moves:
+    - attack: 0
+      tracking: 1
+  - range: 50
+    RNGWeight: 3
+    moves:
+    - attack: 1
+      tracking: 1
+  - range: 50
     RNGWeight: 1
     moves:
     - attack: 9
-      isTracking: 1
+      tracking: 1
+  - range: 80
+    RNGWeight: 1
+    moves:
+    - attack: 9
+      tracking: 1
+  - range: -2
+    RNGWeight: 1
+    moves:
+    - attack: 13
+      tracking: 1
+    - attack: 13
+      tracking: 1
+    - attack: 13
+      tracking: 1
+    - attack: 13
+      tracking: 1
+    - attack: 13
+      tracking: 1
+    - attack: 13
+      tracking: 1
+    - attack: 13
+      tracking: 1
+    - attack: 13
+      tracking: 1
+    - attack: 13
+      tracking: 1
+    - attack: 13
+      tracking: 1

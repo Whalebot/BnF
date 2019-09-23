@@ -65,7 +65,9 @@ public class Player_Movement : MonoBehaviour
     public bool backdashing = false;
     public bool newBackdash;
 
-
+    public bool inContact;
+    public float push;
+    GameObject target;
 
     bool hitStopped;
     public Vector3 oldVel;
@@ -112,7 +114,7 @@ public class Player_Movement : MonoBehaviour
         if (Physics2D.Raycast(transform.position, -Vector2.up, ray, platformMasks)
             || Physics2D.Raycast(transform.position + Vector3.right * raySpacingRight * transform.localScale.x, -Vector2.up, ray, platformMasks)
             || Physics2D.Raycast(transform.position - Vector3.right * raySpacingLeft * transform.localScale.x, -Vector2.up, ray, platformMasks))
-        { ground = true; doubleJumped = false;}
+        { ground = true; doubleJumped = false; }
         else ground = false;
         if (!ground && !wasAirborne) { wasAirborne = true; playerAttackScript.combo = 0; }
         //Resets combo on landing
@@ -141,7 +143,6 @@ public class Player_Movement : MonoBehaviour
                 inheritedVelocity = other.gameObject.GetComponent<Rigidbody2D>().velocity;
             }
             else { inheritedVelocity = Vector2.zero; onPlatform = false; }
-
     }
 
     void SprintStop() { StartCoroutine("RunEnd"); }
@@ -153,11 +154,13 @@ public class Player_Movement : MonoBehaviour
         else Instantiate(sprintEndParticle, actualPosition - Vector3.up, Quaternion.Euler(0, 180, 0));
         yield return new WaitForSeconds(runEndDuration);
         runEnd = false;
-       
+
     }
 
     void FixedUpdate()
     {
+        PushAway();
+
         faceDirection = transform.localScale.x;
         if (ground) remainingDash = doubleDash;
 
@@ -204,17 +207,22 @@ public class Player_Movement : MonoBehaviour
             if (mov && !PauseMenu.gameIsPaused)
             {
                 if (x == 0 && runEnd && ground) { rb.velocity = rb.velocity * 0.95F; }
-                else {
-                    if (ground) {
+                else
+                {
+                    if (ground)
+                    {
                         rb.velocity = new Vector2(x * currentSpeed * Time.deltaTime, rb.velocity.y);
 
                     }
-                    else { rb.AddForce(new Vector2(x * currentSpeed * airMultiplier * Time.deltaTime, 0), ForceMode2D.Force);
-                        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -(currentSpeed * Time.deltaTime) * airDrag, (currentSpeed * Time.deltaTime) * airDrag) , rb.velocity.y);
+                    else
+                    {
+                        rb.AddForce(new Vector2(x * currentSpeed * airMultiplier * Time.deltaTime, 0), ForceMode2D.Force);
+                        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -(currentSpeed * Time.deltaTime) * airDrag, (currentSpeed * Time.deltaTime) * airDrag), rb.velocity.y);
                     }
                 }
-             
-                if (ground) {
+
+                if (ground)
+                {
                     rb.velocity = rb.velocity + new Vector2(inheritedVelocity.x, 0);
                 }
             }
@@ -427,6 +435,35 @@ public class Player_Movement : MonoBehaviour
         rb.velocity = new Vector2(side * transform.localScale.x + rb.velocity.x, up);
 
     }
+
+    void PushAway()
+    {
+        if (!ground && inContact && rb.velocity.y <= 0)
+        {
+            print("push");
+            transform.Translate(new Vector2(Mathf.Sign((transform.position.x - target.transform.position.x)) * push, 0));
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+
+        if (other.CompareTag("Head"))
+        {
+            target = other.gameObject;
+            inContact = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+
+        if (other.CompareTag("Head"))
+        {
+            
+            inContact = false;
+        }
+    }
+
 
 
 }

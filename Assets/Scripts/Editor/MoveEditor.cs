@@ -49,7 +49,6 @@ public class MoveEditor : Editor
         var justFrameTiming = serializedObject.FindProperty("justFrameTiming");
 
         var canMove = serializedObject.FindProperty("canMove");
-        var keepVel = serializedObject.FindProperty("keepVel");
         var keepVerticalVel = serializedObject.FindProperty("keepVerticalVel");
         var keepHorizontalVel = serializedObject.FindProperty("keepHorizontalVel");
         var interpolate = serializedObject.FindProperty("interpolate");

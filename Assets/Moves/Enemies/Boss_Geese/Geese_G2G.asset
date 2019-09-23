@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Geese_G2G
   m_EditorClassIdentifier: 
   numberOfRanges: 2
-  tempRanges: 0a0000000a000000320000003200000032000000
-  temp2Ranges: 0a00000032000000
-  RNGlevels: 0800000014000000
-  rangeLevels: 0200000003000000
-  withinRanges: 0001
+  tempRanges: 0f0000000f0000000f0000000f0000000f000000320000003200000032000000
+  temp2Ranges: 0f00000032000000
+  RNGlevels: 0b00000014000000
+  rangeLevels: 0500000003000000
+  withinRanges: 0101
   moveSequences:
-  - range: 10
+  - range: 15
     RNGWeight: 5
     moves:
     - attack: 5
@@ -28,7 +28,7 @@ MonoBehaviour:
       tracking: 0
     - attack: 7
       tracking: 1
-  - range: 10
+  - range: 15
     RNGWeight: 3
     moves:
     - attack: 5
@@ -36,6 +36,21 @@ MonoBehaviour:
     - attack: 6
       tracking: 0
     - attack: 0
+      tracking: 1
+  - range: 15
+    RNGWeight: 1
+    moves:
+    - attack: 0
+      tracking: 1
+  - range: 15
+    RNGWeight: 1
+    moves:
+    - attack: 1
+      tracking: 1
+  - range: 15
+    RNGWeight: 1
+    moves:
+    - attack: 10
       tracking: 1
   - range: 50
     RNGWeight: 5

@@ -21,6 +21,7 @@ public class TrapScript : MonoBehaviour
     }
 
     // Update is called once per frame
+    /*
     void FixedUpdate()
     {
         if (!hasLimit && !active)
@@ -58,7 +59,7 @@ public class TrapScript : MonoBehaviour
             delayCounter = 0;
         }
     }
-
+    */
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("TrapTrigger"))
@@ -69,6 +70,7 @@ public class TrapScript : MonoBehaviour
 
     void Activate()
     {
+        trap.SetActive(true);
         active = true;
     }
 }

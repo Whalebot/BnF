@@ -13,6 +13,9 @@ public class Player_Parry : MonoBehaviour
     public int activeFrames = 1;
     public int durationCounter = 1;
     public int hitPause;
+
+    public int meterGain;
+
     public GameObject hitParticle;
     public LayerMask currentLayer;
     PlayerStatus playerStatus;
@@ -79,6 +82,7 @@ public class Player_Parry : MonoBehaviour
                 enemy.gameObject.SetActive(false);
                 //        transform.parent.GetComponent<Weapon_Attackscript>().ExtraMove();
                 print("PARRY!");
+                playerStatus.special += meterGain;
             }
 
         }

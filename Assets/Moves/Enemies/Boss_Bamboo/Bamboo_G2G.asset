@@ -12,17 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4a99c78b49ddf41a52a738fdd7dce7, type: 3}
   m_Name: Bamboo_G2G
   m_EditorClassIdentifier: 
-  numberOfRanges: 0
-  tempRanges: 
-  temp2Ranges: 
-  RNGlevels: 1300000009000000
-  rangeLevels: 0900000004000000
-  ranges:
-  - 15
-  - 35
-  withinRanges: 0101
+  numberOfRanges: 2
+  tempRanges: 14000000140000001400000014000000140000001400000014000000320000003200000014000000320000003200000032000000
+  temp2Ranges: 1400000032000000
+  RNGlevels: 1700000005000000
+  rangeLevels: 0800000005000000
+  withinRanges: 0001
   moveSequences:
-  - rangeID: 0
+  - range: 20
     RNGWeight: 6
     moves:
     - attack: 5
@@ -31,7 +28,7 @@ MonoBehaviour:
       tracking: 0
     - attack: 7
       tracking: 0
-  - rangeID: 0
+  - range: 20
     RNGWeight: 2
     moves:
     - attack: 5
@@ -40,7 +37,7 @@ MonoBehaviour:
       tracking: 0
     - attack: 0
       tracking: 1
-  - rangeID: 0
+  - range: 20
     RNGWeight: 2
     moves:
     - attack: 5
@@ -49,54 +46,54 @@ MonoBehaviour:
       tracking: 0
     - attack: 4
       tracking: 1
-  - rangeID: 0
+  - range: 20
     RNGWeight: 4
     moves:
     - attack: 3
       tracking: 1
-  - rangeID: 0
+  - range: 20
     RNGWeight: 1
     moves:
     - attack: 13
       tracking: 0
-  - rangeID: 0
+  - range: 20
     RNGWeight: 1
     moves:
     - attack: 2
       tracking: 1
-  - rangeID: 0
+  - range: 20
     RNGWeight: 1
     moves:
     - attack: 1
-      tracking: 0
-  - rangeID: 0
+      tracking: 1
+  - range: 50
     RNGWeight: 1
     moves:
     - attack: 0
       tracking: 1
-  - rangeID: 0
+  - range: 50
     RNGWeight: 1
     moves:
     - attack: 4
       tracking: 1
     - attack: 0
       tracking: 1
-  - rangeID: 1
+  - range: 20
     RNGWeight: 6
     moves:
     - attack: 4
       tracking: 0
-  - rangeID: 1
+  - range: 50
     RNGWeight: 1
     moves:
     - attack: 13
       tracking: 1
-  - rangeID: 1
+  - range: 50
     RNGWeight: 1
     moves:
     - attack: 2
       tracking: 1
-  - rangeID: 1
+  - range: 50
     RNGWeight: 1
     moves:
     - attack: 1
