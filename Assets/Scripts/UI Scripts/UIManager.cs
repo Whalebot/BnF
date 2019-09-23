@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject statusBars;
-    public GameObject Door1;
-    public GameObject Door2;
 
     public GameObject HPCircle;
     public GameObject comboParticle;
@@ -50,8 +48,6 @@ public class UIManager : MonoBehaviour
 
         Player = GameObject.FindGameObjectWithTag("Player");
         initialDuration = duration;
-        StartCoroutine(LvlStart());
-     //   playerStatus = Player.GetComponent<PlayerStatus>();
         comboScript = HITS.GetComponent<ComboCounter>();
 
         startPosition = statusBars.GetComponent<RectTransform>().position;
@@ -142,19 +138,6 @@ public class UIManager : MonoBehaviour
         brokenScreen.GetComponent<Image>().color = temp;
     }
 
-    public void UNGA()
-    {
-        StartCoroutine(LvlStart());
-    }
-
-    public IEnumerator LvlStart()
-    {
-        Door1.GetComponent<TransitionScript>().Close = true;
-        Door2.GetComponent<TransitionScript>().Close = true;
-        yield return new WaitForSeconds(1);
-        Door1.GetComponent<TransitionScript>().Close = false;
-        Door2.GetComponent<TransitionScript>().Close = false;
-    }
 
     public void WeaponSwitch(int activeWeapon)
     {

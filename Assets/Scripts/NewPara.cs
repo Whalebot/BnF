@@ -4,7 +4,6 @@ using System.Collections;
 public class NewPara : MonoBehaviour
 {
     public float speed;
-    public bool moveInOppositeDirection;
     public bool skyBox;
     public static int cameraToFollow;
     public GameObject ghostCamera;

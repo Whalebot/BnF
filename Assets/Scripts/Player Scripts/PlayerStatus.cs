@@ -264,9 +264,7 @@ public class PlayerStatus : MonoBehaviour
 
     IEnumerator Death()
     {
-        if (manager != null)
-        { uiManager.UNGA(); }
-
+      
         playerMovement.mov = false;
         playerAttack.canAttack = false;
         canTakeDmg = false;
