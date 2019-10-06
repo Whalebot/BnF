@@ -41,11 +41,9 @@ public class Enemy_Movement : MonoBehaviour
     float hoverProgress;
     bool hoverUp;
     public float hoverVariation = 10;
-    bool flown;
     public float direction;
     float lastDirectionChange = 0;
     public GameObject target;
-    int RNGCounter;
 
     bool hitStopped;
     EnemyScript enemyScript;
@@ -63,7 +61,7 @@ public class Enemy_Movement : MonoBehaviour
     [HideInInspector] public float dashRecovery;
     [HideInInspector] public bool dashing = false;
     [HideInInspector] public float currentDuration;
-  [HideInInspector]  public float currentRecovery;
+    [HideInInspector] public float currentRecovery;
     Player_Movement playerMov;
 
     // Use this for initialization
@@ -85,12 +83,11 @@ public class Enemy_Movement : MonoBehaviour
             target = GameObject.FindGameObjectWithTag("Player");
 
 
-        
+
         }
-        if (mov && attackScript.canAttack)
-        {
-            MeleeMovement();
-        }
+
+        MeleeMovement();
+
     }
 
 
@@ -174,18 +171,18 @@ public class Enemy_Movement : MonoBehaviour
         {
             print("push");
             mov = false;
-           transform.Translate(new Vector2(Mathf.Sign((transform.position.x - target.transform.position.x)) * push, 0));
+            transform.Translate(new Vector2(Mathf.Sign((transform.position.x - target.transform.position.x)) * push, 0));
         }
     }
 
     void Movement()
     {
-
         //Flip sprite
         if (direction < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
         else if (direction > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
-        ground = Physics2D.Raycast(transform.position, -Vector2.up, rayGround, LayerMask.GetMask("Platform"));
 
+        //Ground detection
+        ground = Physics2D.Raycast(transform.position, -Vector2.up, rayGround, LayerMask.GetMask("Platform"));
         if (!enemyScript.stun && mov)
         {
             if (!inRange)
@@ -238,8 +235,8 @@ public class Enemy_Movement : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, hoverProgress);
 
-                if (hoverUp) hoverProgress = hoverProgress + hoverSpeed;
-                else hoverProgress = hoverProgress - hoverSpeed;
+                if (hoverUp) hoverProgress += hoverSpeed;
+                else hoverProgress -= hoverSpeed;
                 if (hoverProgress >= hoverVariation) { hoverUp = false; }
                 if (hoverProgress <= -hoverVariation + 2) { hoverUp = true; }
             }
@@ -262,45 +259,16 @@ public class Enemy_Movement : MonoBehaviour
     }
 
 
-    void SwanMovement()
-    {
-        if (mode == 0) direction = 0;
-        if (mode != 0)
-            if (Time.time > lastDirectionChange + directionChangeDur && mov && attackScript.canAttack)
-            {
-                RNGCounter = Random.Range(1, 7);
-                lastDirectionChange = Time.time;
-                if (RNGCounter <= 3)
-                {
-                    if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
-                    else direction = 1;
-                }
-                if (RNGCounter == 4 || RNGCounter == 5)
-                {
-                    if ((target.transform.position.x - transform.position.x) < 0) { direction = 1; }
-                    else direction = -1;
-                }
-                if (RNGCounter == 6) direction = 0;
-            }
-    }
-
-
     void MeleeMovement()
     {
-        // if (mode == 0) direction = 0;
-        //   if (mode == 1)
 
-        /*                if (Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = 1;
-                else if (Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = -1;*/
+        if (!inRange && mov && attackScript.canAttack)
         {
-            if (!inRange)
-            {
-                if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
-                else direction = 1;
+            if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
+            else direction = 1;
 
-            }
-            else direction = 0;
         }
+        else direction = 0;
     }
 
     void RangedMovement()
@@ -349,27 +317,6 @@ public class Enemy_Movement : MonoBehaviour
             //       if (Physics2D.Raycast(transform.position, Vector2.right * direction, ray, LayerMask.GetMask("Obstacle"))) direction = 0;
         }
     }
-    void LilacMovement()
-    {
-        if (mode == 0) direction = 0;
-        if (mode == 1)
-        {
-            if (Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, -Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = 1;
-            else if (Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Platform")) || Physics2D.Raycast(transform.position, Vector2.right, ray, LayerMask.GetMask("Enemy"))) direction = -1;
-        }
-        if (mode == 2)
-        {
-
-            if (Time.time > lastDirectionChange + directionChangeDur && mov)
-            {
-                lastDirectionChange = Time.time;
-                if (Vector2.Distance(target.transform.position, transform.position) > 0)
-                    if ((target.transform.position.x - transform.position.x) > 0) { direction = 1; }
-                    else if ((target.transform.position.x - transform.position.x) < 0) { direction = -1; }
-            }
-            //       if (Physics2D.Raycast(transform.position, Vector2.right * direction, ray, LayerMask.GetMask("Obstacle"))) direction = 0;
-        }
-    }
 
     public void Jump() { rb.velocity += new Vector2(0, jumpVel); }
 
@@ -389,7 +336,7 @@ public class Enemy_Movement : MonoBehaviour
         if (!enemyScript.knockout)
             if (other.CompareTag("Feet"))
             {
-                 inContact = true;
+                inContact = true;
             }
             else if (other.CompareTag("Enemy"))
             {

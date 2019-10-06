@@ -15,12 +15,12 @@ MonoBehaviour:
   numberOfRanges: 2
   tempRanges: 0f0000000f0000000f0000000f0000000f000000320000003200000032000000
   temp2Ranges: 0f00000032000000
-  RNGlevels: 0b00000014000000
+  RNGlevels: ee03000014000000
   rangeLevels: 0500000003000000
-  withinRanges: 0101
+  withinRanges: 0001
   moveSequences:
   - range: 15
-    RNGWeight: 5
+    RNGWeight: 1000
     moves:
     - attack: 5
       tracking: 1

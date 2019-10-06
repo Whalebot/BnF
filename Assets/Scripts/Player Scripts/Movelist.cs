@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class Movelist : MonoBehaviour
 {
+    [HeaderAttribute("Jump attributes")]
+    [Space(10)]
+    public int numberOfJumps;
+    public float jumpHeight;
 
     [HeaderAttribute("Dash attributes")]
     [Space(10)]
 
-    public int dashSpeed;
-    public int dashDuration;
-    public int dashRecovery;
+    public Vector2 dashVelocity = new Vector2(60F,0F);
+    public int dashDuration = 12;
+    public int dashRecovery = 16;
 
-    public int backdashSpeed;
-    public int backdashDuration;
-    public int backdashRecovery;
+    public Vector2 backdashVelocity = new Vector2(-30F, 0F);
+    public int backdashDuration = 12;
+    public int backdashRecovery = 12;
+
+    public Vector2 airdashVelocity = new Vector2(60F, 0F);
+    public int airdashDuration = 12;
+    public int airdashRecovery = 16;
 
     public bool canElectric;
     public int electricCost;

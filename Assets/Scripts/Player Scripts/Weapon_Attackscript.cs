@@ -189,7 +189,8 @@ public class Weapon_Attackscript : MonoBehaviour
                     }
                     else if (!playerMov.ground && playerMov.remainingDash > 0)
                     {
-                        AttackCancel(); playerMov.Dash();
+                        AttackCancel();
+                        playerMov.Airdash();
                         inputManager.inputQueue.RemoveAt(0);
                     }
                 }
@@ -590,13 +591,14 @@ public class Weapon_Attackscript : MonoBehaviour
     public void UpdateDash()
     {
         playerMov.dashDuration = movelist.dashDuration;
-        playerMov.dashSpeed = movelist.dashSpeed;
+        playerMov.dashVelocity = movelist.dashVelocity;
+
         playerMov.dashRecovery = movelist.dashRecovery;
         playerMov.currentRecovery = movelist.dashRecovery;
         playerMov.currentDuration = movelist.dashDuration;
 
+        playerMov.backdashVelocity = movelist.backdashVelocity;
         playerMov.backdashDuration = movelist.backdashDuration;
-        playerMov.backdashSpeed = movelist.backdashSpeed;
         playerMov.backdashRecovery = movelist.backdashRecovery;
     }
 }

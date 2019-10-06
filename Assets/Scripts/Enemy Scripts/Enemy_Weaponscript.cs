@@ -564,8 +564,7 @@ public class Enemy_Weaponscript : MonoBehaviour
     public void UpdateDash()
     {
         enemyMov.dashDuration = movelist.dashDuration;
-        enemyMov.dashSpeed = movelist.dashSpeed;
-        enemyMov.dashRecovery = movelist.dashRecovery;
+         enemyMov.dashRecovery = movelist.dashRecovery;
         enemyMov.currentRecovery = movelist.dashRecovery;
         enemyMov.currentDuration = movelist.dashDuration;
     }

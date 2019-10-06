@@ -17,10 +17,11 @@ public class Player_Movement : MonoBehaviour
     public GameObject positionObject;
     public GameObject jumpObject;
     public GameObject doubleJumpObject;
-    public Vector3 actualPosition;
+    [HideInInspector] public Vector3 actualPosition;
     public float m_jump;
-    public int doubleJump;
-    public int doubleDash;
+    [HideInInspector] public int doubleJump = 1;
+    [HideInInspector] public int doubleDash = 1;
+
     public int remainingJumps;
     public int remainingDash;
     public float fallMultiplier = 1.5F;
@@ -29,12 +30,12 @@ public class Player_Movement : MonoBehaviour
     public bool jump = false;
     bool doubleJumped;
     public bool ground = true;
-    public bool onPlatform;
+    [HideInInspector] public bool onPlatform;
     public Vector2 inheritedVelocity;
     public LayerMask platformMasks;
     public LayerMask enemyMasks;
     public bool running;
-    public bool doubleTap;
+    [HideInInspector] public bool doubleTap;
     bool runEnd;
     public float runEndDuration;
     public float ray;
@@ -49,36 +50,41 @@ public class Player_Movement : MonoBehaviour
     int sprintCounter;
     [HeaderAttribute("Generic dash attributes")]
     public GameObject dashObject;
-    public float dashSpeed;
-    public float dashDuration;
-    public bool isDashing;
-    public float dashRecovery;
-    public bool dashing = false;
-    public bool newDash;
+    [HideInInspector] public Vector2 dashVelocity = new Vector2(60F, 0F);
+    [HideInInspector] public float dashDuration = 12F;
+    [HideInInspector] public bool isDashing;
+    [HideInInspector] public float dashRecovery = 16F;
+    [HideInInspector] public bool dashing = false;
+    [HideInInspector] public bool newDash;
 
-    [HeaderAttribute("Generic backdash attributes")]
+    [HeaderAttribute("Backdash attributes")]
     public GameObject backdashObject;
-    public float backdashSpeed;
-    public float backdashDuration;
-    public bool isBackdashing;
-    public float backdashRecovery;
-    public bool backdashing = false;
-    public bool newBackdash;
+    [HideInInspector] public Vector2 backdashVelocity = new Vector2(-30F, 0F);
+    [HideInInspector] public float backdashDuration = 12F;
+    [HideInInspector] public bool isBackdashing;
+    [HideInInspector] public float backdashRecovery = 12F;
+    [HideInInspector] public bool backdashing = false;
+    [HideInInspector] public bool newBackdash;
 
-    public bool inContact;
+    [HeaderAttribute("Airdash attributes")]
+    public GameObject airdashObject;
+    [HideInInspector] public Vector2 airdashVelocity = new Vector2(60F, 0F);
+    [HideInInspector] public float airdashDuration = 12F;
+    [HideInInspector] public float airdashRecovery = 16F;
+    [HideInInspector] public bool airdashing = false;
+
+    [HideInInspector] public bool inContact;
     public float push;
     GameObject target;
 
     bool hitStopped;
-    public Vector3 oldVel;
-
-    [HeaderAttribute("Other stuff")]
-    public float x;
-    public float y;
-    public bool recovery;
-    public float currentDuration;
-    public float currentRecovery;
-    public Rigidbody2D rb;
+    [HideInInspector] public Vector3 oldVel;
+    [HideInInspector] public float x;
+    [HideInInspector] public float y;
+    [HideInInspector] public bool recovery;
+    [HideInInspector] public float currentDuration;
+    [HideInInspector] public float currentRecovery;
+    [HideInInspector] public Rigidbody2D rb;
 
     Player_Input playerInput;
     Player_AttackScript playerAttackScript;
@@ -245,7 +251,7 @@ public class Player_Movement : MonoBehaviour
             //Dashing
             if (dashing) Dashing();
             else if (backdashing) Backdashing();
-
+            else if (airdashing) Airdashing();
 
             if (recovery)
             {
@@ -274,7 +280,7 @@ public class Player_Movement : MonoBehaviour
         if (currentDuration > 0)
         {
             currentDuration -= 1;
-            AddVelocity(new Vector2(dashSpeed * transform.localScale.x, 0));
+            AddVelocity(new Vector2(dashVelocity.x * transform.localScale.x, dashVelocity.y));
             gameObject.layer = LayerMask.NameToLayer("iFrames");
         }
         if (currentDuration <= 0 && dashing && !recovery)
@@ -287,17 +293,37 @@ public class Player_Movement : MonoBehaviour
             {
                 if (transform.localScale.x > 0) { Instantiate(sprintEndParticle, actualPosition - Vector3.up - Vector3.right * transform.localScale.x * 2, Quaternion.identity); }
                 else Instantiate(sprintEndParticle, actualPosition - Vector3.up - Vector3.right * transform.localScale.x * 2, Quaternion.Euler(0, 180, 0));
-                AddVelocity(Vector2.zero);
+                //AddVelocity(Vector2.zero);
                 mov = false;
             }
             else if (!ground)
             {
-                //AddVelocity(Vector2.zero);
                 mov = true;
             }
         }
     }
-
+    void Airdashing()
+    {
+        if (currentDuration == airdashDuration)
+        {
+            if (transform.localScale.x < 0) { Instantiate(airdashObject, actualPosition, Quaternion.identity); }
+            else Instantiate(airdashObject, actualPosition, Quaternion.Euler(0, 180, 0));
+        }
+        if (currentDuration > 0)
+        {
+            currentDuration -= 1;
+            AddVelocity(new Vector2(airdashVelocity.x * transform.localScale.x, airdashVelocity.y));
+            gameObject.layer = LayerMask.NameToLayer("iFrames");
+        }
+        if (currentDuration <= 0 && airdashing && !recovery)
+        {
+            airdashing = false;
+            currentDuration = airdashDuration;
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            recovery = true;
+            //AddVelocity(Vector2.zero);
+        }
+    }
     void Backdashing()
     {
         if (currentDuration == backdashDuration)
@@ -308,7 +334,7 @@ public class Player_Movement : MonoBehaviour
         if (currentDuration > 0)
         {
             currentDuration -= 1;
-            AddVelocity(new Vector2(backdashSpeed * transform.localScale.x, 0));
+            AddVelocity(new Vector2(backdashVelocity.x * transform.localScale.x, backdashVelocity.y));
             gameObject.layer = LayerMask.NameToLayer("iFrames");
         }
         if (currentDuration <= 0 && backdashing && !recovery)
@@ -317,7 +343,7 @@ public class Player_Movement : MonoBehaviour
             currentDuration = backdashDuration;
             gameObject.layer = LayerMask.NameToLayer("Player");
             recovery = true;
-            AddVelocity(Vector2.zero);
+            //AddVelocity(Vector2.zero);
         }
     }
 
@@ -412,6 +438,22 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
+    public void Airdash()
+    {
+        if (!backdashing && !dashing && !recovery && remainingDash > 0)
+        {
+            if (x < 0) transform.localScale = new Vector3(-1, 1, 1);
+            else if (x > 0) transform.localScale = new Vector3(1, 1, 1);
+            gameObject.layer = LayerMask.NameToLayer("iFrames");
+            newDash = true;
+            isDashing = true;
+            remainingDash--;
+            mov = false;
+            currentRecovery = dashRecovery;
+            airdashing = true;
+        }
+    }
+
     public void Backdash()
     {
         if (!backdashing && !dashing && !recovery && remainingDash > 0)
@@ -459,7 +501,7 @@ public class Player_Movement : MonoBehaviour
 
         if (other.CompareTag("Head"))
         {
-            
+
             inContact = false;
         }
     }

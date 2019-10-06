@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraScript : MonoBehaviour
 {
     [Header("General Camera stuff")]
+
     [SerializeField] private float dampTime = 0.15f;
     [SerializeField] private Vector3 velocity = Vector3.zero;
     public Transform target;
@@ -11,7 +12,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField] private float directionOffset;
     Vector3 targetPos;
 
-   [Header("Zoom")]
+    [Header("Zoom")]
     [SerializeField] private Vector3 zoomTarget;
     [SerializeField] private bool zooming;
     private bool positionChange;
@@ -25,6 +26,7 @@ public class CameraScript : MonoBehaviour
     private int count;
 
     [Header("Camera Boundary")]
+    public bool globalBoundaries;
     [SerializeField] private bool xMin;
     [SerializeField] private float xMinValue = 0;
     [SerializeField] private bool xMax;
@@ -54,10 +56,21 @@ public class CameraScript : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0), new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0));
-        Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0), new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0));
-        Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0), new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0));
-        Gizmos.DrawLine(new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0), new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0));
+        if (!globalBoundaries)
+        {
+            Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0), new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0));
+            Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0), new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0));
+            Gizmos.DrawLine(new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0), new Vector3(xMinValue - cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0));
+            Gizmos.DrawLine(new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMinValue - cam.orthographicSize, 0), new Vector3(xMaxValue + cam.orthographicSize * 16 / 9, yMaxValue + cam.orthographicSize, 0));
+        }
+        else
+        {
+            Gizmos.DrawLine(new Vector3(xMinValue, yMinValue, 0), new Vector3(xMaxValue, yMinValue, 0));
+            Gizmos.DrawLine(new Vector3(xMinValue, yMaxValue, 0), new Vector3(xMaxValue, yMaxValue, 0));
+            Gizmos.DrawLine(new Vector3(xMinValue, yMinValue, 0), new Vector3(xMinValue, yMaxValue, 0));
+            Gizmos.DrawLine(new Vector3(xMaxValue, yMinValue, 0), new Vector3(xMaxValue, yMaxValue, 0));
+        }
+
     }
 
     void FixedUpdate()
@@ -68,22 +81,35 @@ public class CameraScript : MonoBehaviour
 
             if (yMin && yMax) targetPos.y = Mathf.Clamp(targetPos.y, yMinValue, yMaxValue);
             if (xMin && xMax) targetPos.x = Mathf.Clamp(targetPos.x, xMinValue, xMaxValue);
+
             if (!positionChange)
             {
                 if (!boundary) transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
                 if (boundary)
                 {
                     transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
-                    if (transform.position.x > target.position.x + bufferSpaceX) transform.position = new Vector3(target.position.x + bufferSpaceX, transform.position.y, -10);
-                    if (transform.position.x < target.position.x - bufferSpaceX) transform.position = new Vector3(target.position.x - bufferSpaceX, transform.position.y, -10);
+                  //  if (transform.position.x > target.position.x + bufferSpaceX) transform.position = new Vector3(target.position.x + bufferSpaceX, transform.position.y, -10);
+                  //  if (transform.position.x < target.position.x - bufferSpaceX) transform.position = new Vector3(target.position.x - bufferSpaceX, transform.position.y, -10);
 
-                    if (transform.position.y > target.position.y + bufferSpaceY) transform.position = new Vector3(transform.position.x, target.position.y + bufferSpaceY, -10);
-                    if (transform.position.y < target.position.y - bufferSpaceY) transform.position = new Vector3(transform.position.x, target.position.y - bufferSpaceY, -10);
+                 //   if (transform.position.y > target.position.y + bufferSpaceY) transform.position = new Vector3(transform.position.x, target.position.y + bufferSpaceY, -10);
+                 //  if (transform.position.y < target.position.y - bufferSpaceY) transform.position = new Vector3(transform.position.x, target.position.y - bufferSpaceY, -10);
+
+
                 }
 
-                if (yMin && yMax) transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMinValue, xMaxValue), Mathf.Clamp(transform.position.y, yMinValue, yMaxValue), -10);
-                if (lockToPlayerY) transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMinValue, xMaxValue), Mathf.Clamp(targetPos.y, target.transform.position.y + yLockMin, target.transform.position.y + yLockMax), -10);
-                if (lockToPlayerX) transform.position = new Vector3(Mathf.Clamp(targetPos.x, target.transform.position.x + xLockMin, target.transform.position.x + xLockMax), Mathf.Clamp(transform.position.y, yMinValue, yMaxValue), -10);
+
+                if (!globalBoundaries)
+                {
+                    if (yMin && yMax) transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMinValue, xMaxValue), Mathf.Clamp(transform.position.y, yMinValue, yMaxValue), -10);
+                    if (lockToPlayerY) transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMinValue, xMaxValue), Mathf.Clamp(targetPos.y, target.transform.position.y + yLockMin, target.transform.position.y + yLockMax), -10);
+                    if (lockToPlayerX) transform.position = new Vector3(Mathf.Clamp(targetPos.x, target.transform.position.x + xLockMin, target.transform.position.x + xLockMax), Mathf.Clamp(transform.position.y, yMinValue, yMaxValue), -10);
+                }
+                else
+                {
+                    transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMinValue + cam.orthographicSize * 16 / 9, xMaxValue - cam.orthographicSize * 16 / 9), Mathf.Clamp(transform.position.y, yMinValue + cam.orthographicSize, yMaxValue - cam.orthographicSize), -10);
+
+                }
+
             }
         }
     }
