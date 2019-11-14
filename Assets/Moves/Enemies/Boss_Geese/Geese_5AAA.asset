@@ -44,3 +44,4 @@ MonoBehaviour:
   keepHorizontalVel: 0
   interpolate: 0
   isHoming: 0
+  spin: 0

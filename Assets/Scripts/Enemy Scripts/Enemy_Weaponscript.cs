@@ -243,7 +243,6 @@ public class Enemy_Weaponscript : MonoBehaviour
     void ResetHoming()
     {
         homingQueue.RemoveAt(0);
-
     }
 
     void Boss()
@@ -309,51 +308,6 @@ public class Enemy_Weaponscript : MonoBehaviour
             }
         }
     }
-    /*
-    void BossLilac()
-    {
-        if (attackScript.canAttack && attackDelayCounter <= 0 && withinRange2 && !withinRange && !enemyScript.stun)
-        {
-            enemyMov.direction = attackScript.trueDirection;
-            RNGCount = Random.Range(1, 6);
-            if (RNGCount == 1)
-            {
-                attackQueue.Add(1);
-                attackDelayCounter = attackDelay;
-            }
-            else if (RNGCount == 2)
-            {
-                attackQueue.Add(2);
-                attackDelayCounter = attackDelay;
-            }
-            else if (RNGCount == 3)
-            {
-                attackQueue.Add(3);
-                attackDelayCounter = attackDelay;
-            }
-            else if (RNGCount == 4)
-            {
-                attackQueue.Add(4);
-                attackDelayCounter = attackDelay;
-            }
-            else if (RNGCount == 5)
-            {
-                attackQueue.Add(5);
-                attackDelayCounter = attackDelay;
-            }
-
-        }
-        else if (attackScript.canAttack && attackDelayCounter <= 0 && withinRange && !enemyScript.stun)
-        {
-            enemyMov.direction = attackScript.trueDirection;
-
-            attackQueue.Add(0);
-            attackQueue.Add(1);
-            attackDelayCounter = maxDelay;
-
-        }
-    }*/
-  
     void SwordEnemy()
     {
         if (attackScript.canAttack && attackDelayCounter <= 0 && (transform.position - attackScript.target.transform.position).magnitude < distance && !enemyScript.stun)
@@ -511,15 +465,9 @@ public class Enemy_Weaponscript : MonoBehaviour
         if (homingQueue.Count > 0)
         {
             attackScript.tracking = homingQueue[0];
-        
             ResetHoming();
-
         }
-
-
     }
-
-
 
     public void Momentum(Vector2 vel)
     {

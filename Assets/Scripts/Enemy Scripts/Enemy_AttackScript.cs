@@ -32,8 +32,8 @@ public class Enemy_AttackScript : MonoBehaviour
     [HideInInspector] public bool tornado;
     [HideInInspector] bool tornadoChange;
     [HideInInspector] bool isLeft;
-    [HideInInspector] public bool homing;
-    [HideInInspector] public bool tracking;
+    public bool homing;
+    public bool tracking;
     public float directionChangeDelay;
 
     [HeaderAttribute("Frame attributes")]
@@ -266,6 +266,7 @@ public class Enemy_AttackScript : MonoBehaviour
         }
         if (recoveryFrames <= 0 && recovery)
         {
+            
             specialCancelable = false;
             gameObject.layer = LayerMask.NameToLayer("Enemy");
             canAttack = true;

@@ -268,7 +268,7 @@ public class Enemy_Movement : MonoBehaviour
             else direction = 1;
 
         }
-        else direction = 0;
+        // else direction = 0;
     }
 
     void RangedMovement()
