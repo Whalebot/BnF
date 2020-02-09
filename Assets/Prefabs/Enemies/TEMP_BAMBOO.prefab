@@ -1524,7 +1524,8 @@ MonoBehaviour:
   ray: 0
   rayGround: 9.85
   ground: 0
-  push: 10
+  inContact: 0
+  push: 0.2
   actualDistance: 0
   stoppingDistance: 8
   distance: 0
@@ -2091,12 +2092,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82361453ae4c338488e43f76f6130f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 0
+  numberOfJumps: 0
+  jumpHeight: 0
+  dashVelocity: {x: 60, y: 0}
   dashDuration: 0
   dashRecovery: 0
-  backdashSpeed: 0
+  backdashVelocity: {x: -30, y: 0}
   backdashDuration: 0
   backdashRecovery: 0
+  airdashVelocity: {x: 60, y: 0}
+  airdashDuration: 12
+  airdashRecovery: 16
   canElectric: 0
   electricCost: 0
   move6A: {fileID: 11400000, guid: f44e12d5b237bc143873e0670c05c07f, type: 2}

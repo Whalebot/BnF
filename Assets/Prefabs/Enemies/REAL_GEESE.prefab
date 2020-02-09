@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 2007072457057020924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 337.7, y: 10, z: 0}
-  m_LocalScale: {x: -2, y: 2, z: 1}
+  m_LocalScale: {x: -1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 3348607857285060591}
   - {fileID: 5808461364661242494}
@@ -79,8 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d1c1d4e63d0a0104eb0b873655c81236, type: 3}
-  m_Color: {r: 1, g: 0.6745283, b: 0.8458292, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9dbadfc8e538d70408ca9f457114ab15, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,7 +110,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!114 &2288357956119393637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   isStoryMode: 0
   knockout: 0
   health: 250
-  triggerHealth: 0
+  triggerHealth: 125
   special: 0
   mode: 1
   modeLayers:
@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveset: {fileID: 0}
+  state: 0
   target: {fileID: 0}
   targetIsAirborne: 0
   currentAttack: {fileID: 6322341333783367400}
@@ -196,9 +197,6 @@ MonoBehaviour:
   homing: 0
   tracking: 0
   directionChangeDelay: 0
-  startup: 0
-  active: 0
-  recovery: 0
   startupMov: 0
   activeMov: 0
   recoveryMov: 0
@@ -290,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: 0
-  velocity: 15
+  velocity: 10
   airMultiplier: 5
   maxSpeed: 100
   directionChangeDur: 2

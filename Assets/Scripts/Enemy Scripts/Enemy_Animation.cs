@@ -54,28 +54,40 @@ public class Enemy_Animation : MonoBehaviour
         else anim.SetBool("Grounded", false);
 
 
-        if (attackScript.startup || attackScript.active || attackScript.recovery) anim.SetBool("Attacking", true);
+        if (attackScript.state != Enemy_AttackScript.State.Neutral) anim.SetBool("Attacking", true);
         else anim.SetBool("Attacking", false);
 
-        if (attackScript.startup) anim.SetBool("Startup", true);
-        else anim.SetBool("Startup", false);
+        switch (attackScript.state)
+        {
+            case Enemy_AttackScript.State.Startup:
+                anim.SetBool("Startup", true);
+                anim.SetBool("Active", false);
+                anim.SetBool("Recovery", false);
+                break;
+            case Enemy_AttackScript.State.Active:
+                anim.SetBool("Active", true);
+                anim.SetBool("Startup", false);
+                anim.SetBool("Recovery", false);
+                break;
+            case Enemy_AttackScript.State.Recovery:
+                anim.SetBool("Startup", false);
+                anim.SetBool("Active", false);
+                anim.SetBool("Recovery", true);
+                break;
+            case Enemy_AttackScript.State.Neutral:
+                anim.SetBool("Startup", false);
+                anim.SetBool("Active", false);
+                anim.SetBool("Recovery", false);
+                break;
+            default: break;
+        }
 
 
-        if (attackScript.active) anim.SetBool("Active", true);
-        else anim.SetBool("Active", false);
-
-        if (attackScript.recovery) anim.SetBool("Recovery", true);
-        else anim.SetBool("Recovery", false);
 
         if (enemyMov.rb.velocity.y < 0) anim.SetInteger("Ascending", -1);
         else if (enemyMov.rb.velocity.y > 1)
             anim.SetInteger("Ascending", 1);
         else anim.SetInteger("Ascending", 0);
 
-
-        if (attackScript.recovery)
-        {
-            anim.SetBool("Active", false);
-        }
     }
 }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Enemy_AttackScript : MonoBehaviour
 {
-
     [HeaderAttribute("Moveset attributes")]
     [HideInInspector] public Weapon_MovesetScript moveset;
     EnemyScript enemyScript;
     Enemy_Movement enemyMov;
+    public enum State { Neutral, Startup, Active, Recovery };
+    public State state = State.Neutral;
     [HideInInspector] public GameObject target;
     [HideInInspector] public bool targetIsAirborne;
 
@@ -41,10 +42,6 @@ public class Enemy_AttackScript : MonoBehaviour
     private readonly int RNGCount;
 
     [HeaderAttribute("Frame attributes")]
-
-    [HideInInspector] public bool startup;
-    [HideInInspector] public bool active;
-    [HideInInspector] public bool recovery;
     [HideInInspector] public bool startupMov;
     [HideInInspector] public bool activeMov;
     [HideInInspector] public bool recoveryMov;
@@ -120,16 +117,29 @@ public class Enemy_AttackScript : MonoBehaviour
 
             }
 
-            Startup();
-            Active();
-            Recovery();
+
+            switch (state)
+            {
+                case State.Startup:
+                    Startup(); break;
+                case State.Active:
+                    Active(); break;
+                case State.Recovery:
+                    Recovery(); break;
+                case State.Neutral: break;
+                default: break;
+            }
+
+          //  Startup();
+           // Active();
+          //  Recovery();
         }
     }
 
 
     void Startup()
     {
-        if (startup)
+   
         {
             if (tracking) { enemyMov.direction = trueDirection; tracking = false; }
             startupFrames -= 1;
@@ -145,16 +155,15 @@ public class Enemy_AttackScript : MonoBehaviour
             else if (startupMov && canMove) { }//Momentum(new Vector2(enemyMov.direction * enemyMov.velocity, enemyMov.rb.velocity.y));
         }
 
-        if (startupFrames <= 0 && startup)
+        if (startupFrames <= 0 )
         {
-            startup = false;
-            active = true;
             canAttack = false;
             currentAttack.SetActive(true);
             startupFrames = 1;
             activeMov = true;
             if (transform.position.x > target.transform.position.x) isLeft = true;
             else isLeft = false;
+            state = State.Active;
         }
         if (momentumDuration1 <= 0 && startupMov && !canMove)
         {
@@ -171,7 +180,6 @@ public class Enemy_AttackScript : MonoBehaviour
 
     void Active()
     {
-        if (active)
         {
             if (hasIFrames) gameObject.layer = LayerMask.NameToLayer("iFrames");
             else if (hasInvul) gameObject.layer = LayerMask.NameToLayer("Invul");
@@ -189,7 +197,7 @@ public class Enemy_AttackScript : MonoBehaviour
                 else Momentum(new Vector2(transform.localScale.x * forward2, up2));
             }
             else if (activeMov && canMove)
-            { //Momentum(new Vector2(enemyMov.direction * enemyMov.velocity * Time.deltaTime, enemyMov.rb.velocity.y));
+            {
             }
 
             if (momentumDuration2 <= 0 && activeMov && !canMove)
@@ -211,10 +219,10 @@ public class Enemy_AttackScript : MonoBehaviour
             }
         }
 
-        if (activeFrames <= 0 && active)
+        if (activeFrames <= 0)
         {
-            active = false;
-            recovery = true;
+            state = State.Recovery;
+        
             if (noClip) gameObject.layer = LayerMask.NameToLayer("NoClip");
             else gameObject.layer = LayerMask.NameToLayer("Enemy");
             hasIFrames = false;
@@ -226,8 +234,7 @@ public class Enemy_AttackScript : MonoBehaviour
 
     void Recovery()
     {
-        if (recovery)
-
+     
         {
             //enemyMov.rb.mass = 1;
             if (willJump) { enemyMov.Jump(); print("Jump attempted"); willJump = false; }
@@ -264,19 +271,18 @@ public class Enemy_AttackScript : MonoBehaviour
         {
             recoveryMov = false;
         }
-        if (recoveryFrames <= 0 && recovery)
+        if (recoveryFrames <= 0)
         {
-            
+
             specialCancelable = false;
             gameObject.layer = LayerMask.NameToLayer("Enemy");
             canAttack = true;
-
-            recovery = false;
             keepVerticalVel = false;
             landCancelRecovery = false;
             attackCancelable = false;
             enemyMov.dashing = false;
             enemyMov.mov = true;
+            state = State.Neutral;
             DisableObjects();
 
             enemyMov.direction = 0;
@@ -317,9 +323,7 @@ public class Enemy_AttackScript : MonoBehaviour
         startupMov = false;
         activeMov = false;
         recoveryMov = false;
-        startup = false;
-        active = false;
-        recovery = false;
+        state = State.Neutral;
         if (!enemyScript.stun)
         {
             //       enemyMov.mov = true;

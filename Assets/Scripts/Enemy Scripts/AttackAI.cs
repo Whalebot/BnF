@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackAI : MonoBehaviour
 {
     public int state;
+
     public float lineLength;
 
     public float walkDistance;
@@ -15,6 +16,13 @@ public class AttackAI : MonoBehaviour
     public AttackState airToGround;
     public AttackState airToAir;
 
+    public AttackState phase2groundToGround;
+    public AttackState phase2groundToAir;
+    public AttackState phase2airToGround;
+    public AttackState phase2airToAir;
+
+
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
@@ -24,8 +32,6 @@ public class AttackAI : MonoBehaviour
 
     void Setup(AttackState attackState)
     {
-
-
         attackState.tempRanges.Clear();
         attackState.temp2Ranges.Clear();
         attackState.withinRanges.Clear();
@@ -63,6 +69,19 @@ public class AttackAI : MonoBehaviour
 
     private void Start()
     {
+        SetupUpdate();
+    }
+
+    public void PhaseChange() {
+        groundToGround = phase2groundToGround;
+        groundToAir = phase2groundToAir;
+        airToGround = phase2airToGround;
+        airToAir = phase2airToAir;
+        SetupUpdate();
+
+    }
+
+    void SetupUpdate() {
         Setup(groundToGround);
         Setup(groundToAir);
         Setup(airToGround);

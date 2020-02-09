@@ -13,7 +13,7 @@ public class EnemyScript : MonoBehaviour
     public int health;
     public int triggerHealth;
     public int special;
-    public int mode = 0;
+    public int mode = 1;
     public LayerMask modeLayers;
     public GameObject knockdownSound;
 
@@ -109,7 +109,8 @@ public class EnemyScript : MonoBehaviour
         {
             if (isBoss)
             {
-                if (health <= triggerHealth) mode = 2;
+                if (health <= 0) mode = 0;
+                else if (health <= triggerHealth) mode = 2;
             }
             //poise = poiseHealth;
             if (health <= 0 && !playOnce)
@@ -132,7 +133,7 @@ public class EnemyScript : MonoBehaviour
             {
                 if (hitstun > 0)
                 {
-                    if (enemyAttack.active || enemyAttack.startup || enemyAttack.recovery) enemyAttack.InterruptAttack();
+                    if (enemyAttack.state != Enemy_AttackScript.State.Neutral) enemyAttack.InterruptAttack();
                     if (canDizzy && canKnockback)
                     {
                         if (enemyMov.ground) hitstun -= 1;
@@ -237,8 +238,9 @@ public class EnemyScript : MonoBehaviour
             }
             else if (hyperArmor && canKnockback)
             {
-                if (enemyAttack.startup && hyperArmor || enemyAttack.active && hyperArmor) poise -= poiseDamage;
-                if (poise <= 0 || !enemyAttack.startup && !enemyAttack.active)
+                if (enemyAttack.state != Enemy_AttackScript.State.Startup && hyperArmor || enemyAttack.state != Enemy_AttackScript.State.Active && hyperArmor) poise -= poiseDamage;
+
+                if (poise <= 0 || enemyAttack.state != Enemy_AttackScript.State.Startup && enemyAttack.state != Enemy_AttackScript.State.Active)
                 {
                     if (canDizzy && !stun) knockdown = true;
                     enemyAttack.InterruptAttack();
@@ -268,7 +270,7 @@ public class EnemyScript : MonoBehaviour
         {
 
             if (dizzy) dizzy = false;
-            if (!poiseArmor && !hyperArmor || !enemyAttack.startup && !enemyAttack.active && hyperArmor || stun)
+            if (!poiseArmor && !hyperArmor || enemyAttack.state != Enemy_AttackScript.State.Startup && enemyAttack.state != Enemy_AttackScript.State.Active && hyperArmor || stun)
             {
                 rb.velocity = -(new Vector2(source.x - transform.position.x, 0).normalized * force - Vector2.up * knockup);
             }
@@ -322,8 +324,7 @@ public class EnemyScript : MonoBehaviour
         retreatJump = false;
         stun = false;
         knockout = true;
-        enemyAttack.startup = false;
-        enemyAttack.active = false;
+        enemyAttack.state = Enemy_AttackScript.State.Neutral;
         enemyAttack.canAttack = false;
         enemyMov.mov = false;
         playOnce = true;
@@ -335,8 +336,8 @@ public class EnemyScript : MonoBehaviour
     {
         if (!isBoss) GameDataManager.killedEnemies++;
         if (deathObject != null) Instantiate(deathObject, transform.position, Quaternion.identity);
-        enemyAttack.startup = false;
-        enemyAttack.active = false;
+
+        enemyAttack.state = Enemy_AttackScript.State.Neutral;
         enemyAttack.canAttack = false;
         enemyMov.mov = false;
         playOnce = true;

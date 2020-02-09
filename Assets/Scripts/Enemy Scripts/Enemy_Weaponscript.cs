@@ -122,7 +122,12 @@ public class Enemy_Weaponscript : MonoBehaviour
             RangeDetection();
 
             PerformAction();
-  
+
+            if (enemyScript.mode == 2 && !phase2Trigger) {
+                ai.PhaseChange();
+                phase2Trigger =  true;
+            }
+
             if (walkForward ) {
                 walkCounter--;
                 attackScript.canAttack = false;
@@ -154,7 +159,7 @@ public class Enemy_Weaponscript : MonoBehaviour
             {
                 if (behaviorID == 0) Boss();
             }
-        if (attackQueue.Count > 0 && attackScript.canAttack || attackScript.recovery && attackQueue.Count > 0)
+        if (attackQueue.Count > 0 && attackScript.canAttack || attackScript.state == Enemy_AttackScript.State.Recovery && attackQueue.Count > 0)
         {
             switch (attackQueue[0])
             {
@@ -248,7 +253,7 @@ public class Enemy_Weaponscript : MonoBehaviour
     void Boss()
     {
 
-        if (attackScript.canAttack || attackScript.recovery)
+        if (attackScript.canAttack || attackScript.state == Enemy_AttackScript.State.Recovery)
         {
             if (!enemyScript.stun && attackDelayCounter <= 0 && attackQueue.Count == 0)
             {
@@ -414,7 +419,7 @@ public class Enemy_Weaponscript : MonoBehaviour
 
         attackScript.attackID = move.ID;
         attackScript.canAttack = false;
-
+        attackScript.state = Enemy_AttackScript.State.Startup;
 
         enemyScript.special -= move.SpCost;
 
@@ -458,7 +463,6 @@ public class Enemy_Weaponscript : MonoBehaviour
             attackScript.interpol3 = move.duration3;
         }
 
-        attackScript.startup = true;
         attackScript.startupMov = true;
         attackQueue.RemoveAt(0);
 
@@ -478,9 +482,7 @@ public class Enemy_Weaponscript : MonoBehaviour
     public void AttackCancel()
     {
         DisableObjects();
-        attackScript.startup = false;
-        attackScript.active = false;
-        attackScript.recovery = false;
+        attackScript.state = Enemy_AttackScript.State.Neutral;
         enemyMov.mov = true;
         attackScript.canAttack = true;
 
