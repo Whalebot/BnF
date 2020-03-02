@@ -161,8 +161,9 @@ public class Player_Input : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
+    public void ResetBufferQueue() {
+        StopAllCoroutines();
+        inputQueue.Clear();
     }
 
     IEnumerator BufferReset(int inputID)

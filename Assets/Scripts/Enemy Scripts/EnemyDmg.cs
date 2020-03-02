@@ -9,6 +9,7 @@ public class EnemyDmg : MonoBehaviour
     public float knockback;
     public float knockup;
     public float hitstun;
+    public float hitPause = 0.1F;
     public float activeTime;
     public GameObject hitParticle;
     int RNGCount;
@@ -23,11 +24,19 @@ public class EnemyDmg : MonoBehaviour
     public bool blank;
     GameObject target;
     Vector3 direction;
+    GameObject manager;
     Enemy_Weaponscript weaponScript;
+    HitStopScript hitStopScript;
     public bool clashed;
 
     void Awake()
     {
+        manager = GameObject.FindGameObjectWithTag("Manager");
+        if (manager != null)
+        {
+            hitStopScript = manager.GetComponent<HitStopScript>();
+        }
+
         target = GameObject.FindGameObjectWithTag("Player");
         weaponScript = transform.parent.GetComponent<Enemy_Weaponscript>();
         SR = GetComponent<SpriteRenderer>();
@@ -43,8 +52,8 @@ public class EnemyDmg : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (clashed && !HitStopScript.hitStop) { DisableCollider();}    
-        
+        if (clashed && !HitStopScript.hitStop) { DisableCollider(); }
+
     }
 
     private void OnDisable()
@@ -94,10 +103,11 @@ public class EnemyDmg : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D enemy)
     {
-        if (enemy.CompareTag("Attack")) {
-          if(enemy.GetComponent<Player_Slash>() != null)  if (enemy.GetComponent<Player_Slash>().clashActive) clashed = true;
+        if (enemy.CompareTag("Attack"))
+        {
+            if (enemy.GetComponent<Player_Slash>() != null) if (enemy.GetComponent<Player_Slash>().clashActive) clashed = true;
         }
-        
+
         if (enemy.CompareTag("Player") && !ranged && !clashed)
         {
             DoDmg(enemy.gameObject);
@@ -105,11 +115,11 @@ public class EnemyDmg : MonoBehaviour
         }
     }
 
-    public void DisableCollider() {
+    public void DisableCollider()
+    {
         col.enabled = false;
         // SR.enabled = false;
-        print("Shit happened");
-        weaponScript.AttackCancel();
+        //weaponScript.AttackCancel();
 
     }
 
@@ -124,6 +134,11 @@ public class EnemyDmg : MonoBehaviour
     void DoDmg(GameObject enemy)
     {
         if (enemy.GetComponent<PlayerStatus>().canTakeDmg == true) Instantiate(hitParticle, enemy.transform.position, Quaternion.Euler(0, 0, 15 * RNGCount));
+
+        if (!HitStopScript.hitStop)
+        {
+            hitStopScript.HitStop(hitPause);
+        }
         enemy.GetComponent<PlayerStatus>().TakeDamage(dmg);
         enemy.GetComponent<PlayerStatus>().Hitstun(hitstun);
         enemy.GetComponent<PlayerStatus>().Knockback(transform.parent.parent.localScale.x, knockback, knockup);

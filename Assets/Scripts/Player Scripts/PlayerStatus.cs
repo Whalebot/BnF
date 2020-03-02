@@ -43,6 +43,8 @@ public class PlayerStatus : MonoBehaviour
     bool weaponSwitch;
     bool dying;
 
+    public enum State { Neutral, Hitstun, HitRecovery, Blockstun, Animation };
+    public State state = State.Neutral;
 
     public GameObject[] dmgSound;
 
@@ -174,21 +176,52 @@ public class PlayerStatus : MonoBehaviour
 
 
 
-        if (isParrying) { canTakeDmg = false; }
-        if (!canTakeDmg && stuncounter > 0) { stuncounter -= 1; hitAnimation = true; gameObject.layer = LayerMask.NameToLayer("iFrames"); playerAttack.canAttack = false; playerMovement.mov = false; }
-        if (stuncounter <= 0 && !playerAttack.canAttack && hitAnimation && !recovered) { playerAttack.canAttack = true; recovered = true; playerMovement.mov = true; gameObject.layer = LayerMask.NameToLayer("Invul"); }
-        if (stuncounter <= 0 && !canTakeDmg && !hitInvul) { hitInvul = true; }
-        if (hitInvul)
+        switch (state)
         {
-            if (!playerMovement.dashing) gameObject.layer = LayerMask.NameToLayer("Invul");
-            invulcounter -= 1; hitAnimation = false; flash = !flash; playerMovement.mov = true;
-            if (flash) { myRenderer.enabled = !myRenderer.enabled; }
-            if (invulcounter <= 5) { playerAttack.canAttack = true; }
-            if (invulcounter <= 0) { Recover(); }
+            case State.Neutral:
+
+                if (stuncounter > 0) state = State.Hitstun;
+                break;
+            case State.Hitstun:
+
+                if (!canTakeDmg) { stuncounter -= 1; hitAnimation = true; gameObject.layer = LayerMask.NameToLayer("iFrames"); playerAttack.canAttack = false; playerMovement.mov = false; }
+                if (stuncounter <= 0 && !playerAttack.canAttack && hitAnimation && !recovered) { playerAttack.canAttack = true; recovered = true; playerMovement.mov = true; gameObject.layer = LayerMask.NameToLayer("Invul"); }
+                if (stuncounter <= 0 && !canTakeDmg && !hitInvul) {
+                    hitInvul = true;
+                    state = State.HitRecovery;
+                }
+
+                break;
+            case State.HitRecovery:
+
+                if (hitInvul)
+                {
+                    if (!playerMovement.dashing) gameObject.layer = LayerMask.NameToLayer("Invul");
+                    invulcounter -= 1; hitAnimation = false; flash = !flash; playerMovement.mov = true;
+                    if (flash) { myRenderer.enabled = !myRenderer.enabled; }
+                    if (invulcounter <= 5) { playerAttack.canAttack = true; }
+                    if (invulcounter <= 0) {
+                        Recover();
+                   
+                    }
+                }
+
+                break;
+            case State.Blockstun:
+                break;
+            case State.Animation:
+                break;
+            default: break;
         }
+
+        if (isParrying) { canTakeDmg = false; }
+
     }
 
-    public void Recover() {
+    public void Recover()
+    {
+        state = State.Neutral;
+        hitAnimation = false;
         playerAttack.canAttack = true; canTakeDmg = true; hitInvul = false; myRenderer.enabled = true; invulcounter = invulDur; recovered = false; gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
@@ -198,6 +231,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if (canTakeDmg)
         {
+            inputManager.ResetBufferQueue();
             if (activeWeapon == 1)
             {
                 if (health == 1)
@@ -241,7 +275,7 @@ public class PlayerStatus : MonoBehaviour
         {
             playerAttack.AttackCancel();
             stuncounter = dur;
-          
+
         }
         else if (isParrying) { Parry(); }
         else return;
@@ -264,7 +298,7 @@ public class PlayerStatus : MonoBehaviour
 
     IEnumerator Death()
     {
-      
+
         playerMovement.mov = false;
         playerAttack.canAttack = false;
         canTakeDmg = false;

@@ -210,33 +210,37 @@ public class Player_Movement : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
             //MOVEMENT
-            if (mov && !PauseMenu.gameIsPaused)
+            if (playerStatus.state == PlayerStatus.State.Neutral || playerStatus.state == PlayerStatus.State.HitRecovery)
             {
-                if (x == 0 && runEnd && ground) { rb.velocity = rb.velocity * 0.95F; }
-                else
+                if (mov && !PauseMenu.gameIsPaused)
                 {
-                    if (ground)
-                    {
-                        rb.velocity = new Vector2(x * currentSpeed * Time.deltaTime, rb.velocity.y);
-
-                    }
+                    if (x == 0 && runEnd && ground) { rb.velocity = rb.velocity * 0.95F; }
                     else
                     {
-                        rb.AddForce(new Vector2(x * currentSpeed * airMultiplier * Time.deltaTime, 0), ForceMode2D.Force);
-                        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -(currentSpeed * Time.deltaTime) * airDrag, (currentSpeed * Time.deltaTime) * airDrag), rb.velocity.y);
+                        if (ground)
+                        {
+                            rb.velocity = new Vector2(x * currentSpeed * Time.deltaTime, rb.velocity.y);
+
+                        }
+                        else
+                        {
+                            rb.AddForce(new Vector2(x * currentSpeed * airMultiplier * Time.deltaTime, 0), ForceMode2D.Force);
+                            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -(currentSpeed * Time.deltaTime) * airDrag, (currentSpeed * Time.deltaTime) * airDrag), rb.velocity.y);
+                        }
+                    }
+
+                    if (ground)
+                    {
+                        rb.velocity = rb.velocity + new Vector2(inheritedVelocity.x, 0);
                     }
                 }
 
-                if (ground)
+                if (jump)
                 {
-                    rb.velocity = rb.velocity + new Vector2(inheritedVelocity.x, 0);
+                    rb.velocity = new Vector2(rb.velocity.x + x * currentSpeed * Time.deltaTime, 0) + Vector2.up * m_jump; jump = false;
+                    rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, 0, m_jump));
                 }
-            }
 
-            if (jump)
-            {
-                rb.velocity = new Vector2(rb.velocity.x + x * currentSpeed * Time.deltaTime, 0) + Vector2.up * m_jump; jump = false;
-                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, 0, m_jump));
             }
 
             if (rb.velocity.y < 0) { rb.velocity += Vector2.up * Physics2D.gravity.y * fallMultiplier * Time.deltaTime; }
@@ -306,7 +310,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (currentDuration == airdashDuration)
         {
-            if (transform.localScale.x < 0) { Instantiate(airdashObject, actualPosition, Quaternion.identity); }
+            if (transform.localScale.x > 0) { Instantiate(airdashObject, actualPosition, Quaternion.identity); }
             else Instantiate(airdashObject, actualPosition, Quaternion.Euler(0, 180, 0));
         }
         if (currentDuration > 0)

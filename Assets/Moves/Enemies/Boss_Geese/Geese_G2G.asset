@@ -17,7 +17,7 @@ MonoBehaviour:
   temp2Ranges: 0f00000032000000
   RNGlevels: 1000000014000000
   rangeLevels: 0500000003000000
-  withinRanges: 0001
+  withinRanges: 0101
   moveSequences:
   - range: 15
     RNGWeight: 10
@@ -36,7 +36,7 @@ MonoBehaviour:
     - attack: 6
       tracking: 0
     - attack: 0
-      tracking: 1
+      tracking: 0
   - range: 15
     RNGWeight: 1
     moves:

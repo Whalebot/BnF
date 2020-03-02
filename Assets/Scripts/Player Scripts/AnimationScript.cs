@@ -31,7 +31,7 @@ public class AnimationScript : MonoBehaviour
         if (playerMov.running) anim.SetBool("Running", true);
         else anim.SetBool("Running", false);
 
-        if (playerStatus.hitAnimation) anim.SetBool("Hitstun", true);
+        if (playerStatus.state == PlayerStatus.State.Hitstun) anim.SetBool("Hitstun", true);
         else anim.SetBool("Hitstun", false);
 
         if (playerMov.isDashing) anim.SetBool("Dashing", true);

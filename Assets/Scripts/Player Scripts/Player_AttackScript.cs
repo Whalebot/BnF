@@ -67,6 +67,9 @@ public class Player_AttackScript : MonoBehaviour
     public int interpol2;
     public int interpol3;
 
+    public enum State { Neutral, Startup, Active, Recovery };
+    public State state = State.Neutral;
+
     void Awake()
     {
         playerStatus = GetComponent<PlayerStatus>();

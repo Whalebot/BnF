@@ -129,10 +129,6 @@ public class Enemy_AttackScript : MonoBehaviour
                 case State.Neutral: break;
                 default: break;
             }
-
-          //  Startup();
-           // Active();
-          //  Recovery();
         }
     }
 

@@ -132,10 +132,8 @@ public class CameraScript : MonoBehaviour
         //Zooming in
         if (cam.orthographicSize > zoomSize)
         {
-            print("Obama");
             StartCoroutine("ZoomInOn", other);
         }
-        //Zooming out
         else
         {
         }

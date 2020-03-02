@@ -182,7 +182,7 @@ public class Enemy_Movement : MonoBehaviour
         else if (direction > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
 
         //Ground detection
-        ground = Physics2D.Raycast(transform.position, -Vector2.up, rayGround, LayerMask.GetMask("Platform"));
+        ground = Physics2D.Raycast(transform.position, -Vector2.up, rayGround, LayerMask.GetMask("Platform")) && rb.velocity.y >= 0;
         if (!enemyScript.stun && mov)
         {
             if (!inRange)

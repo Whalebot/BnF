@@ -497,6 +497,11 @@ MonoBehaviour:
   groundToAir: {fileID: 11400000, guid: a4f2c49e39069b44abeb331cb4ad5b1b, type: 2}
   airToGround: {fileID: 11400000, guid: 4b490a1d6d4092e4394d834b32f39d53, type: 2}
   airToAir: {fileID: 11400000, guid: c8c36911ce4887c4f829e8a0894b2b1f, type: 2}
+  phase2groundToGround: {fileID: 11400000, guid: 84edf99f3164e5b44ac3a80e6ed4d14d,
+    type: 2}
+  phase2groundToAir: {fileID: 11400000, guid: a4f2c49e39069b44abeb331cb4ad5b1b, type: 2}
+  phase2airToGround: {fileID: 11400000, guid: 4b490a1d6d4092e4394d834b32f39d53, type: 2}
+  phase2airToAir: {fileID: 11400000, guid: c8c36911ce4887c4f829e8a0894b2b1f, type: 2}
 --- !u!114 &4321392183744653774
 MonoBehaviour:
   m_ObjectHideFlags: 0
